@@ -20,15 +20,14 @@
         
     }
 
-     function query()
+     function query($sql)
      {
-        $sql = "SELECT * FROM shop_users";
-        echo (mysqli_query($this->conn, $sql));
+        
+        $result = mysqli_query($this->conn, $sql);
+        return $result;
+        
      }
 
   }
-
-  $db = new DB();
-  $db->query();
 
 ?>
