@@ -39,7 +39,7 @@
             <div class="form__message form__message--error"></div>
 
             <div class="form__input-group">
-                <input type="text" id="signupUsername" required class="form__input" autofocus name="email" placeholder="Email">
+                <input type="email" id="signupUsername" required class="form__input" autofocus name="email" placeholder="Email">
                 <!-- <div class="form__input-error-message"></div> -->
             </div>
             <div class="form__input-group">
@@ -63,6 +63,7 @@
             </div>
           
             <input class="form__button"  value="Continue"  name="submit" type="submit">
+           
             <p class="form__text">
                 <a class="form__link" href="./" id="linkLogin">Already have an account? Sign in</a>
             </p>

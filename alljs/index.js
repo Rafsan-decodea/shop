@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     loginForm.addEventListener("submit", e => {
-        e.preventDefault();
+        // e.preventDefault();
 
         // Perform your AJAX/Fetch login
 
