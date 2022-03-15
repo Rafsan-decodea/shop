@@ -6,6 +6,8 @@ session_start();
    // ini_set('display_errors', 1);
  include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
 
+ if (isset($_POST["email"]) && isset($_POST["password"]))
+ {
   $db = new DB();
   $sql = "SELECT * FROM shop_users WHERE email = '".$_POST["email"]."'";
   $result = $db->query($sql);
@@ -19,11 +21,15 @@ session_start();
       $_SESSION["email"]= $row["email"];
       $_SESSION["fristname"] = $row["fristname"];
       $_SESSION["lastname"] = $row["lastname"];
+      $_SESSION["location"] = $row["location"];
+      $_SESSION["time"] = $row["time"];
    
    }
    else{
 
-      echo ("Invalide Username Password");
+      header("location:/shop/index.php?message=Invalide Username Password");
+   
+       
    }
 
    if (isset($_SESSION["id"]))// if complete User Authentication
@@ -34,7 +40,11 @@ session_start();
    }
    else 
    {
-      echo "Session Not Set";
+      header("location:/shop/index.php?message=Detect invalid Response Setting Session");
    }
-
+ }
+ else
+ {
+   header("location:/shop/index.php?message=Fill Up From Properly");
+ }
   ?>
