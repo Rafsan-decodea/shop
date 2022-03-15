@@ -27,13 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.querySelector("#linkLogin").addEventListener("click", e => {
-        // e.preventDefault();
+        e.preventDefault();
         loginForm.classList.remove("form--hidden");
         createAccountForm.classList.add("form--hidden");
     });
 
     loginForm.addEventListener("submit", e => {
-        // e.preventDefault();
+        e.preventDefault();
 
         // Perform your AJAX/Fetch login
 

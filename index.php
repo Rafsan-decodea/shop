@@ -25,9 +25,9 @@
                 <div class="form__input-error-message"></div>
             </div>
             <input class="form__button"  value="Continue"  name="submit" type="submit">
-            <p class="form__text">
+            <!-- <p class="form__text">
                 <a href="#" class="form__link">Forgot your password?</a>
-            </p>
+            </p> -->
             <p class="form__text">
                 <a class="form__link" href="./" id="linkCreateAccount">Don't have an account? Create account</a>
             </p>
