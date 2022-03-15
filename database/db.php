@@ -1,6 +1,6 @@
 
 <?php
-  ini_set('display_errors', 1);
+  // ini_set('display_errors', 1);
   Class DB{
   
     public $server = "localhost";
@@ -22,9 +22,9 @@
 
      function query($sql)
      {
-        
         $result = mysqli_query($this->conn, $sql);
         return $result;
+       
         
      }
 

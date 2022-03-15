@@ -9,4 +9,11 @@ if (!isset($_SESSION["id"]))
 
 }
 
+echo $_SESSION["uid"];
+
+session_destroy();
+
+
+
+
 ?>

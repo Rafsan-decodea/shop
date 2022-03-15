@@ -15,7 +15,7 @@
             <h1 class="form__title">User Login</h1>
             <div class="form__message form__message--error"></div>
             <div class="form__input-group">
-                <input type="text" class="form__input" name="username" autofocus placeholder="Username or email">
+                <input type="text" class="form__input" name="email" autofocus placeholder="Username or email">
                 <div class="form__input-error-message"></div>
             </div>
             <div class="form__input-group">

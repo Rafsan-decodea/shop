@@ -1,19 +1,24 @@
-<?php 
+<?php
+
+use function PHPSTORM_META\type;
 
 session_start();
    // ini_set('display_errors', 1);
  include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
 
   $db = new DB();
-  $sql = "select * from shop_users";
+  $sql = "SELECT * FROM shop_users WHERE email = '".$_POST["email"]."'";
   $result = $db->query($sql);
-  
-  $row = mysqli_fetch_array($result);
+
+  $row =  mysqli_fetch_array($result);
   
   if($_POST["password"]==$row["password"])// Cheaking User Authentication
    {
       $_SESSION["id"] = $row["id"];
       $_SESSION["uid"] = $row["uid"];
+      $_SESSION["email"]= $row["email"];
+      $_SESSION["fristname"] = $row["fristname"];
+      $_SESSION["lastname"] = $row["lastname"];
    
    }
    else{
