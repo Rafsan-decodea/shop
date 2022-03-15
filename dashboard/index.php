@@ -66,6 +66,9 @@ if (!isset($_SESSION["id"]))
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="logout.php" class="nav-link">logout</a>
+      </li>
     </ul>
 
     <!-- Right navbar links -->

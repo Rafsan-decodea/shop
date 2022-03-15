@@ -35,6 +35,11 @@
         
      }
 
+     function insert($sql)
+     {
+      mysqli_query($this->conn, $sql);
+     }
+
   }
 
 ?>
