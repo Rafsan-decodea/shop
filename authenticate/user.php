@@ -6,7 +6,7 @@ session_start();
    // ini_set('display_errors', 1);
  include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
 
- if (isset($_POST["email"]) && isset($_POST["password"]))
+ if (isset($_POST["email"]) || isset($_POST["password"]))
  {
   $db = new DB();
   $sql = "SELECT * FROM shop_users WHERE email = '".$_POST["email"]."'";
@@ -40,7 +40,7 @@ session_start();
    }
    else 
    {
-      header("location:/shop/index.php?message=Detect invalid Response Setting Session");
+      header("location:/shop/index.php?message=Invalide Username Password");
    }
  }
  else

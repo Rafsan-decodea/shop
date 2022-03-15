@@ -2,6 +2,13 @@
 <?php
   // ini_set('display_errors', 1);
   Class DB{
+
+    
+    // public $server = "localhost";
+    // public $username = "softeckc_wp521";
+    // public $password = "S(ZZ-88j1p";
+    // public $dbname = "softeckc_wp521";
+
   
     public $server = "localhost";
     public $username = "root";
