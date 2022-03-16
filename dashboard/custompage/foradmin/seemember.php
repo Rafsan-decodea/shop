@@ -298,7 +298,7 @@ if( $_SESSION["uid"]==0)
     <?php 
 
      
-     $sql = "select * from shop_users where uid= 1";
+     $sql = "select * from shop_users ";
      $result = $db->query($sql);
 
       echo $email;
@@ -323,14 +323,18 @@ if( $_SESSION["uid"]==0)
     <tr>
     
       <td><?php echo $number += 1 ?></td>
-      <td> Seller </td>
-      <td><?php echo $row["email"] ?></td>
+      <td> <?php if($row["uid"]==0){ echo " Admin Seller ";} else{echo " Seller ";} ?> </td>
+      <td><?php echo $row["email"]; if($row["uid"]==0){ echo " (Admin)";} ?></td>
       <td><?php echo $row["fristname"] ?></td>
       <td><?php echo $row["lastname"] ?></td>
       <td><?php echo $row["location"] ?></td>
       <td>
-         <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button>
+        <?php if($row["uid"]==1){  ?>
+         <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button> 
          <button class="btn btn-danger" onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button>
+        <?php }else{ ?>
+        <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button> 
+         <?php } ?>
       </td>
 
 
