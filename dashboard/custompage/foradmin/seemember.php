@@ -178,34 +178,34 @@ if( $_SESSION["uid"]==0)
     <!-- Main content -->
 
     <section class="content">
+
+    <?php 
+     include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
+
+     $db  = new DB();
+     $sql = "select * from shop_users where uid= 1";
+     $result = $db->query($sql);
+     $row  = mysqli_fetch_all($result);
+    
+    ?>
       
     <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">id</th>
+      <th scope="col">uid</th>
+      <th scope="col">email</th>
+      <th scope="col">Fristname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">location</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+      <td><?php var_dump( $row["uid"]) ?></td>
+      <!-- <td>Otto</td>
+      <td>@mdo</td> -->
     </tr>
   </tbody>
 </table>
