@@ -1,3 +1,4 @@
+
 <?php 
 session_start();
 
@@ -116,7 +117,7 @@ if( $_SESSION["uid"]==0)
             </a>
           </li>
           <li class="nav-item">
-            <a href="seemember.php" class="nav-link  active">
+            <a href="seemember.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 See Users 
@@ -125,7 +126,7 @@ if( $_SESSION["uid"]==0)
           </li>
 
           <li class="nav-item">
-            <a href="seeproduct.php" class="nav-link">
+            <a href="seeproduct.php" class="nav-link active">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 See Products
