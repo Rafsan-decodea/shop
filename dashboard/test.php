@@ -13,7 +13,4 @@ echo $_SESSION["uid"];
 
 session_destroy();
 
-
-
-
 ?>
