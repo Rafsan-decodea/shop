@@ -12,21 +12,27 @@ $db = new DB();
   && isset($_POST["lastnameSend"]) && isset($_POST["locationSend"]))
   {
 
-  
-    $testsql = "SELECT `email` FROM `shop_users` WHERE `email` = '".$emailSend."'";
-    $select = $db->query($testsql);
 
+  // Front End Cheking 
+
+    $checksql = "SELECT `email` FROM `shop_users` WHERE `email` = '".$emailSend."'"; 
+    $seechek = $db->query($checksql);
     $response = array();
-    while ($row = mysqli_fetch_assoc($select))
+    while ($row = mysqli_fetch_assoc($seechek))
     { 
        $response = $row;
     }
 
     echo json_encode($response); // This is for Send All Value To Front Cheking If Exist 
 
+    
+    // Backend Cheking 
+
+    $testsql = "SELECT `email` FROM `shop_users` WHERE `email` = '".$emailSend."'"; 
+    $select = $db->query($testsql);
     if(mysqli_num_rows($select)) {
-      header("location:/shop/index.php?message=User Email Already Exist");
-      exit();
+      // header("location:/shop/index.php?message=User Email Already Exist");
+      
   }
 
   else{

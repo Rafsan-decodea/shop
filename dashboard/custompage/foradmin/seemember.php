@@ -261,17 +261,15 @@ if( $_SESSION["uid"]==0)
             },
             success:function(data,status)
             {
-         
-              alert(data);
+              
                   // toastr.error("Email Id Exist");
-               var fetchalldata  = JSON.parse(data);
-               
-               if(fetchalldata.email == email)
+               var fetchdata = JSON.parse(data);
+              
+
+               if(fetchdata.email == email)
                {
                 toastr.error("Email Id Exist");
-
-          
-
+               
                }
 
                else{
@@ -284,6 +282,9 @@ if( $_SESSION["uid"]==0)
             }
             
           });
+
+
+
       }
 
   </script>
