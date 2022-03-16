@@ -109,7 +109,7 @@ if( $_SESSION["uid"]==0)
                with font-awesome or any other icon font library -->
           <li class="nav-item ">
             <a href="./../../index.php" class="nav-link">
-              <i class="nav-icon fab fa-500px"></i>
+            <i class="fa-solid fa-font-awesome"></i>
               <p>
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
