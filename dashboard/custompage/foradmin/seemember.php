@@ -41,6 +41,7 @@ if( $_SESSION["uid"]==0)
   <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
+ 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -185,11 +186,11 @@ if( $_SESSION["uid"]==0)
      $db  = new DB();
      $sql = "select * from shop_users where uid= 1";
      $result = $db->query($sql);
-     $row  = mysqli_fetch_all($result);
+    ;
     
     ?>
       
-    <table class="table">
+    <table class="table" id="editable_table">
   <thead>
     <tr>
       <th scope="col">id</th>
@@ -201,16 +202,45 @@ if( $_SESSION["uid"]==0)
     </tr>
   </thead>
   <tbody>
+
+  <?php  while ( $row  = $result->fetch_assoc()) { ?>
     <tr>
-      <th scope="row">1</th>
-      <td><?php var_dump( $row["uid"]) ?></td>
-      <!-- <td>Otto</td>
-      <td>@mdo</td> -->
+    
+      <td><?php echo $row["id"] ?></td>
+      <td><?php echo $row["uid"] ?></td>
+      <td><?php echo $row["email"] ?></td>
+      <td><?php echo $row["fristname"] ?></td>
+      <td><?php echo $row["lastname"] ?></td>
+      <td><?php echo $row["location"] ?></td>
+      <th class = "tabledit-toolbar-column"> </th>
+
     </tr>
+<?php } $result->free(); ?>
+
   </tbody>
 </table>
 
+<script>
+  $(document).ready(function(){
+    $("#editable_table").Tabledit({
+      url:'action.php',
+      columns:{
+        identifier : [0,"id"],
+        editable:[[1,'email',],[2,'fristname'],[3,'lastname'],[4,'location']]
 
+      },
+      restoreButton: false,
+      onSuccess:function(data,textStatus,jqXHR)
+      {
+        if(data.action =='delete')
+        {
+          $("#"+data.id).remove();
+        }
+      }
+
+    });
+  });
+</script>
 
     </section>
     <!-- /.content -->
@@ -264,6 +294,8 @@ if( $_SESSION["uid"]==0)
 <script src="../../dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+<script src="https://raw.githubusercontent.com/markcell/jquery-tabledit/master/jquery.tabledit.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard.js"></script>
 </body>
