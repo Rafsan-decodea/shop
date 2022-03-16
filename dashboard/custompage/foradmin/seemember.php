@@ -139,7 +139,7 @@ if( $_SESSION["uid"]==0)
 
 
           <li class="nav-item">
-            <a href="./pages/widgets.html" class="nav-link">
+            <a href="seeorders.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 See Orders 
@@ -308,7 +308,7 @@ if( $_SESSION["uid"]==0)
     <table class="table" id="editable_table">
   <thead>
     <tr>
-      <th scope="col">id</th>
+      <th scope="col">Serial</th>
       <th scope="col">User Type</th>
       <th scope="col">email</th>
       <th scope="col">Fristname</th>
@@ -322,7 +322,7 @@ if( $_SESSION["uid"]==0)
   <?php  while ( $row  = $result->fetch_assoc()) { ?>
     <tr>
     
-      <td><?php echo $row["id"] ?></td>
+      <td><?php echo $number += 1 ?></td>
       <td> Seller </td>
       <td><?php echo $row["email"] ?></td>
       <td><?php echo $row["fristname"] ?></td>
@@ -330,7 +330,7 @@ if( $_SESSION["uid"]==0)
       <td><?php echo $row["location"] ?></td>
       <td>
          <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button>
-         <button class="btn btn-danger" onclick="deleteuser(<?php echo $row["id"] ?>);" >Delete</button>
+         <button class="btn btn-danger" onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button>
       </td>
 
 
@@ -343,6 +343,22 @@ if( $_SESSION["uid"]==0)
 <!-- Delete Script -->
 
   <script>
+
+ function conformdelete(deleteuserid)
+ {
+  var result = confirm("Want to  delete?");
+   
+  if (result)
+  {
+    deleteuser(deleteuserid);
+
+  }
+  else
+  {
+    toastr.warning(" User not deleted ");
+  }
+  
+ }
   
   function deleteuser(deleteuserid){
       $.ajax({

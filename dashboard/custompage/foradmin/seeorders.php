@@ -126,7 +126,7 @@ if( $_SESSION["uid"]==0)
           </li>
 
           <li class="nav-item">
-            <a href="seeproduct.php" class="nav-link active">
+            <a href="seeproduct.php" class="nav-link ">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 See Products
@@ -136,7 +136,7 @@ if( $_SESSION["uid"]==0)
 
 
           <li class="nav-item">
-            <a href="seeorders.php" class="nav-link">
+            <a href="seeorders.php" class="nav-link active">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 See Orders 
@@ -163,7 +163,7 @@ if( $_SESSION["uid"]==0)
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">See Products</h1>
+            <h1 class="m-0">See Orders</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
