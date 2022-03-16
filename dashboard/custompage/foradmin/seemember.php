@@ -354,7 +354,7 @@ if( $_SESSION["uid"]==0)
    
   if (result)
   {
-    deleteuser(deleteuserid);
+    deleteuser(deleteuserid);// Cheking User is Deleted or not 
 
   }
   else
