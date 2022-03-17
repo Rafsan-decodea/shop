@@ -2,6 +2,8 @@
 session_start();
 
 // This is dashboard
+include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
+$db  = new DB();
 
 if (!isset($_SESSION["id"]))
 {
@@ -195,7 +197,6 @@ if( $_SESSION["uid"]==0)
       <div class="modal-body">
 
 
-    
    <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input type="email" class="form-control" name="email" id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
@@ -207,23 +208,23 @@ if( $_SESSION["uid"]==0)
    </div>
    <div class="form-group">
       <label for="exampleInputEmail1">Frist Name </label>
-      <input type="text" class="form-control" name="fristname" id="fristnameid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <input type="text" class="form-control" name="fristname" id="fristnameid" aria-describedby="emailHelp" Name placeholder="Fristname">
       <small id="emailHelp" class="form-text text-muted">Enter Frist name </small>
    </div>
 
    <div class="form-group">
       <label for="exampleInputEmail1">LastName</label>
-      <input type="text" class="form-control" name="lastname" id="lastnameid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <input type="text" class="form-control" name="lastname" id="lastnameid" aria-describedby="emailHelp" Name placeholder="Lastname">
       <small id="emailHelp" class="form-text text-muted">Enter Your Last Name</small>
    </div>
 
    <div class="form-group">
       <label for="exampleInputEmail1">Location</label>
-      <input type="text" class="form-control" name="location" id="locationid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <input type="text" class="form-control" name="location" id="locationid" aria-describedby="emailHelp" Name placeholder="location">
       <small id="emailHelp" class="form-text text-muted">Enter Location </small>
    </div>
   
-   <button  onclick="addSeller();" class="btn btn-primary">Submit</button>
+   <button  onclick="addSeller();" data-bind="<?php $email=  $var['email'];?>"  class="btn btn-primary">Submit</button>
 
 
 
@@ -234,8 +235,13 @@ if( $_SESSION["uid"]==0)
     </div>
   </div>
 </div>
+
+
+
+
 <!--  java script for add New User  -->
   <script>
+     alert($('#emailid').val());
       function addSeller()
       {
           var email = $('#emailid').val();
@@ -256,9 +262,38 @@ if( $_SESSION["uid"]==0)
             },
             success:function(data,status)
             {
+              // document.cookie = "email="+email
+         
+              <?php 
+             
+               $testsql = "SELECT `email` FROM `shop_users` WHERE `email` = '".$email."'";
+               $select = $db->query($testsql);
+
+               if(mysqli_num_rows($select)) {
+              
+              
+                ?>
+                   toastr.error("Email Id Exist");
+                
+              <?php 
+
+               }
+               else
+               {  
+              ?>
               console.log(status);
               toastr.info("Please reload The Page For See Effect");
               toastr.success("success");
+
+
+              <?php 
+              
+              }
+              ?>
+
+
+           
+              // document.cookie = "email=";
               
               
             }
@@ -275,12 +310,12 @@ if( $_SESSION["uid"]==0)
     <section class="content">
 
     <?php 
-     include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
 
-     $db  = new DB();
+     
      $sql = "select * from shop_users where uid= 1";
      $result = $db->query($sql);
-    ;
+
+      echo $email;
     
     ?>
       

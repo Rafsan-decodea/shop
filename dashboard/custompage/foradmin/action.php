@@ -12,12 +12,29 @@ $db = new DB();
   && isset($_POST["lastnameSend"]) && isset($_POST["locationSend"]))
   {
 
+  
+    $testsql = "SELECT `email` FROM `shop_users` WHERE `email` = '".$emailSend."'";
+    $select = $db->query($testsql);
+
+    if(mysqli_num_rows($select)) {
+      header("location:/shop/index.php?message=User Email Already Exist");
+      exit();
+  }
+
+  else{
+    
+
+
     $sql =  "INSERT INTO `shop_users` (`id`, `uid`, `email`, `password`, `fristname`, `lastname`, `location`, `time`) 
     VALUES (NULL, '1','".$emailSend."','".$passwordSend."', '".$fristnameSend."', '".$lastnameSend."', '".$locationSend."', CURRENT_TIMESTAMP)";
     
-    $result = $db->insert($sql);
-    
-  
+    $finalresult = $db->insert($sql);
+
+
+  }
+
+
+
   }
 
 
