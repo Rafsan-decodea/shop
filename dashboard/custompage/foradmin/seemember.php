@@ -257,8 +257,9 @@ if( $_SESSION["uid"]==0)
             success:function(data,status)
             {
               console.log(status);
-
+              toastr.info("Please reload The Page For See Effect");
               toastr.success("success");
+              
               
             }
             

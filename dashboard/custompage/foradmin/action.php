@@ -17,8 +17,6 @@ $db = new DB();
     
     $result = $db->insert($sql);
     
-    header("location: .");
-
   
   }
 
