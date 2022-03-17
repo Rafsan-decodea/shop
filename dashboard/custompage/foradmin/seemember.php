@@ -41,6 +41,7 @@ if( $_SESSION["uid"]==0)
   <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
  
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -164,6 +165,10 @@ if( $_SESSION["uid"]==0)
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">See Members</h1>
+                <!-- Button trigger modal -->
+     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Add new Seller
+     </button>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -174,6 +179,94 @@ if( $_SESSION["uid"]==0)
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+    
+   <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" name="email" id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">Enter Your Email Id </small>
+   </div>
+   <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" name="password" class="form-control" id="passwordid" placeholder="Password">
+   </div>
+   <div class="form-group">
+      <label for="exampleInputEmail1">Frist Name </label>
+      <input type="text" class="form-control" name="fristname" id="fristnameid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">Enter Frist name </small>
+   </div>
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">LastName</label>
+      <input type="text" class="form-control" name="lastname" id="lastnameid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">Enter Your Last Name</small>
+   </div>
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">Location</label>
+      <input type="text" class="form-control" name="location" id="locationid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">Enter Location </small>
+   </div>
+  
+   <button  onclick="addSeller();" class="btn btn-primary">Submit</button>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  java script for add New User  -->
+  <script>
+      function addSeller()
+      {
+          var email = $('#emailid').val();
+          var password = $('#passwordid').val();
+          var fristname= $('#fristnameid').val();
+          var lastname = $('#lastnameid').val();
+          var location = $('#locationid').val();
+
+          $.ajax({
+            url : "action.php",
+            type : 'post',
+            data : {
+              emailSend : email,
+              passwordSend: password,
+              fristnameSend: fristname,
+              lastnameSend: lastname,
+              locationSend: location
+            },
+            success:function(data,status)
+            {
+              console.log(status);
+
+              toastr.success("success");
+              
+            }
+            
+          });
+      }
+
+  </script>
+
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -194,11 +287,12 @@ if( $_SESSION["uid"]==0)
   <thead>
     <tr>
       <th scope="col">id</th>
-      <th scope="col">uid</th>
+      <th scope="col">User Type</th>
       <th scope="col">email</th>
       <th scope="col">Fristname</th>
       <th scope="col">Lastname</th>
       <th scope="col">location</th>
+      <th scope="col">ACtion</th>
     </tr>
   </thead>
   <tbody>
@@ -207,12 +301,16 @@ if( $_SESSION["uid"]==0)
     <tr>
     
       <td><?php echo $row["id"] ?></td>
-      <td><?php echo $row["uid"] ?></td>
+      <td> Seller </td>
       <td><?php echo $row["email"] ?></td>
       <td><?php echo $row["fristname"] ?></td>
       <td><?php echo $row["lastname"] ?></td>
       <td><?php echo $row["location"] ?></td>
-      <th class = "tabledit-toolbar-column"> </th>
+      <td>
+         <a class="btn btn-info" >Edit</a>
+         <a class="btn btn-danger" >Delete</a>
+      </td>
+
 
     </tr>
 <?php } $result->free(); ?>
@@ -220,27 +318,6 @@ if( $_SESSION["uid"]==0)
   </tbody>
 </table>
 
-<script>
-  $(document).ready(function(){
-    $("#editable_table").Tabledit({
-      url:'action.php',
-      columns:{
-        identifier : [0,"id"],
-        editable:[[1,'email',],[2,'fristname'],[3,'lastname'],[4,'location']]
-
-      },
-      restoreButton: false,
-      onSuccess:function(data,textStatus,jqXHR)
-      {
-        if(data.action =='delete')
-        {
-          $("#"+data.id).remove();
-        }
-      }
-
-    });
-  });
-</script>
 
     </section>
     <!-- /.content -->
@@ -294,8 +371,9 @@ if( $_SESSION["uid"]==0)
 <script src="../../dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-<script src="https://raw.githubusercontent.com/markcell/jquery-tabledit/master/jquery.tabledit.min.js"></script>
+<!-- <script src="https://raw.githubusercontent.com/markcell/jquery-tabledit/master/jquery.tabledit.min.js"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard.js"></script>
 </body>
