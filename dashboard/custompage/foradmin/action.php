@@ -35,7 +35,22 @@ $db = new DB();
 
 
 
+
+
   }
 
 
  ?>
+
+
+<?php
+
+if(isset($_POST["deleteuseridSend"]))
+{
+     echo "<script>alert('press')</script";
+      $sql = "delete from shop_users WHERE id = ".$deleteuseridSend."";
+      $db->query($sql);
+}
+
+
+?>

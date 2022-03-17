@@ -343,8 +343,8 @@ if( $_SESSION["uid"]==0)
       <td><?php echo $row["lastname"] ?></td>
       <td><?php echo $row["location"] ?></td>
       <td>
-         <a class="btn btn-info" >Edit</a>
-         <a class="btn btn-danger" >Delete</a>
+         <button class="btn btn-info" >Edit</button>
+         <button class="btn btn-danger" onclick="deleteuser(<?php echo $row["id"] ?>);" >Delete</button>
       </td>
 
 
@@ -353,6 +353,29 @@ if( $_SESSION["uid"]==0)
 
   </tbody>
 </table>
+
+<!-- Delete And update Script -->
+
+  <script>
+  
+  function deleteuser(deleteuserid){
+      $.ajax({
+     
+            url : "action.php",
+            type : 'post',
+            data : {
+              deleteuseridSend : deleteuserid,
+            },
+           success: function(data,status)
+           {
+              
+              toastr.success("User Deleted "+deleteuserid);
+           }
+
+      });
+    }
+  
+  </script>
 
 
     </section>
