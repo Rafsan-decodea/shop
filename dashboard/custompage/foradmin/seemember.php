@@ -393,32 +393,32 @@ if( $_SESSION["uid"]==0)
 
    <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" name="email" id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <input type="email" class="form-control" name="email" id="updateemailid" aria-describedby="emailHelp" Name placeholder="Enter email">
       <small id="emailHelp" class="form-text text-muted">Enter Your Email Id </small>
    </div>
    <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" name="password" class="form-control" id="passwordid" placeholder="Password">
+      <input type="password" name="password" class="form-control" id="updatepasswordid" placeholder="Password">
    </div>
    <div class="form-group">
       <label for="exampleInputEmail1">Frist Name </label>
-      <input type="text" class="form-control" name="fristname" id="fristnameid" aria-describedby="emailHelp" Name placeholder="Fristname">
+      <input type="text" class="form-control" name="fristname" id="updatefristnameid" aria-describedby="emailHelp" Name placeholder="Fristname">
       <small id="emailHelp" class="form-text text-muted">Enter Frist name </small>
    </div>
 
    <div class="form-group">
       <label for="exampleInputEmail1">LastName</label>
-      <input type="text" class="form-control" name="lastname" id="lastnameid" aria-describedby="emailHelp" Name placeholder="Lastname">
+      <input type="text" class="form-control" name="lastname" id="updatelastnameid" aria-describedby="emailHelp" Name placeholder="Lastname">
       <small id="emailHelp" class="form-text text-muted">Enter Your Last Name</small>
    </div>
 
    <div class="form-group">
       <label for="exampleInputEmail1">Location</label>
-      <input type="text" class="form-control" name="location" id="locationid" aria-describedby="emailHelp" Name placeholder="location">
+      <input type="text" class="form-control" name="location" id="updatelocationid" aria-describedby="emailHelp" Name placeholder="location">
       <small id="emailHelp" class="form-text text-muted">Enter Location </small>
    </div>
   
-   <button  onclick="updateuser();" data-bind="<?php $email=  $var['email'];?>"  class="btn btn-primary">Submit</button>
+   <button  onclick="updateuser();"  class="btn btn-primary">Update</button>
    <input type="hidden" id="hiddendata">
 
 
@@ -446,16 +446,53 @@ if( $_SESSION["uid"]==0)
       function (data,status)
       {
         var fetchuserid  = JSON.parse(data);
-        
-        $("#emailid").val(fetchuserid.email);
-        $("#passwordid").val(fetchuserid.password);
-        $("#fristnameid").val(fetchuserid.fristname);
-        $("#lastnameid").val(fetchuserid.lastname);
-        $("#locationid").val(fetchuserid.location);
+
+        $("#updateemailid").val(fetchuserid.email);
+        $("#updatepasswordid").val(fetchuserid.password);
+        $("#updatefristnameid").val(fetchuserid.fristname);
+        $("#updatelastnameid").val(fetchuserid.lastname);
+        $("#updatelocationid").val(fetchuserid.location);
       }
       
     );
   }
+
+
+  function updateuser()
+  {
+     var getuserid = $("#hiddendata").val();
+     var email = $('#updateemailid').val();
+     var password = $('#updatepasswordid').val();
+     var fristname= $('#updatefristnameid').val();
+     var lastname = $('#updatelastnameid').val();
+     var location = $('#updatelocationid').val();
+
+     $.ajax({
+        url : "action.php",
+        type : 'post',
+        data : {
+              updateidSend:getuserid,
+              updateemailSend: email,
+              updatepasswordSend: password,
+              updatefristnameSend: fristname,
+              updatelastnameSend: lastname,
+              updatelocationSend: location
+          },
+
+      success: function (data,status)
+      {
+
+        toastr.info("Please reload The Page For See Effect");
+        toastr.success("Data Update Successfully ");
+         
+      }
+
+    
+   });
+
+
+  }
+    
 
   </script>
 

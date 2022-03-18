@@ -40,6 +40,11 @@
       mysqli_query($this->conn, $sql);
      }
 
+     function update($sql)
+     {
+      mysqli_query($this->conn, $sql);
+     }
+
   }
 
 ?>

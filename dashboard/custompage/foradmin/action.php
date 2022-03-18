@@ -55,7 +55,7 @@ if(isset($_POST["deleteuseridSend"]))
   if(isset($_POST["userupdateid"]))
   {
      $userid = $_POST["userupdateid"];
-     $sql = "SELECT `email` FROM `shop_users` WHERE id= $userid ";
+     $sql = "SELECT * FROM `shop_users` WHERE id= ".$userid."";
      $result = $db->query($sql);
      $response = array();
      while ($row = mysqli_fetch_assoc($result))
@@ -65,5 +65,26 @@ if(isset($_POST["deleteuseridSend"]))
 
      echo json_encode($response);
   }
+
+?>
+
+<?php 
+
+if(isset($_POST["updateidSend"]))
+{
+  $userid = $_POST["updateidSend"];
+  $email = $_POST["updateemailSend"];
+  $password = $_POST["updatepasswordSend"];
+  $fristname = $_POST["updatefristnameSend"];
+  $lastname = $_POST["updatelastnameSend"];
+  $location = $_POST["updatelocationSend"];
+
+
+  $sql = "update shop_users set email= '$email', password= '$password' , fristname='$fristname', lastname='$lastname', location= '$location'  where id = $userid ";
+  
+  $db->update($sql);
+
+}
+
 
 ?>
