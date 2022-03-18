@@ -16,6 +16,14 @@ $db = new DB();
     $testsql = "SELECT `email` FROM `shop_users` WHERE `email` = '".$emailSend."'";
     $select = $db->query($testsql);
 
+    $response = array();
+    while ($row = mysqli_fetch_assoc($select))
+    { 
+       $response = $row;
+    }
+
+    echo json_encode($response); // This is for Send All Value To Front Cheking If Exist 
+
     if(mysqli_num_rows($select)) {
       header("location:/shop/index.php?message=User Email Already Exist");
       exit();

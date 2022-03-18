@@ -241,7 +241,6 @@ if( $_SESSION["uid"]==0)
 
 <!--  java script for add New User  -->
   <script>
-     alert($('#emailid').val());
       function addSeller()
       {
           var email = $('#emailid').val();
@@ -262,39 +261,25 @@ if( $_SESSION["uid"]==0)
             },
             success:function(data,status)
             {
-              // document.cookie = "email="+email
          
-              <?php 
-             
-               $testsql = "SELECT `email` FROM `shop_users` WHERE `email` = '".$email."'";
-               $select = $db->query($testsql);
+              alert(data);
+                  // toastr.error("Email Id Exist");
+               var fetchalldata  = JSON.parse(data);
+               
+               if(fetchalldata.email == email)
+               {
+                toastr.error("Email Id Exist");
 
-               if(mysqli_num_rows($select)) {
-              
-              
-                ?>
-                   toastr.error("Email Id Exist");
-                
-              <?php 
+          
 
                }
-               else
-               {  
-              ?>
+
+               else{
+
               console.log(status);
               toastr.info("Please reload The Page For See Effect");
               toastr.success("success");
-
-
-              <?php 
-              
-              }
-              ?>
-
-
-           
-              // document.cookie = "email=";
-              
+               }
               
             }
             
