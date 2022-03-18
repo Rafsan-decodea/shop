@@ -33,11 +33,7 @@ $db = new DB();
 
   }
 
-
-
-
-
-  }
+}
 
 
  ?>
@@ -52,5 +48,22 @@ if(isset($_POST["deleteuseridSend"]))
       $db->query($sql);
 }
 
+?>
+
+<?php 
+
+  if(isset($_POST["userupdateid"]))
+  {
+     $userid = $_POST["userupdateid"];
+     $sql = "SELECT `email` FROM `shop_users` WHERE id= $userid ";
+     $result = $db->query($sql);
+     $response = array();
+     while ($row = mysqli_fetch_assoc($result))
+     { 
+        $response = $row;
+     }
+
+     echo json_encode($response);
+  }
 
 ?>

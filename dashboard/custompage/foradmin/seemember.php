@@ -184,7 +184,7 @@ if( $_SESSION["uid"]==0)
 
 
 
-<!-- Modal -->
+<!-- Adding User Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -343,7 +343,7 @@ if( $_SESSION["uid"]==0)
       <td><?php echo $row["lastname"] ?></td>
       <td><?php echo $row["location"] ?></td>
       <td>
-         <button class="btn btn-info" >Edit</button>
+         <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button>
          <button class="btn btn-danger" onclick="deleteuser(<?php echo $row["id"] ?>);" >Delete</button>
       </td>
 
@@ -354,7 +354,7 @@ if( $_SESSION["uid"]==0)
   </tbody>
 </table>
 
-<!-- Delete And update Script -->
+<!-- Delete Script -->
 
   <script>
   
@@ -375,6 +375,88 @@ if( $_SESSION["uid"]==0)
       });
     }
   
+  </script>
+
+<!-- Uppdate User Modal  -->
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" name="email" id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">Enter Your Email Id </small>
+   </div>
+   <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" name="password" class="form-control" id="passwordid" placeholder="Password">
+   </div>
+   <div class="form-group">
+      <label for="exampleInputEmail1">Frist Name </label>
+      <input type="text" class="form-control" name="fristname" id="fristnameid" aria-describedby="emailHelp" Name placeholder="Fristname">
+      <small id="emailHelp" class="form-text text-muted">Enter Frist name </small>
+   </div>
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">LastName</label>
+      <input type="text" class="form-control" name="lastname" id="lastnameid" aria-describedby="emailHelp" Name placeholder="Lastname">
+      <small id="emailHelp" class="form-text text-muted">Enter Your Last Name</small>
+   </div>
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">Location</label>
+      <input type="text" class="form-control" name="location" id="locationid" aria-describedby="emailHelp" Name placeholder="location">
+      <small id="emailHelp" class="form-text text-muted">Enter Location </small>
+   </div>
+  
+   <button  onclick="updateuser();" data-bind="<?php $email=  $var['email'];?>"  class="btn btn-primary">Submit</button>
+   <input type="hidden" id="hiddendata">
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Update  User Script   -->
+
+  <script>
+  
+  function getUpdateDetails(userid)
+  {
+    $("#hiddendata").val(userid);
+    
+    $.post(
+      "action.php",
+      {
+        userupdateid:userid,
+      },
+      function (data,status)
+      {
+        var fetchuserid  = JSON.parse(data);
+        
+        $("#emailid").val(fetchuserid.email);
+        $("#passwordid").val(fetchuserid.password);
+        $("#fristnameid").val(fetchuserid.fristname);
+        $("#lastnameid").val(fetchuserid.lastname);
+        $("#locationid").val(fetchuserid.location);
+      }
+      
+    );
+  }
+
   </script>
 
 
