@@ -43,6 +43,7 @@ if( $_SESSION["uid"]==0)
   <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -195,26 +196,26 @@ if( $_SESSION["uid"]==0)
 
    <div class="form-group">
       <label for="exampleInputEmail1">Product Name </label>
-      <input type="email" class="form-control" name="email" id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <input type="text" class="form-control" name="" id="productname" aria-describedby="emailHelp" Name placeholder="Enter email">
       <!-- <small id="emailHelp" class="form-text text-muted">Enter Your Email Id </small> -->
    </div>
    <div class="form-group">
       <label for="exampleInputPassword1">Model Name </label>
-      <input type="password" name="password" class="form-control" id="passwordid" placeholder="Password">
+      <input type="text" name="" class="form-control" id="modelname" placeholder="Password">
    </div>
    <div class="form-group">
       <label for="exampleInputEmail1">Qantity  </label>
-      <input type="text" class="form-control" name="fristname" id="fristnameid" aria-describedby="emailHelp" Name placeholder="Fristname">
+      <input type="text" class="form-control" name="" id="quantity" aria-describedby="emailHelp" Name placeholder="Fristname">
       <small id="emailHelp" class="form-text text-muted">Enter Frist name </small>
    </div>
 
    <div class="form-group">
       <label for="exampleInputEmail1">price </label>
-      <input type="text" class="form-control" name="lastname" id="lastnameid" aria-describedby="emailHelp" Name placeholder="Lastname">
+      <input type="text" class="form-control" name="" id="price" aria-describedby="emailHelp" Name placeholder="Lastname">
       <small id="emailHelp" class="form-text text-muted">Enter Your Last Name</small>
    </div>
   
-   <button  onclick="addSeller();" data-bind="<?php $email=  $var['email'];?>"  class="btn btn-primary">Submit</button>
+   <button  onclick="addProduct();"   class="btn btn-primary">Submit</button>
 
 
 
@@ -227,6 +228,44 @@ if( $_SESSION["uid"]==0)
 </div>
 
 <!-- end modal -->
+
+<!-- Add Product  Script  -->
+
+<script>
+      function addProduct()
+      {
+          var productname = $('#productname').val();
+          var modelname = $('#modelname').val();
+          var quantity= $('#quantity').val();
+          var price = $('#price').val();
+
+          $.ajax({
+            url : "action.php",
+            type : 'post',
+            data : {
+              productnameSend : productname,
+              modelnameSend: modelname,
+              quantitySend: quantity,
+              priceSend: price
+            },
+            success:function(data,status)
+            {
+              alert(data);
+
+              console.log(status);
+              toastr.info("Please reload The Page For See Effect");
+              toastr.success("success");
+    
+              
+            }
+            
+          });
+
+
+
+      }
+
+  </script>
 
     <!-- Main content -->
 
@@ -328,6 +367,7 @@ if( $_SESSION["uid"]==0)
 <script src="../../dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard.js"></script>
 </body>
