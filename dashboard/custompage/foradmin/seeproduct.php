@@ -389,7 +389,9 @@ function conformdelete(deleteuserid)
      
    </div>
   
-   <button  onclick="addProduct();"   class="btn btn-primary">Submit</button>
+   <button  onclick="updateuser();"   class="btn btn-primary">Submit</button>
+   <input type="hidden" id="hiddendata">
+
 
 
       </div>
@@ -399,6 +401,75 @@ function conformdelete(deleteuserid)
     </div>
   </div>
 </div>
+
+
+  <!-- Update  Products Script   -->
+
+  <script>
+  
+  function getUpdateDetails(userid)
+  {
+    $("#hiddendata").val(userid);
+    
+    $.post(
+      "action.php",
+      {
+        userupdateid:userid,
+      },
+      function (data,status)
+      {
+
+        //alert(data);
+       
+        var fetchuserid  = JSON.parse(data);
+
+        $("#updateproductname").val(fetchuserid.email);
+        $("#updatemodelname").val(fetchuserid.password);
+        $("#updatequantity").val(fetchuserid.fristname);
+        $("#updateprice").val(fetchuserid.lastname);
+      }
+      
+    );
+  }
+
+
+  function updateuser()
+  {
+     var getuserid = $("#hiddendata").val();
+     var email = $('#updateemailid').val();
+     var password = $('#updatepasswordid').val();
+     var fristname= $('#updatefristnameid').val();
+     var lastname = $('#updatelastnameid').val();
+     var location = $('#updatelocationid').val();
+
+     $.ajax({
+        url : "action.php",
+        type : 'post',
+        data : {
+              updateidSend:getuserid,
+              updateemailSend: email,
+              updatepasswordSend: password,
+              updatefristnameSend: fristname,
+              updatelastnameSend: lastname,
+              updatelocationSend: location
+          },
+
+      success: function (data,status)
+      {
+
+        toastr.info("Please reload The Page For See Effect");
+        toastr.success("Data Update Successfully ");
+         
+      }
+
+    
+   });
+
+
+  }
+    
+
+  </script>
 
 
 
