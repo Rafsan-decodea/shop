@@ -26,7 +26,7 @@ if( $_SESSION["uid"]==0)
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -186,7 +186,7 @@ if( $_SESSION["uid"]==0)
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -194,29 +194,29 @@ if( $_SESSION["uid"]==0)
       <div class="modal-body">
 
 
-   <div class="form-group">
+  
+      <div class="form-group">
       <label for="exampleInputEmail1">Product Name </label>
-      <input type="text" class="form-control" name="" id="productname" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <input type="text" class="form-control" name="" id="productname" aria-describedby="emailHelp" Name placeholder="Enter Product Name">
       <!-- <small id="emailHelp" class="form-text text-muted">Enter Your Email Id </small> -->
    </div>
    <div class="form-group">
       <label for="exampleInputPassword1">Model Name </label>
-      <input type="text" name="" class="form-control" id="modelname" placeholder="Password">
+      <input type="text" name="" class="form-control" id="modelname" placeholder="Enter Model Name">
    </div>
    <div class="form-group">
       <label for="exampleInputEmail1">Qantity  </label>
-      <input type="text" class="form-control" name="" id="quantity" aria-describedby="emailHelp" Name placeholder="Fristname">
-      <small id="emailHelp" class="form-text text-muted">Enter Frist name </small>
+      <input type="number" class="form-control" name="" id="quantity" aria-describedby="emailHelp" Name placeholder="Enter Qantity">
+      
    </div>
 
    <div class="form-group">
       <label for="exampleInputEmail1">price </label>
-      <input type="text" class="form-control" name="" id="price" aria-describedby="emailHelp" Name placeholder="Lastname">
-      <small id="emailHelp" class="form-text text-muted">Enter Your Last Name</small>
+      <input type="number" class="form-control" name="" id="price" aria-describedby="emailHelp" Name placeholder="Entry Price ">
+     
    </div>
   
    <button  onclick="addProduct();"   class="btn btn-primary">Submit</button>
-
 
 
       </div>
@@ -315,10 +315,51 @@ if( $_SESSION["uid"]==0)
   </tbody>
 </table>
 
+<!--  -->
+
+<script>
+
+function conformdelete(deleteuserid)
+{
+ var result = confirm("Want to  delete?");
+  
+ if (result)
+ {
+   deleteuser(deleteuserid);// Cheking User is Deleted or not 
+
+ }
+ else
+ {
+   toastr.warning(" User not deleted ");
+ }
+ 
+}
+ 
+ function deleteuser(deleteuserid){
+     $.ajax({
+    
+           url : "action.php",
+           type : 'post',
+           data : {
+             deleteuseridSend : deleteuserid,
+           },
+          success: function(data,status)
+          {
+             
+             toastr.success("User Deleted "+deleteuserid);
+          }
+
+     });
+   }
+ 
+ </script>
+
+
+
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
+  <!-- /.content-wrapper --r>
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.

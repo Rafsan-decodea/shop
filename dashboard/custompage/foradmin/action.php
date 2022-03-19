@@ -128,19 +128,27 @@ extract($_POST);
 if (isset($_POST['productnameSend']) && isset($_POST["modelnameSend"]) && isset($_POST["quantitySend"]) && isset($_POST["priceSend"]))
 {
 
-  $sql =  "INSERT INTO `shop_products` (`id`, `productname`, `modelname`, ``, `quantity`, `price`) 
-  VALUES (NULL,'".$productnameSend."','".$modelnameSend."', '".$quantitySend."', '".$priceSend."')";
+ 
+ $sql = "INSERT INTO `shop_products` (`id`, `productname`, `modelname`, `quantity`, `price`)
+  VALUES (NULL,'$$productnameSend','$modelnameSend', $quantitySend, $priceSend)";
   
-  $finalresult = $db->insert($sql);
-  echo json_encode(error_reporting());
+  $db->insert($sql);
 
 
 }
-else
-{
 
-}
 
 ?>
 
+
+<?php
+
+if(isset($_POST["deleteuseridSend"]))
+{
+     echo "<script>alert('press')</script";
+      $sql = "delete from shop_products WHERE id = ".$deleteuseridSend."";
+      $db->query($sql);
+}
+
+?>
 
