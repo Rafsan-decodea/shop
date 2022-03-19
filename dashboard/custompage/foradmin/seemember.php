@@ -236,7 +236,7 @@ if( $_SESSION["uid"]==0)
   </div>
 </div>
 
-
+ 
 
 
 <!--  java script for add New User  -->
@@ -333,7 +333,7 @@ if( $_SESSION["uid"]==0)
          <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button> 
          <button class="btn btn-danger" onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button>
         <?php }else{ ?>
-        <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button> 
+        
          <?php } ?>
       </td>
 

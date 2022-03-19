@@ -1,8 +1,9 @@
 
 <?php 
 session_start();
+include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
+$db  = new DB();
 
-// This is dashboard
 
 if (!isset($_SESSION["id"]))
 {
@@ -164,6 +165,9 @@ if( $_SESSION["uid"]==0)
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">See Products</h1>
+           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+        Add new Product
+     </button>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -176,11 +180,94 @@ if( $_SESSION["uid"]==0)
     </div>
     <!-- /.content-header -->
 
+<!-- Product Modal Start From there  -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">Product Name </label>
+      <input type="email" class="form-control" name="email" id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <!-- <small id="emailHelp" class="form-text text-muted">Enter Your Email Id </small> -->
+   </div>
+   <div class="form-group">
+      <label for="exampleInputPassword1">Model Name </label>
+      <input type="password" name="password" class="form-control" id="passwordid" placeholder="Password">
+   </div>
+   <div class="form-group">
+      <label for="exampleInputEmail1">Qantity  </label>
+      <input type="text" class="form-control" name="fristname" id="fristnameid" aria-describedby="emailHelp" Name placeholder="Fristname">
+      <small id="emailHelp" class="form-text text-muted">Enter Frist name </small>
+   </div>
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">LastName</label>
+      <input type="text" class="form-control" name="lastname" id="lastnameid" aria-describedby="emailHelp" Name placeholder="Lastname">
+      <small id="emailHelp" class="form-text text-muted">Enter Your Last Name</small>
+   </div>
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">Location</label>
+      <input type="text" class="form-control" name="location" id="locationid" aria-describedby="emailHelp" Name placeholder="location">
+      <small id="emailHelp" class="form-text text-muted">Enter Location </small>
+   </div>
+  
+   <button  onclick="addSeller();" data-bind="<?php $email=  $var['email'];?>"  class="btn btn-primary">Submit</button>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- end modal -->
+
     <!-- Main content -->
 
-    <section class="content">
+  <section class="content">
       
-    asdasd
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Product name </th>
+      <th scope="col">Product Model </th>
+      <th scope="col">Price </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
