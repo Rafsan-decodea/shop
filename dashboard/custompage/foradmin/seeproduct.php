@@ -209,15 +209,9 @@ if( $_SESSION["uid"]==0)
    </div>
 
    <div class="form-group">
-      <label for="exampleInputEmail1">LastName</label>
+      <label for="exampleInputEmail1">price </label>
       <input type="text" class="form-control" name="lastname" id="lastnameid" aria-describedby="emailHelp" Name placeholder="Lastname">
       <small id="emailHelp" class="form-text text-muted">Enter Your Last Name</small>
-   </div>
-
-   <div class="form-group">
-      <label for="exampleInputEmail1">Location</label>
-      <input type="text" class="form-control" name="location" id="locationid" aria-describedby="emailHelp" Name placeholder="location">
-      <small id="emailHelp" class="form-text text-muted">Enter Location </small>
    </div>
   
    <button  onclick="addSeller();" data-bind="<?php $email=  $var['email'];?>"  class="btn btn-primary">Submit</button>
@@ -237,40 +231,50 @@ if( $_SESSION["uid"]==0)
     <!-- Main content -->
 
   <section class="content">
+
+
+   <?php 
+
+     
+      $sql = "select * from shop_products ";
+      $result = $db->query($sql);
+
+    ?>
       
-    <table class="table">
+<table class="table">
   <thead>
+  
     <tr>
-      <th scope="col">id</th>
-      <th scope="col">Product name </th>
-      <th scope="col">Product Model </th>
-      <th scope="col">Price </th>
+      <th scope="col">Serial</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Model Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+
+     
     </tr>
+ 
   </thead>
   <tbody>
+  <?php  while ( $row  = $result->fetch_assoc()) { ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td><?php echo $number += 1 ?></td>
+      <td> <?php echo $row["productname"] ?> </td>
+      <td><?php echo $row["modelname"] ?></td>
+      <td><?php echo $row["quantity"] ?></td>
+      <td><?php echo $row["price"] ?></td>
+      <td>
+     
+         <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button> 
+         <button class="btn btn-danger" onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button>
+  
+      </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    
+    <?php }  $result->free();?>
   </tbody>
 </table>
-
-
-
 
     </section>
     <!-- /.content -->

@@ -236,7 +236,7 @@ if( $_SESSION["uid"]==0)
   </div>
 </div>
 
- 
+
 
 
 <!--  java script for add New User  -->
@@ -451,6 +451,9 @@ if( $_SESSION["uid"]==0)
       },
       function (data,status)
       {
+
+        //alert(data);
+       
         var fetchuserid  = JSON.parse(data);
 
         $("#updateemailid").val(fetchuserid.email);
@@ -575,6 +578,5 @@ else
 }
 
 ?>
-
 
 

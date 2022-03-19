@@ -1,5 +1,12 @@
 <?php
 
+  // Start Seemember.php Section 
+?>
+
+<?php
+
+
+
 session_start();
    // ini_set('display_errors', 1);
  include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
@@ -98,7 +105,26 @@ if(isset($_POST["updateidSend"]))
   
   $db->update($sql);
 
+  exit();
+
+
 }
 
 
 ?>
+
+<?php // End ?>
+
+<?php // Start seeproduct.php Section ?>
+
+
+<?php
+
+
+$db = new DB();
+
+extract($_POST);
+
+?>
+
+
