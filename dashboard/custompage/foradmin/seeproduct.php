@@ -186,7 +186,7 @@ if( $_SESSION["uid"]==0)
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add New Products</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -306,7 +306,7 @@ if( $_SESSION["uid"]==0)
       <td>
      
          <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button> 
-         <button class="btn btn-danger" onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button>
+         <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal2" onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button>
   
       </td>
     </tr>
@@ -330,7 +330,7 @@ function conformdelete(deleteuserid)
  }
  else
  {
-   toastr.warning(" User not deleted ");
+   toastr.warning(" Product not deleted ");
  }
  
 }
@@ -346,13 +346,60 @@ function conformdelete(deleteuserid)
           success: function(data,status)
           {
              
-             toastr.success("User Deleted "+deleteuserid);
+             toastr.success("Product Deleted "+deleteuserid);
           }
 
      });
    }
  
  </script>
+
+<!--  Edit Modal Section  -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+  
+      <div class="form-group">
+      <label for="exampleInputEmail1">Product Name </label>
+      <input type="text" class="form-control" name="" id="updateproductname" aria-describedby="emailHelp" Name placeholder="Enter Product Name">
+      <!-- <small id="emailHelp" class="form-text text-muted">Enter Your Email Id </small> -->
+   </div>
+   <div class="form-group">
+      <label for="exampleInputPassword1">Model Name </label>
+      <input type="text" name="" class="form-control" id="updatemodelname" placeholder="Enter Model Name">
+   </div>
+   <div class="form-group">
+      <label for="exampleInputEmail1">Qantity  </label>
+      <input type="number" class="form-control" name="" id="updatequantity" aria-describedby="emailHelp" Name placeholder="Enter Qantity">
+      
+   </div>
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">price </label>
+      <input type="number" class="form-control" name="" id="updateprice" aria-describedby="emailHelp" Name placeholder="Entry Price ">
+     
+   </div>
+  
+   <button  onclick="addProduct();"   class="btn btn-primary">Submit</button>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

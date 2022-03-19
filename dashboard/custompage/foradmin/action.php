@@ -145,7 +145,7 @@ if (isset($_POST['productnameSend']) && isset($_POST["modelnameSend"]) && isset(
 
 if(isset($_POST["deleteuseridSend"]))
 {
-     echo "<script>alert('press')</script";
+      echo "<script>alert('press')</script";
       $sql = "delete from shop_products WHERE id = ".$deleteuseridSend."";
       $db->query($sql);
 }
