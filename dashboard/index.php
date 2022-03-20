@@ -1632,6 +1632,7 @@ if($_SESSION["uid"]==1)
                       <i class="fas fa-edit"></i>
                       <i class="fas fa-trash-o"></i>
                     </div>
+                    
                   </li>
                   <li>
                     <span class="handle">
