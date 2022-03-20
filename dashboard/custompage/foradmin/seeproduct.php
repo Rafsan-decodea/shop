@@ -250,7 +250,7 @@ if( $_SESSION["uid"]==0)
             },
             success:function(data,status)
             {
-              alert(data);
+              
 
               console.log(status);
               toastr.info("Please reload The Page For See Effect");
@@ -389,7 +389,7 @@ function conformdelete(deleteuserid)
      
    </div>
   
-   <button  onclick="updateuser();"   class="btn btn-primary">Submit</button>
+   <button  onclick="updateuser();"   class="btn btn-primary">Update</button>
    <input type="hidden" id="hiddendata">
 
 
@@ -423,10 +423,10 @@ function conformdelete(deleteuserid)
        
         var fetchuserid  = JSON.parse(data);
 
-        $("#updateproductname").val(fetchuserid.email);
-        $("#updatemodelname").val(fetchuserid.password);
-        $("#updatequantity").val(fetchuserid.fristname);
-        $("#updateprice").val(fetchuserid.lastname);
+        $("#updateproductname").val(fetchuserid.productname);
+        $("#updatemodelname").val(fetchuserid.modelname);
+        $("#updatequantity").val(fetchuserid.quantity);
+        $("#updateprice").val(fetchuserid.price);
       }
       
     );
@@ -436,29 +436,40 @@ function conformdelete(deleteuserid)
   function updateuser()
   {
      var getuserid = $("#hiddendata").val();
-     var email = $('#updateemailid').val();
-     var password = $('#updatepasswordid').val();
-     var fristname= $('#updatefristnameid').val();
-     var lastname = $('#updatelastnameid').val();
-     var location = $('#updatelocationid').val();
+     var productname = $('#updateproductname').val();
+     var modelname = $('#updatemodelname').val();
+     var quantity= $('#updatequantity').val();
+     var price = $('#updateprice').val();
+
 
      $.ajax({
         url : "action.php",
         type : 'post',
         data : {
-              updateidSend:getuserid,
-              updateemailSend: email,
-              updatepasswordSend: password,
-              updatefristnameSend: fristname,
-              updatelastnameSend: lastname,
-              updatelocationSend: location
+              idSend:getuserid,
+              updateproductnameSend: productname,
+              updatemodelnameSend: modelname,
+              updatequantitySend: quantity,
+              updatepriceSend: price
           },
 
       success: function (data,status)
       {
+      // alert(quantity);
+       
+        if(data == null )
+        {
+            toastr.error("Data not Found");
+        }
 
-        toastr.info("Please reload The Page For See Effect");
-        toastr.success("Data Update Successfully ");
+        else
+        {
+          toastr.info("Please reload The Page For See Effect");
+          toastr.success("Data Update Successfully ");
+       
+        }
+
+        
          
       }
 

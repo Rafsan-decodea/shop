@@ -84,7 +84,6 @@ if(isset($_POST["deleteuseridSend"]))
         $response = $row;
      }
 
-     echo json_encode($response);
   }
 
 ?>
@@ -152,3 +151,48 @@ if(isset($_POST["deleteuseridSend"]))
 
 ?>
 
+
+
+<?php 
+
+  if(isset($_POST["userupdateid"]))
+  {
+     $userid = $_POST["userupdateid"];
+     $sql = "SELECT * FROM `shop_products` WHERE id= ".$userid."";
+     $result = $db->query($sql);
+     $response = array();
+     while ($row = mysqli_fetch_assoc($result))
+     { 
+        $response = $row;
+     }
+
+     echo json_encode($response);
+  }
+
+?>
+
+
+
+<?php 
+
+
+if(isset($_POST["idSend"]))
+{
+  $userid = $_POST["idSend"];
+  $productnameSend = $_POST["updateproductnameSend"];
+  $modelnameSend = $_POST["updatemodelnameSend"];
+  $quantitySend = $_POST["updatequantitySend"];
+  $priceSend = $_POST["updatepriceSend"];
+
+
+
+  $sql = "update shop_products set productname= '$productnameSend', modelname= '$modelnameSend' , quantity= $quantitySend , price=$priceSend   where id = $userid ";
+  
+  echo json_encode($sql);
+  $db->update($sql);
+
+
+}
+
+
+?>
