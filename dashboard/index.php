@@ -1176,10 +1176,10 @@ if($_SESSION["uid"]==1)
             </a>
           </li>
           <li class="nav-item">
-            <a href="./pages/widgets.html" class="nav-link">
+            <a href="custompage/forusers/seeproduct.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Widgets
+                See Products
                
               </p>
             </a>
@@ -1632,7 +1632,7 @@ if($_SESSION["uid"]==1)
                       <i class="fas fa-edit"></i>
                       <i class="fas fa-trash-o"></i>
                     </div>
-                    
+
                   </li>
                   <li>
                     <span class="handle">
