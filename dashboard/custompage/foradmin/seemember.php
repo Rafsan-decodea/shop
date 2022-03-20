@@ -482,7 +482,7 @@ if( $_SESSION["uid"]==0)
         url : "action.php",
         type : 'post',
         data : {
-              updateidSend:getuserid,
+              idSend:getuserid,
               updateemailSend: email,
               updatepasswordSend: password,
               updatefristnameSend: fristname,
@@ -492,6 +492,7 @@ if( $_SESSION["uid"]==0)
 
       success: function (data,status)
       {
+     
 
         toastr.info("Please reload The Page For See Effect");
         toastr.success("Data Update Successfully ");

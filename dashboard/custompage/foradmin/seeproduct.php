@@ -414,7 +414,7 @@ function conformdelete(deleteuserid)
     $.post(
       "action.php",
       {
-        userupdateid2:userid,
+        productupdateid:userid,
       },
       function (data,status)
       {
@@ -446,7 +446,7 @@ function conformdelete(deleteuserid)
         url : "action.php",
         type : 'post',
         data : {
-              idSend:getuserid,
+              updateidSend:getuserid,
               updateproductnameSend: productname,
               updatemodelnameSend: modelname,
               updatequantitySend: quantity,
@@ -455,7 +455,7 @@ function conformdelete(deleteuserid)
 
       success: function (data,status)
       {
-          alert(data);
+       
 
           toastr.info("Please reload The Page For See Effect");
           toastr.success("Data Update Successfully ");

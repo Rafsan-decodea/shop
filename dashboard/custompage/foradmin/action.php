@@ -108,16 +108,16 @@ class Seemember{
   {
     $db = new DB();
     extract($_POST);
-    if(isset($_POST["updateidSend"]))
+    if(isset($_POST["idSend"]))
    {
-  $userid = $_POST["updateidSend"];
+  $userid = $_POST["idSend"];
   $email = $_POST["updateemailSend"];
   $password = $_POST["updatepasswordSend"];
   $fristname = $_POST["updatefristnameSend"];
   $lastname = $_POST["updatelastnameSend"];
   $location = $_POST["updatelocationSend"];
 
-
+  echo json_decode($userid);
   $sql = "update shop_users set email= '$email', password= '$password' , fristname='$fristname', lastname='$lastname', location= '$location'  where id = $userid ";
   
   $db->update($sql);
@@ -132,6 +132,7 @@ $seemember = new Seemember();
 
 $seemember->adduser();
 $seemember->deleteuser();
+$seemember->updateuser();
 $seemember->seeuser();
 $seemember->deleteuser();
 
@@ -192,9 +193,9 @@ $seemember->deleteuser();
       $db = new DB();
       extract($_POST);
 
-      if(isset($_POST["userupdateid2"]))
+      if(isset($_POST["productupdateid"]))
       {
-         $userid = $_POST["userupdateid2"];
+         $userid = $_POST["productupdateid"];
          $sql = "SELECT * FROM `shop_products` WHERE id= ".$userid."";
          $result = $db->query($sql);
          $response = array();
@@ -212,9 +213,9 @@ $seemember->deleteuser();
     {
       $db = new DB();
       extract($_POST);
-      if(isset($_POST["idSend"]))
+      if(isset($_POST["updateidSend"]))
      {
-      $userid = $_POST["idSend"];
+      $userid = $_POST["updateidSend"];
       $productnameSend = $_POST["updateproductnameSend"];
       $modelnameSend = $_POST["updatemodelnameSend"];
       $quantitySend = $_POST["updatequantitySend"];
