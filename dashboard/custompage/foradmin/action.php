@@ -192,9 +192,9 @@ $seemember->deleteuser();
       $db = new DB();
       extract($_POST);
 
-      if(isset($_POST["userupdateid"]))
+      if(isset($_POST["userupdateid2"]))
       {
-         $userid = $_POST["userupdateid"];
+         $userid = $_POST["userupdateid2"];
          $sql = "SELECT * FROM `shop_products` WHERE id= ".$userid."";
          $result = $db->query($sql);
          $response = array();

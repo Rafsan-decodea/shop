@@ -453,7 +453,7 @@ if( $_SESSION["uid"]==0)
       {
        
     
-        alert(data);
+
        
         var fetchuserid  = JSON.parse(data);
 

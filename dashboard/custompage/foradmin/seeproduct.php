@@ -414,12 +414,12 @@ function conformdelete(deleteuserid)
     $.post(
       "action.php",
       {
-        userupdateid:userid,
+        userupdateid2:userid,
       },
       function (data,status)
       {
 
-        alert(data);
+
        
         var fetchuserid  = JSON.parse(data);
 
