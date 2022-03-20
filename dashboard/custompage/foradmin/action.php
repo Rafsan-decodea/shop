@@ -165,7 +165,7 @@ $seemember->deleteuser();
         $priceSend =  $_POST["priceSend"];
  
         $sql = "INSERT INTO `shop_products` (`id`, `productname`, `modelname`, `quantity`, `price`)
-          VALUES (NULL,'$$productnameSend','$modelnameSend', $quantitySend, $priceSend)";
+          VALUES (NULL,'$productnameSend','$modelnameSend', $quantitySend, $priceSend)";
         $db->insert($sql);
        }
 
