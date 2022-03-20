@@ -451,8 +451,9 @@ if( $_SESSION["uid"]==0)
       },
       function (data,status)
       {
-
-        //alert(data);
+       
+    
+        alert(data);
        
         var fetchuserid  = JSON.parse(data);
 
@@ -461,6 +462,7 @@ if( $_SESSION["uid"]==0)
         $("#updatefristnameid").val(fetchuserid.fristname);
         $("#updatelastnameid").val(fetchuserid.lastname);
         $("#updatelocationid").val(fetchuserid.location);
+     
       }
       
     );

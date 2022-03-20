@@ -28,9 +28,12 @@
             <!-- <p class="form__text">
                 <a href="#" class="form__link">Forgot your password?</a>
             </p> -->
-            <p class="form__text">
+
+            <!-- Create Account  Link -->
+
+            <!-- <p class="form__text">
                 <a class="form__link" href="./" id="linkCreateAccount">Don't have an account? Create account</a>
-            </p>
+            </p> -->
         </form>
 
 

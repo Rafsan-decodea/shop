@@ -305,8 +305,8 @@ if( $_SESSION["uid"]==0)
       <td><?php echo $row["price"] ?></td>
       <td>
      
-         <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button> 
-         <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal2" onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button>
+         <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal2" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button> 
+         <button class="btn btn-danger"   onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button>
   
       </td>
     </tr>
@@ -419,7 +419,7 @@ function conformdelete(deleteuserid)
       function (data,status)
       {
 
-        //alert(data);
+        alert(data);
        
         var fetchuserid  = JSON.parse(data);
 
@@ -455,19 +455,10 @@ function conformdelete(deleteuserid)
 
       success: function (data,status)
       {
-      // alert(quantity);
-       
-        if(data == null )
-        {
-            toastr.error("Data not Found");
-        }
+          alert(data);
 
-        else
-        {
           toastr.info("Please reload The Page For See Effect");
           toastr.success("Data Update Successfully ");
-       
-        }
 
         
          
