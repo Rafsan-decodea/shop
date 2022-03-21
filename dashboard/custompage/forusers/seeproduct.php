@@ -291,7 +291,7 @@ if($_SESSION["uid"]==1)
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Make a Order </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -300,32 +300,30 @@ if($_SESSION["uid"]==1)
 
 
    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" name="email" id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">Enter Your Email Id </small>
-   </div>
-   <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" name="password" class="form-control" id="passwordid" placeholder="Password">
-   </div>
-   <div class="form-group">
-      <label for="exampleInputEmail1">Frist Name </label>
-      <input type="text" class="form-control" name="fristname" id="fristnameid" aria-describedby="emailHelp" Name placeholder="Fristname">
-      <small id="emailHelp" class="form-text text-muted">Enter Frist name </small>
+      <label for="exampleInputEmail1">Select Products</label> 
+      <br>
+      <select class="selectpicker" data-live-search="true">
+      <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+      <option data-tokens="mustard">Burger, Shake and a Smile</option>
+      <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+    </select>
+  <br><br>
+    <label for="exampleInputEmail1">Select Brand</label> 
+      <br>
+      <select class="selectpicker" data-live-search="true">
+      <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+      <option data-tokens="mustard">Burger, Shake and a Smile</option>
+      <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+    </select>
+    <br><br>
+    <div class="form-group">
+      <label for="exampleInputEmail1">How Many</label>
+      <input type="number" class="form-control" name="email" id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
    </div>
 
-   <div class="form-group">
-      <label for="exampleInputEmail1">LastName</label>
-      <input type="text" class="form-control" name="lastname" id="lastnameid" aria-describedby="emailHelp" Name placeholder="Lastname">
-      <small id="emailHelp" class="form-text text-muted">Enter Your Last Name</small>
-   </div>
 
-   <div class="form-group">
-      <label for="exampleInputEmail1">Location</label>
-      <input type="text" class="form-control" name="location" id="locationid" aria-describedby="emailHelp" Name placeholder="location">
-      <small id="emailHelp" class="form-text text-muted">Enter Location </small>
    </div>
-  
+   
    <button  onclick="addSeller();" data-bind="<?php $email=  $var['email'];?>"  class="btn btn-primary">Submit</button>
 
 
