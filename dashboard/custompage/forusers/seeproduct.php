@@ -74,7 +74,7 @@ if($_SESSION["uid"]==1)
         <a href="#" class="nav-link">Contact</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="logout.php" class="nav-link">logout</a>
+        <a href="../../logout.php" class="nav-link">logout</a>
       </li>
     </ul>
 
@@ -287,6 +287,10 @@ if($_SESSION["uid"]==1)
     <section class="content">
     
   
+
+
+
+
 
     </section>
     <!-- /.content -->
