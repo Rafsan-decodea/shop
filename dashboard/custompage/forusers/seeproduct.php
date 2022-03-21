@@ -284,13 +284,90 @@ if($_SESSION["uid"]==1)
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-    
+<section class="content">
   
+<style>
+ #table-wrapper {
+  position:relative;
+}
+#table-scroll {
+  height:150px;
+  overflow:auto;  
+  margin-top:20px;
+}
+#table-wrapper table {
+  width:100%;
+
+}
+#table-wrapper table * {
+
+  color:black;
+}
+#table-wrapper table thead th .text {
+  position:absolute;   
+  top:-20px;
+  z-index:2;
+  height:20px;
+  width:35%;
+  border:1px solid red;
+}
+  </style>
+  <h1 class="m-0">ᴘᴇɴᴅɪɴɢ ᴏʀᴅᴇʀꜱ </h1>
+  <div id="table-wrapper">
+  <div id="table-scroll">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>  
+  </tbody>
+  
+</table>
+  </div>
+</div>
+
+
+<h1 class="elegantshd"> ᴀᴘʀᴏᴠᴇ ᴏʀᴅᴇʀ </h1>
+
+<div id="table-wrapper">
+  <div id="table-scroll">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
 
 
 
 
+
+    
 
     </section>
     <!-- /.content -->
