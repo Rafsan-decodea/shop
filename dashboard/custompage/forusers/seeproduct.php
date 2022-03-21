@@ -264,13 +264,16 @@ if($_SESSION["uid"]==1)
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+ <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Place Order </h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+         Make A Order 
+     </button>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -282,6 +285,58 @@ if($_SESSION["uid"]==1)
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+
+  <!--  Modal Started  -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" name="email" id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">Enter Your Email Id </small>
+   </div>
+   <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" name="password" class="form-control" id="passwordid" placeholder="Password">
+   </div>
+   <div class="form-group">
+      <label for="exampleInputEmail1">Frist Name </label>
+      <input type="text" class="form-control" name="fristname" id="fristnameid" aria-describedby="emailHelp" Name placeholder="Fristname">
+      <small id="emailHelp" class="form-text text-muted">Enter Frist name </small>
+   </div>
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">LastName</label>
+      <input type="text" class="form-control" name="lastname" id="lastnameid" aria-describedby="emailHelp" Name placeholder="Lastname">
+      <small id="emailHelp" class="form-text text-muted">Enter Your Last Name</small>
+   </div>
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">Location</label>
+      <input type="text" class="form-control" name="location" id="locationid" aria-describedby="emailHelp" Name placeholder="location">
+      <small id="emailHelp" class="form-text text-muted">Enter Location </small>
+   </div>
+  
+   <button  onclick="addSeller();" data-bind="<?php $email=  $var['email'];?>"  class="btn btn-primary">Submit</button>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> 
 
     <!-- Main content -->
 <section class="content">
@@ -350,7 +405,7 @@ if($_SESSION["uid"]==1)
       <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
       <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?>
         (<?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?>)  Per Price (<?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>) TK (MPR)</td>
-      <td><?php echo $row["quantity"]; ?></td>
+      <td><?php echo $row["quantity"]; ?> Pices</td>
       <td> Pending </td>
     </tr>  
     <?php } $result->free(); ?>
@@ -360,27 +415,38 @@ if($_SESSION["uid"]==1)
   </div>
 </div>
 
-
 <h1 class="elegantshd"> ᴀᴘʀᴏᴠᴇ ᴏʀᴅᴇʀ </h1>
-
 <div id="table-wrapper">
   <div id="table-scroll">
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Serial</th>
+      <th scope="col">Seller name </th>
+      <th scope="col">Product name </th>
+      <th scope="col">Product quantity </th>
+      <th scope="col">Status</th>
     </tr>
+    <?php 
+        //ini_set('display_errors', 1); 
+       $sql = "select * from shop_orders where acceptrequest = 0";
+       $result = $db->query($sql);
+
+
+   ?>
+
   </thead>
   <tbody>
+  <?php  while ( $row  = $result->fetch_assoc()) { ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
+      <th scope="row"><?php echo $number += 1 ;?></th>
+      <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
+      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?>
+        (<?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?>)  Per Price (<?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>) TK (MPR)</td>
+      <td><?php echo $row["quantity"]; ?> Pices</td>
+      <td> Done  </td>
+    </tr>  
+    <?php } $result->free(); ?>
   </tbody>
 </table>
   </div>
