@@ -334,6 +334,12 @@ if($_SESSION["uid"]==1)
         //ini_set('display_errors', 1); 
        $sql = "select * from shop_orders where acceptrequest = 1";
        $result = $db->query($sql);
+      // while ( $row  = $result->fetch_assoc())
+      // {
+      //   echo $row["productid"];
+       
+      // }
+
    ?>
 
   </thead>
@@ -341,9 +347,9 @@ if($_SESSION["uid"]==1)
   <?php  while ( $row  = $result->fetch_assoc()) { ?>
     <tr>
       <th scope="row"><?php echo $number += 1 ;?></th>
-      <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row  = $data->fetch_assoc()){ echo $row["fristname"];} $data->free(); ?></td>
-      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid "); echo var_dump($productid); die(); while ( $row  = $data->fetch_assoc()){ echo $row["productname"];}?>
-        (<?php echo $db->query("select modelname from shop_products where id = $productid "); ?>)  Per Price (<?php  echo $db->query("select price from shop_products where id = $productid "); ?>)</td>
+      <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
+      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?>
+        (<?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?>)  Per Price (<?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>) TK (MPR)</td>
       <td><?php echo $row["quantity"]; ?></td>
       <td> Pending </td>
     </tr>  
