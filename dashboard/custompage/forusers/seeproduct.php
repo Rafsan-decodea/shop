@@ -74,7 +74,7 @@ if($_SESSION["uid"]==1)
         <a href="#" class="nav-link">Contact</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../logout.php" class="nav-link">logout</a>
+        <a href="../../logout.php" style="color:red" class="nav-link">logout</a>
       </li>
     </ul>
 
@@ -270,7 +270,7 @@ if($_SESSION["uid"]==1)
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">See Products</h1>
+            <h1 class="m-0">Place Order </h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -285,6 +285,8 @@ if($_SESSION["uid"]==1)
 
     <!-- Main content -->
 <section class="content">
+
+ 
   
 <style>
  #table-wrapper {
@@ -312,25 +314,40 @@ if($_SESSION["uid"]==1)
   border:1px solid red;
 }
   </style>
+  
+  
   <h1 class="m-0">ᴘᴇɴᴅɪɴɢ ᴏʀᴅᴇʀꜱ </h1>
   <div id="table-wrapper">
   <div id="table-scroll">
     <table class="table">
   <thead>
+ 
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Serial</th>
+      <th scope="col">Seller name </th>
+      <th scope="col">Product name </th>
+      <th scope="col">Product quantity </th>
+      <th scope="col">Status</th>
     </tr>
+
+    <?php 
+       ini_set('display_errors', 1); 
+       $sql = "select * from shop_orders where acceptrequest = 1";
+       $result = $db->query($sql);
+   ?>
+
   </thead>
   <tbody>
+  <?php  while ( $row  = $result->fetch_assoc()) { ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <th scope="row"><?php echo $number += 1 ;?></th>
+      <td><?php $userid = $row["userid"];echo $db->query("select fristname from shop_users where id = ".(int)$userid." "); ?></td>
+      <td><?php $productid = $row["productid"]; echo $db->query("select productname from shop_products where id = ".(int)$productid." ");?>
+        (<?php echo $db->query("select modelname from shop_products where id =".(int)$productid." "); ?>)  Per Price (<?php  echo $db->query("select price from shop_products where id = ".(int)$productid.""); ?>)</td>
+      <td><?php echo $row["quantity"]; ?></td>
+      <td> Pending </td>
     </tr>  
+    <?php } $result->free(); ?>
   </tbody>
   
 </table>
