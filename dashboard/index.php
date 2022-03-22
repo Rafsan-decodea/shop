@@ -1219,7 +1219,7 @@ if($_SESSION["uid"]==1)
               <div class="inner">
               <?php 
                 
-                $sql = "SELECT * FROM `shop_products`";
+                $sql = "SELECT DISTINCT productname  FROM `shop_products`";
                 $result = $db->query($sql);
                 $rows = mysqli_num_rows($result);
    

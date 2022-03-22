@@ -312,7 +312,7 @@ if($_SESSION["uid"]==1)
 
 <?php
      //ini_set('display_errors', 1); 
-     $sql = "SELECT DISTINCT * FROM `shop_products`";
+     $sql = "SELECT DISTINCT productname FROM `shop_products`";
      $result = $db->query($sql);
 
 ?>
@@ -320,10 +320,10 @@ if($_SESSION["uid"]==1)
    <div class="form-group">
       <label for="exampleInputEmail1">Select Products</label> 
       <br>
-      <select class="selectpicker" data-live-search="true">
+      <select class="selectpicker" id="select1" data-live-search="true">
       <?php  while ( $row  = $result->fetch_assoc()){  ?>
-      <option data-tokens="ketchup mustard"><?php echo $row["productname"];?> per Pices <?php echo $row["price"];?>   TK(MRP)</option>
-      <?php } $result->free();?>
+      <option data-tokens="ketchup mustard"><?php echo $row["productname"];?></option>
+      <?php } $result->free();?>productname
     </select>
   <br><br>
     <label for="exampleInputEmail1">Select Brand</label> 
@@ -342,7 +342,7 @@ if($_SESSION["uid"]==1)
 
    </div>
    
-   <button  onclick="addSeller();" data-bind="<?php $email=  $var['email'];?>"  class="btn btn-primary">Submit</button>
+   <button  onclick="addSeller();"   class="btn btn-primary">Submit</button>
 
 
 
@@ -357,7 +357,15 @@ if($_SESSION["uid"]==1)
     <!-- Main content -->
 <section class="content">
 
- 
+ <!-- Java Script For On Change For Select Options  -->
+
+ <script>
+
+
+
+
+
+ </script>
   
 <style>
  #table-wrapper {
