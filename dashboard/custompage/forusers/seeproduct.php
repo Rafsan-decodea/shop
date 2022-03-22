@@ -285,7 +285,19 @@ if($_SESSION["uid"]==1)
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+    <?php
+     //ini_set('display_errors', 1); 
+    //  $sql = "SELECT * FROM `shop_products`";
+    //  $result = $db->query($sql);
 
+    //  while ( $row  = $result->fetch_assoc())
+    //  {
+    //   echo $row["productname"];
+    //   echo $row["price"];
+    //   die();
+    //  }
+
+?>
   <!--  Modal Started  -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -298,14 +310,20 @@ if($_SESSION["uid"]==1)
       </div>
       <div class="modal-body">
 
+<?php
+     //ini_set('display_errors', 1); 
+     $sql = "SELECT DISTINCT * FROM `shop_products`";
+     $result = $db->query($sql);
+
+?>
 
    <div class="form-group">
       <label for="exampleInputEmail1">Select Products</label> 
       <br>
       <select class="selectpicker" data-live-search="true">
-      <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-      <option data-tokens="mustard">Burger, Shake and a Smile</option>
-      <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+      <?php  while ( $row  = $result->fetch_assoc()){  ?>
+      <option data-tokens="ketchup mustard"><?php echo $row["productname"];?> per Pices <?php echo $row["price"];?>   TK(MRP)</option>
+      <?php } $result->free();?>
     </select>
   <br><br>
     <label for="exampleInputEmail1">Select Brand</label> 
