@@ -1,5 +1,6 @@
 
-<?php 
+<?php
+error_reporting(0); 
 session_start();
 include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
 $db  = new DB();

@@ -20,8 +20,7 @@
 --
 
 DROP TABLE IF EXISTS `shop_orders`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `shop_orders` (
   `id` int NOT NULL AUTO_INCREMENT,
   `userid` int NOT NULL,
@@ -30,8 +29,8 @@ CREATE TABLE `shop_orders` (
   `quantity` int DEFAULT NULL,
   `acceptrequest` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) 
+
 
 --
 -- Dumping data for table `shop_orders`
@@ -73,8 +72,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `shop_users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `shop_users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `uid` int NOT NULL,
@@ -85,8 +83,8 @@ CREATE TABLE `shop_users` (
   `location` varchar(300) DEFAULT NULL,
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) 
+
 
 --
 -- Dumping data for table `shop_users`

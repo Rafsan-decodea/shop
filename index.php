@@ -1,4 +1,14 @@
 
+<?php
+ error_reporting(0);
+session_start();
+if (isset($_SESSION["id"]))
+{
+   header("location:/shop/dashboard/index.php");
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 session_start();
 
 // This is dashboard
@@ -276,7 +277,7 @@ if( $_SESSION["uid"]==0)
 
               console.log(status);
               toastr.info("Please reload The Page For See Effect");
-              toastr.success("success");
+              toastr.success("User Succesfully Created");
                }
               
             }

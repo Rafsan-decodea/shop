@@ -2,7 +2,7 @@
 <?php 
 
 session_start();
-
+ error_reporting(0); 
 // This is dashboard
 include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
 $db  = new DB();
@@ -265,6 +265,7 @@ if($_SESSION["uid"]==1)
 
   <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -320,7 +321,8 @@ if($_SESSION["uid"]==1)
    <div class="form-group">
       <label for="exampleInputEmail1">Select Products</label> 
       <br>
-      <select class="selectpicker" id="select1" data-live-search="true">
+      <select onchange="getproductdata(this);">
+      <option  selected disabled >Select Option Name</option>
       <?php  while ( $row  = $result->fetch_assoc()){  ?>
       <option data-tokens="ketchup mustard"><?php echo $row["productname"];?></option>
       <?php } $result->free();?>productname
@@ -328,11 +330,9 @@ if($_SESSION["uid"]==1)
   <br><br>
     <label for="exampleInputEmail1">Select Brand</label> 
       <br>
-      <select class="selectpicker" data-live-search="true">
-      <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-      <option data-tokens="mustard">Burger, Shake and a Smile</option>
-      <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-    </select>
+      <select id="productBrand">
+      
+      </select>
     <br><br>
     <div class="form-group">
       <label for="exampleInputEmail1">How Many</label>
@@ -361,8 +361,49 @@ if($_SESSION["uid"]==1)
 
  <script>
 
+function getproductdata(product)
+{
+    var product = product.value;
+
+    $.ajax({
+            url : "action.php",
+            type : 'post',
+            data : {
+              productSend :product,
+              
+            },
+            success:function(data,status)
+            {
+               
+              // alert(typeof(data));
+                  // toastr.error("Email Id Exist");
+               var $dropdown = $("#productBrand");
+               $dropdown.append($("<option />").val("").text(""));
+               var fetchdata = JSON.parse(data);
+               for (let i=0; i<=fetchdata.length ; i++)
+               {
+                $dropdown.append($("<option />").val(fetchdata[i]).text(fetchdata[i])); 
+               }
+               
+
+               
+                // alert(fetchdata.modelname);
+                //alert(data2);
+
+                //  $('#productBrand').html("");
+                // area_html += "<option value='"+fetchdata.modelname+"' data-id='"+fetchdata.modelname+"' >"+fetchdata.modelname+"</option>";
+                //  $("#productBrand").html(area_html);
+              
+            }
+            
+          });
 
 
+
+    // $('#productBrand').html("");
+    //  area_html += "<option value='"+name+"' data-id='"+id1+"' >"+name+"</option>";
+    // $("#productBrand").html(area_html);
+}
 
 
  </script>
@@ -504,6 +545,7 @@ if($_SESSION["uid"]==1)
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
