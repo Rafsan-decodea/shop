@@ -378,7 +378,7 @@ function getproductdata(product)
               // alert(typeof(data));
                   // toastr.error("Email Id Exist");
                var $dropdown = $("#productBrand");
-               $dropdown.append($("<option />").val("").text(""));
+               $dropdown.append($("<option />").val("").text(""));// MOdify in there
                var fetchdata = JSON.parse(data);
                for (let i=0; i<=fetchdata.length ; i++)
                {
