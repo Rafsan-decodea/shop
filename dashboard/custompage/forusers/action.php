@@ -17,7 +17,7 @@ class Seeproduct{
 
         if(isset($_POST["productSend"]))
         {
-            $sql = "SELECT modelname FROM `shop_products` WHERE productname = '$productSend'";
+            $sql = "SELECT modelname,price FROM `shop_products` WHERE productname = '$productSend'";
             //$sql2 = "SELECT * FROM `shop_products`";
             $seechek = $db->query($sql);
             $response = array();
@@ -28,6 +28,19 @@ class Seeproduct{
         
             echo json_encode($response);
              //echo $response;
+
+        }
+
+    }
+
+    function order_product()
+    {
+        $db = new DB();
+        extract($_POST);
+
+        if(isset($_POST["orderproductSend"]) && isset($_POST["orderproductbrandSend"]) && isset($_POST["orderquantitySend"]))
+        {
+           
 
         }
 

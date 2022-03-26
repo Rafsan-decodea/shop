@@ -354,7 +354,28 @@ if($_SESSION["uid"]==1)
        var  productname = $("#productnameid").val();
        var  productbrand =  $("#productBrand").val();
        var  quantity = $("#quantity").val();
-       
+      
+       $.ajax({
+            url : "action.php",
+            type : 'post',
+            data : {
+              orderproductSend :productname,
+              orderproductbrandSend: productbrand,
+              orderquantitySend: quantity
+              
+            },
+            success:function(data,status)
+            {
+               
+              
+              
+            }
+            
+          });
+
+        
+
+     }
  
  </script>
 
@@ -385,9 +406,9 @@ function getproductdata(product)
                var $dropdown = $("#productBrand");
                var fetchdata = JSON.parse(data);
                $('#productBrand').html("");
-               for (let i=0; i<=fetchdata.length ; i++)
+               for (let i=0; i<fetchdata.length ; i++)
                {
-                $dropdown.append($("<option />").val(fetchdata[i]).text(fetchdata[i]));
+                $dropdown.append($("<option />").val(fetchdata[i]).text(fetchdata[i]+"TK"));
                }
               
             }
