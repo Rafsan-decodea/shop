@@ -251,12 +251,19 @@ if( $_SESSION["uid"]==0)
             },
             success:function(data,status)
             {
-              
+          
+              var chekdata = JSON.parse(data);
+              if(chekdata.modelname == modelname)
+              {
+                toastr.error("Product Model Already Exist");
+              }
+              else{
 
               console.log(status);
               toastr.info("Please reload The Page For See Effect");
               toastr.success("success");
-    
+
+              }
               
             }
             

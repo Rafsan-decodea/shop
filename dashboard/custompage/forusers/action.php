@@ -23,7 +23,7 @@ class Seeproduct{
             $response = array();
             while ($row = mysqli_fetch_all($seechek))
             { 
-               $response += $row;
+               $response = $row;
             }
         
             echo json_encode($response);
@@ -34,6 +34,7 @@ class Seeproduct{
 
 
     }
+
 }
 
  $seeproduct = new Seeproduct();

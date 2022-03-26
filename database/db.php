@@ -12,8 +12,8 @@
   
     public $server = "localhost";
     public $username = "root";
-    //  public $password = "rafsan123";
-    public $password = "";
+    public $password = "rafsan123";
+   // public $password = "";
     public $dbname = "shop";
     public  $conn;
 

@@ -159,14 +159,35 @@ $seemember->deleteuser();
 
       if (isset($_POST['productnameSend']) && isset($_POST["modelnameSend"]) && isset($_POST["quantitySend"]) && isset($_POST["priceSend"]))
       {
-        $productnameSend = $_POST['productnameSend'];
-        $modelnameSend = $_POST["modelnameSend"];
-        $quantitySend = $_POST["quantitySend"];
-        $priceSend =  $_POST["priceSend"];
+     
+        $checksql = "SELECT `modelname` FROM `shop_products` WHERE `modelname` = '".$modelnameSend."'";
+       $seechek = $db->query($checksql);
+       $response = array();
+       while ($row = mysqli_fetch_assoc($seechek))
+      { 
+         $response = $row;
+      }
+       echo json_encode($response);
+
+        // backend Test
+        $testsql = "SELECT `modelname` FROM `shop_products` WHERE `modelname` = '".$modelnameSend."'"; 
+        $select  = $db->query($testsql); 
+        
+        if(mysqli_num_rows($select))
+        {
+
+        }
+        else{
+    
+          $productnameSend = $_POST['productnameSend'];
+          $modelnameSend = $_POST["modelnameSend"];
+          $quantitySend = $_POST["quantitySend"];
+          $priceSend =  $_POST["priceSend"];
  
-        $sql = "INSERT INTO `shop_products` (`id`, `productname`, `modelname`, `quantity`, `price`)
+          $sql = "INSERT INTO `shop_products` (`id`, `productname`, `modelname`, `quantity`, `price`)
           VALUES (NULL,'$productnameSend','$modelnameSend', $quantitySend, $priceSend)";
-        $db->insert($sql);
+          $db->insert($sql);
+        }
        }
 
 
