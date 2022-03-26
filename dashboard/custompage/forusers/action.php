@@ -41,6 +41,18 @@ class Seeproduct{
         if(isset($_POST["orderproductSend"]) && isset($_POST["orderproductbrandSend"]) && isset($_POST["orderquantitySend"]))
         {
             // SELECT id from shop_products where productname = "mobile"
+            $user = $_SESSION["id"];
+            $query1 = "select id from shop_products where modelname = '$orderproductbrandSend' ";
+            $result1 = $db->query($query1);
+            $modelid = "";
+            while ($row = mysqli_fetch_row($result1))
+            { 
+               $modelid = $row;
+            }
+            
+            $sql = "INSERT INTO `shop_orders` (`id`,  `userid`, `productid`,`orderdate`, `quantity`, `acceptrequest`) 
+            VALUES (NULL, $user,$modelid[0],CURRENT_TIMESTAMP,$orderquantitySend,1 )";
+            $db->insert($sql);
 
            //echo json_encode($_SESSION["id"]);
 

@@ -352,7 +352,7 @@ if($_SESSION["uid"]==1)
      function addOrder()
      {
        var  productname = $("#productnameid").val();
-       var  productbrand =  $("#productBrand").val();
+       var  productbrand =  $("#productBrand").val().split(',')[0];//smart Idea for Split
        var  quantity = $("#quantity").val();
       
        $.ajax({
@@ -367,7 +367,8 @@ if($_SESSION["uid"]==1)
             success:function(data,status)
             {
                
-              alert(data);
+              toastr.success("Product Order Success ");
+           
             }
             
           });
