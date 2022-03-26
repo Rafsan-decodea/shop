@@ -62,19 +62,10 @@ if($_SESSION["uid"]==1)
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <a href="../../logout.php" style="color:red" class="nav-link">logout</a>
     <!-- Left navbar links -->
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../logout.php" style="color:red" class="nav-link">logout</a>
       </li>
     </ul>
 
@@ -321,7 +312,7 @@ if($_SESSION["uid"]==1)
    <div class="form-group">
       <label for="exampleInputEmail1">Select Products</label> 
       <br>
-      <select onchange="getproductdata(this);">
+      <select id="productnameid" onchange="getproductdata(this);">
       <option  selected disabled >Select Option Name</option>
       <?php  while ( $row  = $result->fetch_assoc()){  ?>
       <option data-tokens="ketchup mustard"><?php echo $row["productname"];?></option>
@@ -336,13 +327,13 @@ if($_SESSION["uid"]==1)
     <br><br>
     <div class="form-group">
       <label for="exampleInputEmail1">How Many</label>
-      <input type="number" class="form-control" name="email" id="emailid" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <input type="number" class="form-control" name="number" id="quantity" aria-describedby="emailHelp" Name placeholder="Enter email">
    </div>
 
 
    </div>
    
-   <button  onclick="addSeller();"   class="btn btn-primary">Submit</button>
+   <button  onclick="addOrder();"   class="btn btn-primary">Submit</button>
 
 
 
@@ -353,6 +344,20 @@ if($_SESSION["uid"]==1)
     </div>
   </div>
 </div> 
+
+  <!-- Add   a Order Script  -->
+
+  <script>
+    
+     function addOrder()
+     {
+       var  productname = $("#productnameid").val();
+       var  productbrand =  $("#productBrand").val();
+       var  quantity = $("#quantity").val();
+       
+ 
+ </script>
+
 
     <!-- Main content -->
 <section class="content">
@@ -384,27 +389,11 @@ function getproductdata(product)
                {
                 $dropdown.append($("<option />").val(fetchdata[i]).text(fetchdata[i]));
                }
-               
-
-               
-                // alert(fetchdata.modelname);
-                //alert(data2);
-
-                //  $('#productBrand').html("");
-                // area_html += "<option value='"+fetchdata.modelname+"' data-id='"+fetchdata.modelname+"' >"+fetchdata.modelname+"</option>";
-                //  $("#productBrand").html(area_html);
               
             }
             
           });
-
-
-
-    // $('#productBrand').html("");
-    //  area_html += "<option value='"+name+"' data-id='"+id1+"' >"+name+"</option>";
-    // $("#productBrand").html(area_html);
 }
-
 
  </script>
   
@@ -446,12 +435,14 @@ function getproductdata(product)
       <th scope="col">Serial</th>
       <th scope="col">Seller name </th>
       <th scope="col">Product name </th>
+      <th scope="col">Product model </th>
+      <th scope="col">Product Per Prize </th>
       <th scope="col">Product quantity </th>
       <th scope="col">Status</th>
     </tr>
 
     <?php 
-        //ini_set('display_errors', 1); 
+        ini_set('display_errors', 1); 
        $sql = "select * from shop_orders where acceptrequest = 1";
        $result = $db->query($sql);
       // while ( $row  = $result->fetch_assoc())
@@ -468,8 +459,9 @@ function getproductdata(product)
     <tr>
       <th scope="row"><?php echo $number += 1 ;?></th>
       <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
-      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?>
-        (<?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?>)  Per Price (<?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>) TK (MPR)</td>
+      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?></td>
+      <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
+      <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td> Pending </td>
     </tr>  
@@ -489,6 +481,8 @@ function getproductdata(product)
       <th scope="col">Serial</th>
       <th scope="col">Seller name </th>
       <th scope="col">Product name </th>
+      <th scope="col">Product model </th>
+      <th scope="col">Product Per Prize </th>
       <th scope="col">Product quantity </th>
       <th scope="col">Status</th>
     </tr>
@@ -516,8 +510,6 @@ function getproductdata(product)
 </table>
   </div>
 </div>
-
-
 
 
 
