@@ -40,7 +40,8 @@ class Seeproduct{
 
         if(isset($_POST["orderproductSend"]) && isset($_POST["orderproductbrandSend"]) && isset($_POST["orderquantitySend"]))
         {
-            
+            // SELECT id from shop_products where productname = "mobile"
+
            //echo json_encode($_SESSION["id"]);
 
         }
