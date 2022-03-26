@@ -40,7 +40,8 @@ class Seeproduct{
 
         if(isset($_POST["orderproductSend"]) && isset($_POST["orderproductbrandSend"]) && isset($_POST["orderquantitySend"]))
         {
-           
+            
+           //echo json_encode($_SESSION["id"]);
 
         }
 
@@ -52,5 +53,6 @@ class Seeproduct{
 
  $seeproduct = new Seeproduct();
  $seeproduct->fetch_prouct();
+ $seeproduct->order_product();
 
 ?>

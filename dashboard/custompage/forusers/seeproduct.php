@@ -367,8 +367,7 @@ if($_SESSION["uid"]==1)
             success:function(data,status)
             {
                
-              
-              
+              alert(data);
             }
             
           });
