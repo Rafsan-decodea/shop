@@ -2,6 +2,8 @@
 <?php 
 error_reporting(0);
 session_start();
+include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
+$db  = new DB();
 
 // This is dashboard
 
@@ -87,7 +89,7 @@ if( $_SESSION["uid"]==0)
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> -->
         <div class="info">
-          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"]   ?>As  Admin</a>
+          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"]   ?> As  Admin</a>
         </div>
       </div>
 
@@ -181,7 +183,45 @@ if( $_SESSION["uid"]==0)
 
     <section class="content">
       
-    asdasd
+<h1 class="elegantshd">  ᴏʀᴅᴇʀ </h1>
+   <div id="table-wrapper">
+     <div id="table-scroll">
+      <table class="table">
+        <thead>
+    <tr>
+      <th scope="col">Serial</th>
+      <th scope="col">Seller name </th>
+      <th scope="col">Product name </th>
+      <th scope="col">Product model </th>
+      <th scope="col">Product Per Prize </th>
+      <th scope="col">Product quantity </th>
+      <th scope="col">Order Date </th>
+      <th scope="col">Status</th>
+    </tr>
+    <?php 
+       // ini_set('display_errors', 1); 
+       $sql = "select * from shop_orders where acceptrequest = 1";
+       $result = $db->query($sql);
+   ?>
+
+  </thead>
+  <tbody>
+  <?php  while ( $row  = $result->fetch_assoc()) { ?>
+    <tr>
+    <th scope="row"><?php echo $number += 1 ;?></th>
+      <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
+      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?></td>
+      <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
+      <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>
+      <td><?php echo $row["quantity"]; ?> Pices</td>
+      <td><?php echo $row["orderdate"]; ?></td>
+      <td>Pending</td>
+    </tr>  
+    <?php } $result->free(); ?>
+  </tbody>
+</table>
+  </div>
+</div>
 
 
 
