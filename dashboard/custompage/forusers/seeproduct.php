@@ -459,6 +459,7 @@ function getproductdata(product)
       <th scope="col">Product model </th>
       <th scope="col">Product Per Prize </th>
       <th scope="col">Product quantity </th>
+      <th scope="col">Order Date </th>
       <th scope="col">Status</th>
     </tr>
 
@@ -484,6 +485,8 @@ function getproductdata(product)
       <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
       <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>
       <td><?php echo $row["quantity"]; ?> Pices</td>
+      <td><?php echo $row["orderdate"]; ?></td>
+
       <td> Pending </td>
     </tr>  
     <?php } $result->free(); ?>
@@ -505,6 +508,7 @@ function getproductdata(product)
       <th scope="col">Product model </th>
       <th scope="col">Product Per Prize </th>
       <th scope="col">Product quantity </th>
+      <th scope="col">Order Date </th>
       <th scope="col">Status</th>
     </tr>
     <?php 
@@ -519,12 +523,13 @@ function getproductdata(product)
   <tbody>
   <?php  while ( $row  = $result->fetch_assoc()) { ?>
     <tr>
-      <th scope="row"><?php echo $number += 1 ;?></th>
+    <th scope="row"><?php echo $number += 1 ;?></th>
       <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
-      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?>
-        (<?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?>)  Per Price (<?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>) TK (MPR)</td>
+      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?></td>
+      <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
+      <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>
       <td><?php echo $row["quantity"]; ?> Pices</td>
-      <td> Done  </td>
+      <td><?php echo $row["orderdate"]; ?></td>
     </tr>  
     <?php } $result->free(); ?>
   </tbody>
