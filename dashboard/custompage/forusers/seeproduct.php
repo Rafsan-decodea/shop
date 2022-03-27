@@ -488,7 +488,7 @@ function getproductdata(product)
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
 
-      <td> Pending </td>
+      <td class="badge badge-warning" > Pending </td>
     </tr>  
     <?php } $result->free(); ?>
   </tbody>
@@ -532,6 +532,7 @@ function getproductdata(product)
       <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
+      <td class="badge badge-primary">Aprove</td>
     </tr>  
     <?php } $result->free(); ?>
   </tbody>

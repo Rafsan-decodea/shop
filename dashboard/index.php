@@ -325,9 +325,16 @@ if( $_SESSION["uid"]==0)
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>..<sup style="font-size: 20px"></sup></h3>
+              <?php 
+                
+                $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 0";
+                $result = $db->query($sql);
+                $rows = mysqli_num_rows($result);
+   
+               ?>
+                <h3><?php echo $rows ?><sup style="font-size: 20px"></sup></h3>
 
-                <p>Total Products</p>
+                <p>Total Aprove Orders</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
