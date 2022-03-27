@@ -327,7 +327,7 @@ if($_SESSION["uid"]==1)
     <br><br>
     <div class="form-group">
       <label for="exampleInputEmail1">How Many</label>
-      <input type="number" class="form-control" name="number" id="quantity" aria-describedby="emailHelp" Name placeholder="Enter email">
+      <input type="number" class="form-control" name="number" id="quantity" aria-describedby="emailHelp" Name placeholder="How Many">
    </div>
 
 
