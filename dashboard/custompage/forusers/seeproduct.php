@@ -480,7 +480,7 @@ function getproductdata(product)
   <tbody>
   <?php  while ( $row  = $result->fetch_assoc()) { ?>
     <tr>
-      <th scope="row"><?php echo $number += 1 ;?></th>
+      <th scope="row"><?php echo $numbers += 1 ;?></th>
       <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
       <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?></td>
       <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
