@@ -223,7 +223,6 @@ if( $_SESSION["uid"]==0)
       <th scope="col">Product Per Prize </th>
       <th scope="col">Product quantity </th>
       <th scope="col">Order Date </th>
-      <th scope="col">Status</th>
       <th scope="col">Action</th>
     </tr>
     <?php 
@@ -243,7 +242,6 @@ if( $_SESSION["uid"]==0)
       <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
-      <td class="badge badge-warning">Pending</td>
       <td> <button class="btn btn-info" data-toggle="modal" onclick="confromUpdate(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Approve</button> </td>
       <td> <button class="btn btn-danger" onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button> </td>
     </tr>  
@@ -255,6 +253,9 @@ if( $_SESSION["uid"]==0)
 
 <!-- Update  aprove Status  -->
 <script>
+
+
+
 
  function confromUpdate(orderid)
  {
@@ -286,7 +287,7 @@ if( $_SESSION["uid"]==0)
        
        
           toastr.info("Please reload The Page For See Effect");
-          toastr.success("Data Update Successfully ");
+          toastr.success("Approve Successfully ");
    
       }
 
@@ -312,6 +313,7 @@ if( $_SESSION["uid"]==0)
       <th scope="col">Product Per Prize </th>
       <th scope="col">Product quantity </th>
       <th scope="col">Order Date </th>
+      <th scope="col">Order Approve Data </th>
       <th scope="col">Status</th>
     </tr>
     <?php 
@@ -324,13 +326,14 @@ if( $_SESSION["uid"]==0)
   <tbody>
   <?php  while ( $row  = $result->fetch_assoc()) { ?>
     <tr>
-    <th scope="row"><?php echo $number += 1 ;?></th>
+    <th scope="row"><?php echo $number2 += 1 ;?></th>
       <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
       <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?></td>
       <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
       <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
+      <td><?php echo $row["orderaprovedate"]; ?></td>
       <td class="badge badge-primary">Approved</td>
     </tr>  
     <?php } $result->free(); ?>
