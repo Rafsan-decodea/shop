@@ -45,6 +45,7 @@ if( $_SESSION["uid"]==0)
   <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -223,6 +224,7 @@ if( $_SESSION["uid"]==0)
       <th scope="col">Product quantity </th>
       <th scope="col">Order Date </th>
       <th scope="col">Status</th>
+      <th scope="col">Action</th>
     </tr>
     <?php 
        // ini_set('display_errors', 1); 
@@ -242,6 +244,94 @@ if( $_SESSION["uid"]==0)
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
       <td class="badge badge-warning">Pending</td>
+      <td> <button class="btn btn-info" data-toggle="modal" onclick="confromUpdate(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Approve</button> </td>
+      <td> <button class="btn btn-danger" onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button> </td>
+    </tr>  
+    <?php } $result->free(); ?>
+  </tbody>
+</table>
+  </div>
+</div>
+
+<!-- Update  aprove Status  -->
+<script>
+
+ function confromUpdate(orderid)
+ {
+
+  var result = confirm("Are You Want to Aprove this "+orderid+" ?");
+  if(result)
+  {
+    getUpdateDetails(orderid)
+  }
+  else
+  {
+    toastr.error("NO");
+  }
+
+ }
+
+ function getUpdateDetails(orderid)
+  {
+
+    $.ajax({
+        url : "action.php",
+        type : 'post',
+        data : {
+              updateidSend:orderid,
+          },
+
+      success: function (data,status)
+      {
+       
+       
+          toastr.info("Please reload The Page For See Effect");
+          toastr.success("Data Update Successfully ");
+   
+      }
+
+    
+   });
+       
+  }
+ 
+
+</script>
+
+
+<h1 class="elegantshd">  ᴏʀᴅᴇʀ </h1>
+   <div id="table-wrapper">
+     <div id="table-scroll">
+      <table class="table">
+        <thead>
+    <tr>
+      <th scope="col">Serial</th>
+      <th scope="col">Seller name </th>
+      <th scope="col">Product name </th>
+      <th scope="col">Product model </th>
+      <th scope="col">Product Per Prize </th>
+      <th scope="col">Product quantity </th>
+      <th scope="col">Order Date </th>
+      <th scope="col">Status</th>
+    </tr>
+    <?php 
+       // ini_set('display_errors', 1); 
+       $sql = "select * from shop_orders where acceptrequest = 0";
+       $result = $db->query($sql);
+   ?>
+
+  </thead>
+  <tbody>
+  <?php  while ( $row  = $result->fetch_assoc()) { ?>
+    <tr>
+    <th scope="row"><?php echo $number += 1 ;?></th>
+      <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
+      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?></td>
+      <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
+      <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>
+      <td><?php echo $row["quantity"]; ?> Pices</td>
+      <td><?php echo $row["orderdate"]; ?></td>
+      <td class="badge badge-primary">Approved</td>
     </tr>  
     <?php } $result->free(); ?>
   </tbody>
@@ -304,6 +394,7 @@ if( $_SESSION["uid"]==0)
 <script src="../../dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard.js"></script>
 </body>

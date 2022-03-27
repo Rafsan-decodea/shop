@@ -1,6 +1,0 @@
-<?php error_reporting(0); ?>
-     public $server = "localhost";
-     public $username = "softeckc_wp521";
-     public $password = "S(ZZ-88j1p";
-    public $dbname = "softeckc_wp521";
-    public  $conn;

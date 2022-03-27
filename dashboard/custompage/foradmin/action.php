@@ -267,4 +267,34 @@ $seemember->deleteuser();
 
 
 
+<?php 
+
+  class Seeorder{
+
+    function __construct()
+    {
+      
+    }
+
+    function updateproduct()
+    {
+      $db = new DB();
+      extract($_POST);
+
+      if(isset($_POST["updateidSend"]))
+      {
+         $sql = "update shop_orders set acceptrequest= 0 where id = $updateidSend ";
+         $db->query($sql);
+      }
+    }
+  }
+
+  $seeorder = new Seeorder();
+  $seeorder->updateproduct();
+
+
+?>
+
+
+
 
