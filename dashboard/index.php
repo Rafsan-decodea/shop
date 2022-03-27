@@ -205,7 +205,7 @@ if( $_SESSION["uid"]==0)
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> -->
         <div class="info">
-          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"]   ?>As  Admin</a>
+          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"]   ?>  As  Admin</a>
         </div>
       </div>
 
@@ -255,7 +255,7 @@ if( $_SESSION["uid"]==0)
 
 
           <li class="nav-item">
-            <a href="./pages/widgets.html" class="nav-link">
+            <a href="./custompage/foradmin/seeorders.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 See Orders 
@@ -303,7 +303,14 @@ if( $_SESSION["uid"]==0)
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>..</h3>
+              <?php 
+                
+                $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 1";
+                $result = $db->query($sql);
+                $rows = mysqli_num_rows($result);
+   
+               ?>
+                <h3><?php echo $rows ?></h3>
 
                 <p>New Orders</p>
               </div>
@@ -318,9 +325,9 @@ if( $_SESSION["uid"]==0)
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>..<sup style="font-size: 20px">%</sup></h3>
+                <h3>..<sup style="font-size: 20px"></sup></h3>
 
-                <p>Bounce Rate</p>
+                <p>Total Products</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -342,7 +349,7 @@ if( $_SESSION["uid"]==0)
               ?>
                 <h3><?php echo $rows ?></h3>
 
-                <p>Total Register  Seller</p>
+                <p>Total Seller</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
