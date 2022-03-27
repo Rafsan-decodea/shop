@@ -465,7 +465,8 @@ function getproductdata(product)
 
     <?php 
         ini_set('display_errors', 1); 
-       $sql = "select * from shop_orders where acceptrequest = 1";
+        $userid = $_SESSION["id"]; // Find User id For 
+       $sql = "select * from shop_orders where acceptrequest = 1 && userid= $userid";
        $result = $db->query($sql);
       // while ( $row  = $result->fetch_assoc())
       // {
@@ -513,8 +514,9 @@ function getproductdata(product)
     </tr>
     <?php 
         //ini_set('display_errors', 1); 
-       $sql = "select * from shop_orders where acceptrequest = 0";
-       $result = $db->query($sql);
+        $userid = $_SESSION["id"]; // Find User id For 
+        $sql = "select * from shop_orders where acceptrequest = 0 && userid= $userid";
+        $result = $db->query($sql);
 
 
    ?>
