@@ -182,7 +182,33 @@ if( $_SESSION["uid"]==0)
     <!-- Main content -->
 
     <section class="content">
-      
+
+    <style>
+ #table-wrapper {
+  position:relative;
+}
+#table-scroll {
+  height:150px;
+  overflow:auto;  
+  margin-top:20px;
+}
+#table-wrapper table {
+  width:100%;
+
+}
+#table-wrapper table * {
+
+  color:black;
+}
+#table-wrapper table thead th .text {
+  position:absolute;   
+  top:-20px;
+  z-index:2;
+  height:20px;
+  width:35%;
+  border:1px solid red;
+}
+  </style>
 <h1 class="elegantshd">  ᴏʀᴅᴇʀ </h1>
    <div id="table-wrapper">
      <div id="table-scroll">
