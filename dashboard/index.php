@@ -1253,9 +1253,16 @@ if($_SESSION["uid"]==1)
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>..<sup style="font-size: 20px">%</sup></h3>
+              <?php 
+                $userid = $_SESSION["id"];
+                $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 0 && userid = $userid ";
+                $result = $db->query($sql);
+                $rows = mysqli_num_rows($result);
+   
+               ?>
+                <h3><?php echo $rows ;?><sup style="font-size: 20px"></sup></h3>
 
-                <p>Total Complete Order</p>
+                <p>Total Approve Order</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -1268,9 +1275,16 @@ if($_SESSION["uid"]==1)
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>..</h3>
+              <?php 
+                $userid = $_SESSION["id"];
+                $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 1 && userid = $userid ";
+                $result = $db->query($sql);
+                $rows = mysqli_num_rows($result);
+   
+               ?>
+                <h3><?php echo $rows ;?><sup style="font-size: 20px"></sup></h3>
 
-                <p>Total Pending Order </p>
+                <p>Total Pending Order</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
