@@ -210,7 +210,7 @@ if( $_SESSION["uid"]==0)
   border:1px solid red;
 }
   </style>
-<h1 class="elegantshd">  ᴏʀᴅᴇʀ </h1>
+<h1 class="elegantshd"> Pending ᴏʀᴅᴇʀ </h1>
    <div id="table-wrapper">
      <div id="table-scroll">
       <table class="table">
@@ -219,6 +219,7 @@ if( $_SESSION["uid"]==0)
       <th scope="col">Serial</th>
       <th scope="col">Seller name </th>
       <th scope="col">Seller Location</th>
+      <th scope="col">Seller Phone</th>
       <th scope="col">Product name </th>
       <th scope="col">Product model </th>
       <th scope="col">Product Per Prize </th>
@@ -239,6 +240,7 @@ if( $_SESSION["uid"]==0)
     <th scope="row"><?php echo $number += 1 ;?></th>
       <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
       <td><?php $data = $db->query("select location from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["location"];} $data->free();?></td>
+      <td><?php $data = $db->query("select mobile from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["mobile"];} $data->free();?></td>
       <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?></td>
       <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
       <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>
@@ -302,7 +304,7 @@ if( $_SESSION["uid"]==0)
 </script>
 
 
-<h1 class="elegantshd">  ᴏʀᴅᴇʀ </h1>
+<h1 class="elegantshd"> Approve ᴏʀᴅᴇʀ </h1>
    <div id="table-wrapper">
      <div id="table-scroll">
       <table class="table">
@@ -311,6 +313,7 @@ if( $_SESSION["uid"]==0)
       <th scope="col">Serial</th>
       <th scope="col">Seller name </th>
       <th scope="col">Seller Location</th>
+      <th scope="col">Seller Phone</th>
       <th scope="col">Product name </th>
       <th scope="col">Product model </th>
       <th scope="col">Product Per Prize </th>
@@ -332,6 +335,7 @@ if( $_SESSION["uid"]==0)
     <th scope="row"><?php echo $number2 += 1 ;?></th>
       <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
       <td><?php $data = $db->query("select location from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["location"];} $data->free();?></td>
+      <td><?php $data = $db->query("select mobile from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["mobile"];} $data->free();?></td>
       <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?></td>
       <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
       <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>

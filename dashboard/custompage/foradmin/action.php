@@ -120,7 +120,7 @@ class Seemember{
   $location = $_POST["updatelocationSend"];
 
   echo json_decode($userid);
-  $sql = "update shop_users set email= '$email', password= '$password' ,mobile = $mobile, fristname='$fristname', lastname='$lastname', location= '$location'  where id = $userid ";
+  $sql = "update shop_users set email= '$email', password= '$password' ,mobile = '$mobile', fristname='$fristname', lastname='$lastname', location= '$location'  where id = $userid ";
   
   $db->update($sql);
    
