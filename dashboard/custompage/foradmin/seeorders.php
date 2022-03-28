@@ -267,7 +267,7 @@ if( $_SESSION["uid"]==0)
   }
   else
   {
-    toastr.error("NO");
+    toastr.warning("Order Not Approve ");
   }
 
  }
