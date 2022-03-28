@@ -279,7 +279,7 @@ if( $_SESSION["uid"]==0)
         url : "action.php",
         type : 'post',
         data : {
-              updateidSend:orderid,
+              approveidSend:orderid,
           },
 
       success: function (data,status)

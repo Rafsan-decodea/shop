@@ -281,9 +281,9 @@ $seemember->deleteuser();
       $db = new DB();
       extract($_POST);
 
-      if(isset($_POST["updateidSend"]))
+      if(isset($_POST["approveidSend"]))
       {
-         $sql = "update shop_orders set acceptrequest= 0 , orderaprovedate= CURRENT_TIMESTAMP where id = $updateidSend ";
+         $sql = "update shop_orders set acceptrequest= 0 , orderaprovedate= CURRENT_TIMESTAMP where id = $approveidSend ";
          $db->update($sql);
       }
     }
