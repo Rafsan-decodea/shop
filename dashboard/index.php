@@ -1153,7 +1153,7 @@ if($_SESSION["uid"]==1)
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> -->
         <div class="info">
-          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"]   ?>  As Users </a>
+          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"]   ?>  As Seller </a>
         </div>
       </div>
 
