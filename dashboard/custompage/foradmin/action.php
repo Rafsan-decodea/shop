@@ -17,11 +17,12 @@ class Seemember{
     $db = new DB();
     extract($_POST);
 
-    if(isset($_POST["emailSend"]) && isset($_POST["passwordSend"]) && isset($_POST["fristnameSend"])
+    if(isset($_POST["emailSend"]) && isset($_POST["passwordSend"]) && isset($_POST["mobilenumberSend"]) && isset($_POST["fristnameSend"])
     && isset($_POST["lastnameSend"]) && isset($_POST["locationSend"]))
     {
       $emailSend = $_POST["emailSend"];
       $passwordSend = $_POST["passwordSend"];
+      $mobilenumberSend = $_POST["mobilenumberSend"];
       $fristnameSend = $_POST["fristnameSend"];
       $lastnameSend = $_POST["lastnameSend"];
       $locationSend = $_POST["locationSend"];
@@ -52,8 +53,8 @@ class Seemember{
       
   
   
-      $sql =  "INSERT INTO `shop_users` (`id`, `uid`, `email`, `password`, `fristname`, `lastname`, `location`, `time`) 
-      VALUES (NULL, '1','".$emailSend."','".$passwordSend."', '".$fristnameSend."', '".$lastnameSend."', '".$locationSend."', CURRENT_TIMESTAMP)";
+      $sql =  "INSERT INTO `shop_users` (`id`, `uid`, `email`, `password`,`mobile`, `fristname`, `lastname`, `location`, `time`) 
+      VALUES (NULL, '1','".$emailSend."','".$passwordSend."','".$mobilenumberSend."', '".$fristnameSend."', '".$lastnameSend."', '".$locationSend."', CURRENT_TIMESTAMP)";
       
        $db->insert($sql);
   
@@ -113,12 +114,13 @@ class Seemember{
   $userid = $_POST["idSend"];
   $email = $_POST["updateemailSend"];
   $password = $_POST["updatepasswordSend"];
+  $mobile = $_POST["updatemobilenumberSend"];
   $fristname = $_POST["updatefristnameSend"];
   $lastname = $_POST["updatelastnameSend"];
   $location = $_POST["updatelocationSend"];
 
   echo json_decode($userid);
-  $sql = "update shop_users set email= '$email', password= '$password' , fristname='$fristname', lastname='$lastname', location= '$location'  where id = $userid ";
+  $sql = "update shop_users set email= '$email', password= '$password' ,mobile = $mobile, fristname='$fristname', lastname='$lastname', location= '$location'  where id = $userid ";
   
   $db->update($sql);
    

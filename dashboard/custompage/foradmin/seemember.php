@@ -208,6 +208,10 @@ if( $_SESSION["uid"]==0)
       <input type="password" name="password" class="form-control" id="passwordid" placeholder="Password">
    </div>
    <div class="form-group">
+      <label for="exampleInputPassword1">Mobile</label>
+      <input type="text" name="mobile" class="form-control" id="mobilenumberid" placeholder="mobilenumber">
+   </div>
+   <div class="form-group">
       <label for="exampleInputEmail1">Frist Name </label>
       <input type="text" class="form-control" name="fristname" id="fristnameid" aria-describedby="emailHelp" Name placeholder="Fristname">
       <small id="emailHelp" class="form-text text-muted">Enter Frist name </small>
@@ -246,6 +250,7 @@ if( $_SESSION["uid"]==0)
       {
           var email = $('#emailid').val();
           var password = $('#passwordid').val();
+          var mobilenumber = $('#mobilenumberid').val();
           var fristname= $('#fristnameid').val();
           var lastname = $('#lastnameid').val();
           var location = $('#locationid').val();
@@ -256,6 +261,7 @@ if( $_SESSION["uid"]==0)
             data : {
               emailSend : email,
               passwordSend: password,
+              mobilenumberSend:mobilenumber,
               fristnameSend: fristname,
               lastnameSend: lastname,
               locationSend: location
@@ -314,6 +320,7 @@ if( $_SESSION["uid"]==0)
       <th scope="col">email</th>
       <th scope="col">Fristname</th>
       <th scope="col">Lastname</th>
+      <th scope="col">mobile</th>
       <th scope="col">location</th>
       <th scope="col">ACtion</th>
     </tr>
@@ -328,6 +335,7 @@ if( $_SESSION["uid"]==0)
       <td><?php echo $row["email"]; if($row["uid"]==0){ echo " (Admin)";} ?></td>
       <td><?php echo $row["fristname"] ?></td>
       <td><?php echo $row["lastname"] ?></td>
+      <td><?php echo $row["mobile"] ?></td>
       <td><?php echo $row["location"] ?></td>
       <td>
         <?php if($row["uid"]==1){  ?>
@@ -408,6 +416,10 @@ if( $_SESSION["uid"]==0)
       <input type="password" name="password" class="form-control" id="updatepasswordid" placeholder="Password">
    </div>
    <div class="form-group">
+      <label for="exampleInputPassword1">Mobile</label>
+      <input type="text" name="mobile" class="form-control" id="updatemobilenumberid" placeholder="mobilenumber">
+   </div>
+   <div class="form-group">
       <label for="exampleInputEmail1">Frist Name </label>
       <input type="text" class="form-control" name="fristname" id="updatefristnameid" aria-describedby="emailHelp" Name placeholder="Fristname">
       <small id="emailHelp" class="form-text text-muted">Enter Frist name </small>
@@ -460,6 +472,7 @@ if( $_SESSION["uid"]==0)
 
         $("#updateemailid").val(fetchuserid.email);
         $("#updatepasswordid").val(fetchuserid.password);
+        $("#updatemobilenumberid").val(fetchuserid.mobile);
         $("#updatefristnameid").val(fetchuserid.fristname);
         $("#updatelastnameid").val(fetchuserid.lastname);
         $("#updatelocationid").val(fetchuserid.location);
@@ -475,6 +488,7 @@ if( $_SESSION["uid"]==0)
      var getuserid = $("#hiddendata").val();
      var email = $('#updateemailid').val();
      var password = $('#updatepasswordid').val();
+     var mobile  =  $("#updatemobilenumberid").val();
      var fristname= $('#updatefristnameid').val();
      var lastname = $('#updatelastnameid').val();
      var location = $('#updatelocationid').val();
@@ -486,6 +500,7 @@ if( $_SESSION["uid"]==0)
               idSend:getuserid,
               updateemailSend: email,
               updatepasswordSend: password,
+              updatemobilenumberSend: mobile,
               updatefristnameSend: fristname,
               updatelastnameSend: lastname,
               updatelocationSend: location
