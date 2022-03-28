@@ -289,10 +289,24 @@ $seemember->deleteuser();
          $db->update($sql);
       }
     }
+
+    function deleteOrder()
+    {
+      $db = new DB();
+      extract($_POST);
+
+      if(isset($_POST["deleteorderidSend"]))
+      {
+         $sql = "delete from shop_orders where id = $deleteorderidSend";
+         $db->query($sql);
+      }
+
+    }
   }
 
   $seeorder = new Seeorder();
   $seeorder->updateproduct();
+  $seeorder->deleteOrder();
 
 
 ?>

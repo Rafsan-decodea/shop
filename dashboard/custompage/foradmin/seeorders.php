@@ -247,7 +247,7 @@ if( $_SESSION["uid"]==0)
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
       <td> <button class="btn btn-info" data-toggle="modal" onclick="confromUpdate(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Approve</button> </td>
-      <td> <button class="btn btn-danger" onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button> </td>
+      <td> <button class="btn btn-danger" onclick="confromDelete(<?php echo $row["id"] ?>);" >Delete</button> </td>
     </tr>  
     <?php } $result->free(); ?>
   </tbody>
@@ -300,6 +300,50 @@ if( $_SESSION["uid"]==0)
        
   }
  
+
+</script>
+
+<!-- Delete Order Script  -->
+
+<script>
+  
+ function confromDelete(deleteorderid)
+ {
+
+  var result = confirm("Are You Want to Aprove this "+deleteorderid+" ?");
+  if(result)
+  {
+    deleteOrder(deleteorderid);
+  }
+  else
+  {
+    toastr.warning("Order Not  Delete ");
+  }
+
+ }
+
+
+ function deleteOrder(deleteorderid)
+ {
+
+       $.ajax({
+    
+           url : "action.php",
+           type : 'post',
+           data : {
+             deleteorderidSend : deleteorderid,
+           },
+          success: function(data,status)
+          {
+             
+             toastr.success(" Deleted Order "+deleteorderid);
+          }
+
+     });
+   
+
+ }
+
 
 </script>
 
