@@ -35,9 +35,9 @@ if (isset($_SESSION["id"]))
                 <div class="form__input-error-message"></div>
             </div>
             <input class="form__button"  value="Continue"  name="submit" type="submit">
-            <!-- <p class="form__text">
-                <a href="#" class="form__link">Forgot your password?</a>
-            </p> -->
+            <p class="form__text">
+                <a href="forgotpassword/forusers/index.php" class="form__link">Forgot your password?</a>
+            </p>
 
             <!-- Create Account  Link -->
 
