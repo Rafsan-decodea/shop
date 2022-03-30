@@ -47,6 +47,7 @@
                {
                    document.getElementById("msg").innerHTML = "";
                   document.getElementById("successmsg").innerHTML = "Found";
+                  window.location.assign('recovery.php');
 
                }
 
