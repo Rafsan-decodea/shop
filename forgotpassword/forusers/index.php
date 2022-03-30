@@ -20,6 +20,7 @@
            
         <h1 class="form__title"> Enter Your gmail </h1>
         <center><h3 style="color:red;" id="msg"></h3></center>
+        <center><h3 style="color:green;" id="successmsg"></h3></center>
         
             <div class="form__message form__message--error"></div>
             <div class="form__input-group">
@@ -44,12 +45,16 @@
                 console.log(data);
                if (data == 1)
                {
-                  document.getElementById("msg").innerHTML = "Found";
+                   document.getElementById("msg").innerHTML = "";
+                  document.getElementById("successmsg").innerHTML = "Found";
+
                }
 
                if(data == 0) {
 
+                document.getElementById("successmsg").innerHTML = "";
                 document.getElementById("msg").innerHTML = "Not Found";
+
                }
 
 
