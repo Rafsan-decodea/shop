@@ -71,7 +71,6 @@ class Email{
             //     echo 'Message has been sent.'; 
             // }
            
-            
 
             }
             else{
@@ -81,10 +80,30 @@ class Email{
          
         }
     }
+
+   function verify_otp()
+   { 
+    $db = new DB();
+    extract($_POST);
+    if(isset($_POST["checkotp"]))
+    {
+        if($_SESSION["otp"]==$checkotp)
+        {
+            echo json_encode(1);  
+        }
+        else
+        {
+            echo json_encode(0);
+            //session_destroy();
+        }
+    }
+
+   }
 }
    
 $email = new Email();
 $email->checkemail_sendotp();
+$email->verify_otp();
 
 ?> 
 
