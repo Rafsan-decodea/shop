@@ -19,6 +19,7 @@
            
            
         <h1 class="form__title"> Enter Your gmail </h1>
+        <center><h3 style="color:yellow;" id="chksmsg"></h3></center>
         <center><h3 style="color:red;" id="msg"></h3></center>
         <center><h3 style="color:green;" id="successmsg"></h3></center>
         
@@ -33,7 +34,12 @@
       function getemail()
       {
          var recoveryemail = $('#recoverymail').val();
-        
+
+         document.getElementById("msg").innerHTML = "";
+         document.getElementById("successmsg").innerHTML = "";
+         document.getElementById("chksmsg").innerHTML = "Please Wait ....";
+
+
           $.ajax({
             url : "action.php",
             type : 'post',
@@ -42,24 +48,26 @@
             },
             success:function(data,status)
             {
-                console.log(data);
+
+              
+              console.log(data);
                if (data == 1)
                {
-                   document.getElementById("msg").innerHTML = "";
-                  document.getElementById("successmsg").innerHTML = "Found";
-                  window.location.assign('recovery.php');
+                document.getElementById("chksmsg").innerHTML = "";
+                 document.getElementById("msg").innerHTML = "";
+                 document.getElementById("successmsg").innerHTML = " Email Found";
+                 window.location.assign('recovery.php');
 
                }
 
                if(data == 0) {
-
+                
+                document.getElementById("chksmsg").innerHTML = "";
                 document.getElementById("successmsg").innerHTML = "";
                 document.getElementById("msg").innerHTML = "Not Found";
 
                }
-
-
-              
+       
               
             }
             
