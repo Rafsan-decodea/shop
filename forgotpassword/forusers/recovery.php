@@ -6,6 +6,7 @@
 {
    header("refresh:0;url=/shop/index.php?message=OTP Expired");
    session_destroy();
+   $_SERVER['PHP_SELF'];
 
 }
 
