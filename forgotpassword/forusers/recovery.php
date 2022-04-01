@@ -2,9 +2,9 @@
 <?php
  error_reporting(0);
  session_start();
- if (!isset($_SESSION["otp"]) or time()- $_SESSION["timeout"] > 10000000) // set timer for Destroy Session
+ if (!isset($_SESSION["otp"]) or time()- $_SESSION["timeout"] > 120) // set timer for Destroy Session
 {
-   header("location:/shop/index.php");
+   header("refresh:0;url=/shop/index.php?message=OTP Expired");
    session_destroy();
 
 }
@@ -38,21 +38,29 @@
             <input class="form__button" onclick="verifyotp();"  value="Next"  name="submit" type="submit">      
 
   <script>
-        const startingMinutes = 5;
-        let time = startingMinutes * 60;
+      var seconds = localStorage.getItem('remainTime'); //gettting saved time from localstorage
 
-        const countDownEL = document.getElementById('countdown');
+if(seconds == null || seconds == undefined){
+  seconds = 120; //default time
+}
 
-        setInterval(updateCountdown,1000)
-        
-        function updateCountdown()
-        {
-           const minutes = Math.floor(time/60);
-           let secounds = time % 60;
+function secondPassed() {
+  var minutes = Math.round((seconds - 30)/60);
+  var remainingSeconds = seconds % 60;
+  if (remainingSeconds < 10) {
+      remainingSeconds = "0" + remainingSeconds; 
+  }
+  document.getElementById('countdown').innerHTML = minutes + ":" +    remainingSeconds;
+  if (seconds == 0) {
+      clearInterval(countdownTimer);
+  } else {    
+      seconds--;
+      localStorage.setItem('remainTime',seconds); //saving time to localstorage
+  }
+}
+localStorage.clear();
 
-           countDownEL.innerHTML = `${minutes}: ${secounds}`;
-           time--; 
-        }
+var countdownTimer = setInterval('secondPassed()', 1000);
 
   </script>
             
