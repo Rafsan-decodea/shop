@@ -1,8 +1,8 @@
 <?php 
 
 session_start();
-
-if (!isset($_SESSION["otp"])) // set timer for Destroy Session
+$_SESSION["timeout"] = time();
+if (!isset($_SESSION["otp"]) or time() - $_SESSION["timeout"] > 120 ) // set timer for Destroy Session
 {
   header("refresh:0;url=/shop/index.php?message=Password Reset Time Expired");
   session_destroy();
@@ -15,7 +15,7 @@ if (!isset($_SESSION["otp"])) // set timer for Destroy Session
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="120">
+    <meta http-equiv="refresh" content="12000">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../allcss/index.css">
@@ -41,41 +41,21 @@ if (!isset($_SESSION["otp"])) // set timer for Destroy Session
 
           <script>
 
-     function verifyotp()
+     function setNewPssword()
       {
-         var recoveryemail = $('#getrecoverymail').val();
-
-         document.getElementById("errormsg").innerHTML = "";
-         document.getElementById("successmsg").innerHTML = "";
-;
+         var getnewpassword = $('#getnewpassword').val();  
 
 
           $.ajax({
             url : "action.php",
             type : 'post',
             data : {
-              checkotp : recoveryemail
+              getnewpasswordSend : getnewpassword
             },
             success:function(data,status)
             {
 
-              
-              //console.log(data);
-          
-
-               if (data == 1)
-               {
-            
-                document.getElementById("successmsg").innerHTML = "OTP Match";
-                window.location.assign('reset.php');
-
-               }
-
-               if(data == 0) {
-                
-                document.getElementById("errormsg").innerHTML = "OTP NOT MATCH";
-               }
-       
+                alert(data);
               
             }
             
@@ -85,7 +65,7 @@ if (!isset($_SESSION["otp"])) // set timer for Destroy Session
 
           </script>
 
-          
+
    </div>
 
 

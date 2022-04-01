@@ -11,7 +11,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/shop/mail/SMTP.php");
 
 class Email{
 
-    public $pubemail ;
+    public   $pubemail = "" ;
 
     function __construct()
     {
@@ -22,10 +22,9 @@ class Email{
     {
         $db = new DB();
         extract($_POST);
-
         if(isset($_POST["recoveryemailSent"]))
         {
-            $this->pubemail = $recoveryemailSent;
+        
             
             $sql = "SELECT email from shop_users WHERE email = '$recoveryemailSent'  && uid = 1";
             $result = $db->query($sql);
@@ -103,11 +102,25 @@ class Email{
     }
 
    }
+
+   function set_new_password()
+   {
+    $db = new DB();
+    extract($_POST);
+
+    if(isset($_POST["getnewpasswordSend"]))
+    {
+        echo json_encode($getnewpasswordSend);
+        echo json_encode($this->pubemail);
+    }   
+
+   }
 }
    
 $email = new Email();
 $email->checkemail_sendotp();
 $email->verify_otp();
+$email->set_new_password();
 
 ?> 
 
