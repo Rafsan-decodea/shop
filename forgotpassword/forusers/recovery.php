@@ -16,6 +16,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="refresh" content="120">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../allcss/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
@@ -93,6 +94,7 @@ var countdownTimer = setInterval('secondPassed()', 1000);
                {
             
                 document.getElementById("successmsg").innerHTML = "OTP Match";
+                window.location.assign('reset.php');
 
                }
 

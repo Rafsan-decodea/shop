@@ -11,6 +11,8 @@ include ($_SERVER['DOCUMENT_ROOT']."/shop/mail/SMTP.php");
 
 class Email{
 
+    public $pubemail ;
+
     function __construct()
     {
         
@@ -23,6 +25,7 @@ class Email{
 
         if(isset($_POST["recoveryemailSent"]))
         {
+            $this->pubemail = $recoveryemailSent;
             
             $sql = "SELECT email from shop_users WHERE email = '$recoveryemailSent'  && uid = 1";
             $result = $db->query($sql);
