@@ -2,7 +2,7 @@
 
 session_start();
 $_SESSION["timeout"] = time();
-if (!isset($_SESSION["otp"]) or time() - $_SESSION["timeout"] > 120 ) // set timer for Destroy Session
+if (!isset(  $_SESSION["otp"]) or time() - $_SESSION["timeout"] > 120 ) // set timer for Destroy Session
 {
   header("refresh:0;url=/shop/index.php?message=Password Reset Time Expired");
   session_destroy();
