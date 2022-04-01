@@ -33,6 +33,7 @@ class Email{
               $random = rand(100000,999999);
               
               $_SESSION["otp"] = $random;
+              $_SESSION["timeout"] = time();
 
               $mail = new PHPMailer;
               $mail->isSMTP();                      // Set mailer to use SMTP

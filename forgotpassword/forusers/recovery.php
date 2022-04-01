@@ -2,6 +2,13 @@
 <?php
  error_reporting(0);
  session_start();
+ if (!isset($_SESSION["otp"]) or time()- $_SESSION["timeout"] > 10000000) // set timer for Destroy Session
+{
+   header("location:/shop/index.php");
+   session_destroy();
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../allcss/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <title>Recover Password </title>
+    <title>Enter Your OTP </title>
 </head>
 <body>
     
@@ -20,6 +27,7 @@
            
         <h1 class="form__title"> Enter Your Otp </ h1>
         <center><p style="color:yellow; font-size:small;" >Your Otp Send in That Email</p></center>
+        <center><p style="color:blue; font-size:medium;" id="countdown" ></p></center>
         <center><h3 style="color:red;" id="errormsg"></h3></center>
         <center><h3 style="color:green;" id="successmsg"></h3></center>
             <div class="form__message form__message--error"></div>
@@ -28,14 +36,34 @@
                 <div class="form__input-error-message"></div>
             </div>
             <input class="form__button" onclick="verifyotp();"  value="Next"  name="submit" type="submit">      
-    
+
+  <script>
+        const startingMinutes = 5;
+        let time = startingMinutes * 60;
+
+        const countDownEL = document.getElementById('countdown');
+
+        setInterval(updateCountdown,1000)
+        
+        function updateCountdown()
+        {
+           const minutes = Math.floor(time/60);
+           let secounds = time % 60;
+
+           countDownEL.innerHTML = `${minutes}: ${secounds}`;
+           time--; 
+        }
+
+  </script>
+            
+
 <script>
      function verifyotp()
       {
          var recoveryemail = $('#getrecoverymail').val();
 
-        // document.getElementById("errorms").innerHTML = "";
-        // document.getElementById("successmsg").innerHTML = "";
+         document.getElementById("errormsg").innerHTML = "";
+         document.getElementById("successmsg").innerHTML = "";
 ;
 
 
@@ -50,18 +78,18 @@
 
               
               //console.log(data);
-              alert(data);
+          
 
                if (data == 1)
                {
             
-                // document.getElementById("successmsg").innerHTML = "OTP Match";
+                document.getElementById("successmsg").innerHTML = "OTP Match";
 
                }
 
                if(data == 0) {
                 
-               // document.getElementById("errorms").innerHTML = "OTP NOT Match";
+                document.getElementById("errormsg").innerHTML = "OTP NOT MATCH";
                }
        
               
