@@ -2,12 +2,18 @@
 
 session_start();
 $_SESSION["timeout"] = time();
-if (!isset(  $_SESSION["otp"]) or time() - $_SESSION["timeout"] > 120 ) // set timer for Destroy Session
+if (!isset($_SESSION["validotp"])) // set timer for Destroy Session
+{
+  header("refresh:0;url=/shop/index.php?message=Otp Expired");
+  session_destroy();
+  $_SERVER['PHP_SELF'];
+
+}
+if(time() - $_SESSION["timeout"] > 120)
 {
   header("refresh:0;url=/shop/index.php?message=Password Reset Time Expired");
   session_destroy();
   $_SERVER['PHP_SELF'];
-
 }
 
 ?>
@@ -56,6 +62,8 @@ if (!isset(  $_SESSION["otp"]) or time() - $_SESSION["timeout"] > 120 ) // set t
             {
 
                 alert(data);
+                window.location.assign('/shop/index.php?successmessage=Password Reset Success');
+
               
             }
             

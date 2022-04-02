@@ -24,7 +24,9 @@ if (isset($_SESSION["id"]))
         <form class="form" action="./usercontrolbackend/authuser.php" id="login" method="POST">
             <h1 class="form__title">User Login</h1>
             <?php $msg=$_GET['message'];?>
+            <?php $msg2=$_GET['successmessage'];?>
             <center><h3 style="color:red;"> <?php echo $msg ?></h3></center>
+            <center><h3 style="color:green;"> <?php echo $msg2 ?></h3></center>
             <div class="form__message form__message--error"></div>
             <div class="form__input-group">
                 <input type="text" class="form__input" name="email" autofocus placeholder="Username or email">

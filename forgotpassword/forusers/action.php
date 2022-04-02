@@ -94,6 +94,7 @@ class Email{
         if($_SESSION["otp"]==$checkotp)
         {
             echo json_encode(1);  
+            $_SESSION["validotp"]= 1 ; //Just Place A random Number For otp
         }
         else
         {
@@ -111,8 +112,10 @@ class Email{
 
     if(isset($_POST["getnewpasswordSend"]))
     {
-        echo json_encode($getnewpasswordSend);
-        echo json_encode($_SESSION["emailcapture"]);
+        $caputuremail = $_SESSION["emailcapture"];
+        $sql = "update shop_users set password = '$getnewpasswordSend'  where email = '$caputuremail' ";
+        $db->update($sql);
+        session_destroy();
     }   
 
    }
