@@ -278,7 +278,7 @@ $seemember->deleteuser();
       
     }
 
-    function updateproduct()
+    function approveOrder()
     {
       $db = new DB();
       extract($_POST);
@@ -305,7 +305,7 @@ $seemember->deleteuser();
   }
 
   $seeorder = new Seeorder();
-  $seeorder->updateproduct();
+  $seeorder->approveOrder();
   $seeorder->deleteOrder();
 
 

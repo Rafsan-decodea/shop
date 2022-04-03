@@ -5,9 +5,9 @@ session_start();
 include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-include ($_SERVER['DOCUMENT_ROOT']."/shop/mail/Exception.php");
-include ($_SERVER['DOCUMENT_ROOT']."/shop/mail/PHPMailer.php");
-include ($_SERVER['DOCUMENT_ROOT']."/shop/mail/SMTP.php");
+include ($_SERVER['DOCUMENT_ROOT']."/shop/maillib/Exception.php");
+include ($_SERVER['DOCUMENT_ROOT']."/shop/maillib/PHPMailer.php");
+include ($_SERVER['DOCUMENT_ROOT']."/shop/maillib/SMTP.php");
 
 class Email{
 
@@ -65,7 +65,7 @@ class Email{
         
         // Mail body content
              $bodyContent = '<h1>OTP ==> '.$random.' </h1>';
-             $bodyContent .= '<p>Otp Valid For 1 Minute <b>Keep It Mind</b></p>';
+             $bodyContent .= '<p>Otp Valid For 2 Minute <b>Keep It Mind</b></p>';
              $mail->Body    = $bodyContent;
              $mail->send();
 
