@@ -369,9 +369,16 @@ if( $_SESSION["uid"]==0)
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>..</h3>
+              <?php 
+                
+                $sql = "SELECT DISTINCT productname  FROM `shop_products`";
+                $result = $db->query($sql);
+                $rows = mysqli_num_rows($result);
+   
+               ?>
+                <h3><?php echo $rows ?></h3>
 
-                <p>Unique Visitors</p>
+                <p>Total Products</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
