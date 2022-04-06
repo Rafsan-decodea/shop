@@ -252,7 +252,7 @@ $seemember->deleteuser();
        $db->update($sql);
 
       }
-     
+      
     }
 
  }
@@ -297,7 +297,7 @@ $seemember->deleteuser();
 
       if(isset($_POST["deleteorderidSend"]))
       {
-         $sql = "delete from shop_orders where id = $deleteorderidSend";
+         $sql = "dele te from shop_orders where id = $deleteorderidSend";
          $db->query($sql);
       }
 

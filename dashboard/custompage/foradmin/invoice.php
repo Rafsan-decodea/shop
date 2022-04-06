@@ -192,13 +192,13 @@
                     </div>
                     <div class="col company-details">
                         <h2 class="name">
-                            <a target="_blank">
+                            <a target="_blank" href="https://lobianijs.com">
                             Invoice Generate From Shop Management System
                             </a>
                         </h2>
-                        <div>Oxyzen Chittagong (admin)</div>
-                        <div>018181444463</div>
-                        <div>shazidno123@gmail.com</div>
+                        <div>455 Foggy Heights, AZ 85004, US</div>
+                        <div>(123) 456-789</div>
+                        <div>company@example.com</div>
                     </div>
                 </div>
             </header>
@@ -211,8 +211,9 @@
                         <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
                     </div>
                     <div class="col invoice-details">
-                        <h1 class="invoice-id">INVOICE</h1> <!--  -->
+                        <h1 class="invoice-id">INVOICE 3-2-1</h1>
                         <div class="date">Date of Invoice: 01/10/2018</div>
+                        <div class="date">Due Date: 30/10/2018</div>
                     </div>
                 </div>
                 <table border="0" cellspacing="0" cellpadding="0">
@@ -242,7 +243,27 @@
                             <td class="qty">100</td>
                             <td class="total">$0.00</td>
                         </tr>
-                
+                        <tr>
+                            <td class="no">01</td>
+                            <td class="text-left"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
+                            <td class="unit">$40.00</td>
+                            <td class="qty">30</td>
+                            <td class="total">$1,200.00</td>
+                        </tr>
+                        <tr>
+                            <td class="no">02</td>
+                            <td class="text-left"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
+                            <td class="unit">$40.00</td>
+                            <td class="qty">80</td>
+                            <td class="total">$3,200.00</td>
+                        </tr>
+                        <tr>
+                            <td class="no">03</td>
+                            <td class="text-left"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
+                            <td class="unit">$40.00</td>
+                            <td class="qty">20</td>
+                            <td class="total">$800.00</td>
+                        </tr>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -265,7 +286,7 @@
                 <div class="thanks">Thank you!</div>
                 <div class="notices">
                     <div>NOTICE:</div>
-                    <div class="notice"> This Pdf have to save from Print Section</div>
+                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
                 </div>
             </main>
             <footer>
