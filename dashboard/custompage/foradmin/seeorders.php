@@ -379,8 +379,8 @@ if( $_SESSION["uid"]==0)
   <?php  while ( $row  = $result->fetch_assoc()) { ?>
     <tr>
     <th scope="row"><?php echo $number2 += 1 ;?></th>
-      <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
-      <td><?php $data = $db->query("select location from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["location"];} $data->free();?></td>
+      <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ $fristname = $row1["fristname"];echo $fristname; } $data->free(); ?></td>
+      <td><?php $data = $db->query("select location from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ $location= $row1["location"];echo $location; } $data->free();?></td>
       <td><?php $data = $db->query("select mobile from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["mobile"];} $data->free();?></td>
       <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?></td>
       <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
@@ -388,7 +388,8 @@ if( $_SESSION["uid"]==0)
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
       <td><?php echo $row["orderaprovedate"]; ?></td>
-      <td><a data-toggle="modal" data-target="#modal" href="testmodalcontent.html">Show a modal!</a></td>
+      <?php $data = $db->query("select email from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ $email = $row1["email"];} $data->free(); // Fetch Email id?> 
+      <td><a data-toggle="modal" data-target="#modal" onclick="load('<?php echo $fristname ?>','<?php echo $location ?>','<?php echo $email ?>','<?php echo $row["orderaprovedate"]; ?>');"  href="#"> Show Invoice </a></td>
       <td class="badge badge-primary">Approved</td>
     </tr>  
     <?php } $result->free(); ?>
@@ -402,6 +403,18 @@ if( $_SESSION["uid"]==0)
 
 </style>
 
+<script>
+
+   function load(fristname,location,email,orderaprovedate)
+   {
+
+      document.getElementById("invoiceName").innerHTML = fristname;
+      document.getElementById("invoiceAddress").innerHTML = location;
+      document.getElementById("invoiceEmail").innerHTML = email;
+      document.getElementById("invoiceAproveData").innerHTML = "data: "+orderaprovedate;
+   }
+
+</script>
 
 
 
@@ -623,13 +636,13 @@ if( $_SESSION["uid"]==0)
                 <div class="row contacts">
                     <div class="col invoice-to">
                         <div class="text-gray-light">INVOICE TO:</div>
-                        <h2 class="to" id="invoiceName">  </h2>
-                        <div class="address" id="invoiceAddress">796 Silver Harbour, TX 79273, US</div>
-                        <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                        <h2 class="to" id="invoiceName"></h2>
+                        <div class="address" id="invoiceAddress"></div>
+                        <div class="email" id="invoiceEmail"></div>
                     </div>
                     <div class="col invoice-details">
                         <h1 class="invoice-id">INVOICE</h1> <!--  -->
-                        <div class="date">Date of Invoice: 01/10/2018</div>
+                        <div class="date" id="invoiceAproveData" ></div>
                     </div>
                 </div>
                 <table border="0" cellspacing="0" cellpadding="0">
