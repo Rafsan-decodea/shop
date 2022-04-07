@@ -382,14 +382,14 @@ if( $_SESSION["uid"]==0)
       <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ $fristname = $row1["fristname"];echo $fristname; } $data->free(); ?></td>
       <td><?php $data = $db->query("select location from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ $location= $row1["location"];echo $location; } $data->free();?></td>
       <td><?php $data = $db->query("select mobile from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["mobile"];} $data->free();?></td>
-      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?></td>
-      <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
+      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ $productname= $row1["productname"]; echo $productname;}  $data->free();?></td>
+      <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ $productmodel= $row1["modelname"]; echo $productmodel; } $data->free(); ?></td>
       <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
       <td><?php echo $row["orderaprovedate"]; ?></td>
       <?php $data = $db->query("select email from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ $email = $row1["email"];} $data->free(); // Fetch Email id?> 
-      <td><a data-toggle="modal" data-target="#modal" onclick="load('<?php echo $fristname ?>','<?php echo $location ?>','<?php echo $email ?>','<?php echo $row["orderaprovedate"]; ?>');"  href="#"> Show Invoice </a></td>
+      <td><a data-toggle="modal" data-target="#modal" onclick="load('<?php echo $fristname ?>','<?php echo $location ?>','<?php echo $email ?>','<?php echo $row["orderaprovedate"]; ?>','<?php echo $productname; ?>','<?php echo $productmodel; ?>');"  href="#"> Show Invoice </a></td>
       <td class="badge badge-primary">Approved</td>
     </tr>  
     <?php } $result->free(); ?>
@@ -405,13 +405,15 @@ if( $_SESSION["uid"]==0)
 
 <script>
 
-   function load(fristname,location,email,orderaprovedate)
+   function load(fristname,location,email,orderaprovedate,productname,modelname)
    {
 
       document.getElementById("invoiceName").innerHTML = fristname;
       document.getElementById("invoiceAddress").innerHTML = location;
       document.getElementById("invoiceEmail").innerHTML = email;
       document.getElementById("invoiceAproveData").innerHTML = "data: "+orderaprovedate;
+
+      //invoiceDetails
    }
 
 </script>
@@ -642,7 +644,7 @@ if( $_SESSION["uid"]==0)
                     </div>
                     <div class="col invoice-details">
                         <h1 class="invoice-id">INVOICE</h1> <!--  -->
-                        <div class="date" id="invoiceAproveData" ></div>
+                        <div class="date" id="invoiceAproveData"></div>
                     </div>
                 </div>
                 <table border="0" cellspacing="0" cellpadding="0">
@@ -650,20 +652,20 @@ if( $_SESSION["uid"]==0)
                         <tr>
                             <th>#</th>
                             <th class="text-left">DESCRIPTION</th>
-                            <th class="text-right">HOUR PRICE</th>
-                            <th class="text-right">HOURS</th>
+                            <th class="text-right">Per PRICE</th>
+                            <th class="text-right">Quantity</th>
                             <th class="text-right">TOTAL</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="no">04</td>
+                            <td class="no">01</td>
                             <td class="text-left"><h3>
                                Invoice details   
 
                             </td>
-                            <td class="unit">৳0.00</td>
-                            <td class="qty">৳100</td>
+                            <td class="unit" id="invoiceDetails" ></td>
+                            <td class="qty">৳0.00</td>
                             <td class="total">৳0.00</td>
                         </tr>
                 
