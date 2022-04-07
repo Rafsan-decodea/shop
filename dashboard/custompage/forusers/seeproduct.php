@@ -511,6 +511,7 @@ function getproductdata(product)
       <th scope="col">Product quantity </th>
       <th scope="col">Order Date </th>
       <th scope="col">Order Approve Data </th>
+      <th scope="col">Invoice </th>
       <th scope="col">Status</th>
     </tr>
     <?php 
@@ -534,6 +535,7 @@ function getproductdata(product)
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
       <td><?php echo $row["orderaprovedate"]; ?></td>
+      <td><a data-toggle="modal" data-target="#modal" onclick="load('<?php echo $fristname ?>','<?php echo $location ?>','<?php echo $email ?>','<?php echo $row["orderaprovedate"]; ?>','<?php echo $productname; ?>','<?php echo $productmodel; ?>','<?php echo $row["quantity"]; ?>','<?php echo $prices; ?>');"  href="#"> Show Invoice </a></td>
       <td class="badge badge-primary">Aproved</td>
     </tr>  
     <?php } $result->free(); ?>
@@ -544,9 +546,309 @@ function getproductdata(product)
 
 
 
+
+<div class="modal fade text-center" id="modal">
+            <div class="modal-dialog" style="max-width: 100%;" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <!-- Main BOdy -->
+                    <div class="modal-body">
+                     
+                    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<style>
+    #invoice{
+    padding: 30px;
+}
+
+.invoice {
+    position: relative;
+    background-color: #FFF;
+    min-height: 680px;
+    padding: 15px
+}
+
+.invoice header {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #3989c6
+}
+
+.invoice .company-details {
+    text-align: right
+}
+
+.invoice .company-details .name {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.invoice .contacts {
+    margin-bottom: 20px
+}
+
+.invoice .invoice-to {
+    text-align: left
+}
+
+.invoice .invoice-to .to {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.invoice .invoice-details {
+    text-align: right
+}
+
+.invoice .invoice-details .invoice-id {
+    margin-top: 0;
+    color: #3989c6
+}
+
+.invoice main {
+    padding-bottom: 50px
+}
+
+.invoice main .thanks {
+    margin-top: -100px;
+    font-size: 2em;
+    margin-bottom: 50px
+}
+
+.invoice main .notices {
+    padding-left: 6px;
+    border-left: 6px solid #3989c6
+}
+
+.invoice main .notices .notice {
+    font-size: 1.2em
+}
+
+.invoice table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 20px
+}
+
+.invoice table td,.invoice table th {
+    padding: 15px;
+    background: #eee;
+    border-bottom: 1px solid #fff
+}
+
+.invoice table th {
+    white-space: nowrap;
+    font-weight: 400;
+    font-size: 16px
+}
+
+.invoice table td h3 {
+    margin: 0;
+    font-weight: 400;
+    color: #3989c6;
+    font-size: 1.2em
+}
+
+.invoice table .qty,.invoice table .total,.invoice table .unit {
+    text-align: right;
+    font-size: 1.2em
+}
+
+.invoice table .no {
+    color: #fff;
+    font-size: 1.6em;
+    background: #3989c6
+}
+
+.invoice table .unit {
+    background: #ddd
+}
+
+.invoice table .total {
+    background: #3989c6;
+    color: #fff
+}
+
+.invoice table tbody tr:last-child td {
+    border: none
+}
+
+.invoice table tfoot td {
+    background: 0 0;
+    border-bottom: none;
+    white-space: nowrap;
+    text-align: right;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-top: 1px solid #aaa
+}
+
+.invoice table tfoot tr:first-child td {
+    border-top: none
+}
+
+.invoice table tfoot tr:last-child td {
+    color: #3989c6;
+    font-size: 1.4em;
+    border-top: 1px solid #3989c6
+}
+
+.invoice table tfoot tr td:first-child {
+    border: none
+}
+
+.invoice footer {
+    width: 100%;
+    text-align: center;
+    color: #777;
+    border-top: 1px solid #aaa;
+    padding: 8px 0
+}
+
+@media print {
+    .invoice {
+        font-size: 11px!important;
+        overflow: hidden!important
+    }
+
+    .invoice footer {
+        position: absolute;
+        bottom: 10px;
+        page-break-after: always
+    }
+
+    .invoice>div:last-child {
+        page-break-before: always
+    }
+}
+</style>
+
+<!--Author      : @arboshiki-->
+<div id="invoice">
+
+    <div class="toolbar hidden-print">
+        <div class="text-right">
+            <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print or Save PDF</button>
+            <!-- <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button> -->
+        </div>
+        <hr>
+    </div>
+    <div class="invoice overflow-auto">
+        <div style="min-width: 600px">
+            <header>
+                <div class="row">
+                    <div class="col">
+                        <a target="_blank" href="https://lobianijs.com">
+                            <!-- <img src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png" data-holder-rendered="true" /> -->
+                            </a>
+                    </div>
+                    <div class="col company-details">
+                        <h2 class="name">
+                            <a target="_blank">
+                            Invoice Generate From Shop Management System
+                            </a>
+                        </h2>
+                        <div>Oxyzen Chittagong (admin)</div>
+                        <div>018181444463</div>
+                        <div>shazidno123@gmail.com</div>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="row contacts">
+                    <div class="col invoice-to">
+                        <div class="text-gray-light">INVOICE TO:</div>
+                        <h2 class="to" id="invoiceName"></h2>
+                        <div class="address" id="invoiceAddress"></div>
+                        <div class="email" id="invoiceEmail"></div>
+                    </div>
+                    <div class="col invoice-details">
+                        <h1 class="invoice-id">INVOICE</h1> <!--  -->
+                        <div class="date" id="invoiceAproveData"></div>
+                    </div>
+                </div>
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th class="text-left">DESCRIPTION</th>
+                            <th class="text-right">Per PRICE</th>
+                            <th class="text-right">Quantity</th>
+                            <th class="text-right">TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="no">01</td>
+                            <td class="text-left" id="invoiceDetails"><h3> </td>
+                            <td class="unit"id="invoicePerPrice"></td>
+                            <td class="qty"id="invoiceQuantity"></td>
+                            <td class="total" id="invoiceTotal"></td>
+                        </tr>
+                
+                    </tbody>
+                    <tfoot>
+                
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">GRAND TOTAL</td>
+                            <td id="invoiceGrandTotal"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <!-- <div class="thanks">Thank you!</div> -->
+                <div class="notices">
+                    <div>NOTICE:</div>
+                    <div class="notice"> This Pdf have to save from Print Section</div>
+                </div>
+            </main>
+            <footer>
+                Invoice was created on a computer and is valid without the signature and seal.
+            </footer>
+        </div>
+        <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+        <div></div>
+    </div>
+</div>
+
+<script>
+
+$('#printInvoice').click(function(){
+            Popup($('.invoice')[0].outerHTML);
+            function Popup(data) 
+            {
+                window.print();
+                return true;
+            }
+        });
+</script>
+
+                
+
+
+
+
+                    </div>
+                    <!-- Modal Body end -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+
     
 
     </section>
+    
+    
+    
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
