@@ -759,7 +759,7 @@ function load(fristname,location,email,orderaprovedate,productname,modelname,qua
 
     <div class="toolbar hidden-print">
         <div class="text-right">
-            <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print or Save PDF</button>
+            <button id="printInvoice" onclick="makePDF();" class="btn btn-info"><i class="fa fa-print"></i> Save PDF</button>
             <!-- <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button> -->
         </div>
         <hr>
@@ -841,25 +841,40 @@ function load(fristname,location,email,orderaprovedate,productname,modelname,qua
         <div></div>
     </div>
 </div>
-
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
+ window.html2canvas = html2canvas;
+ window.jsPDF = window.jspdf.jsPDF;
 
-$('#printInvoice').click(function(){
-            Popup($('.invoice')[0].outerHTML);
-            function Popup(data) 
-            {
-                window.print();
-                return true;
-            }
-        });
+  function makePDF()
+  {
+    
+    html2canvas(document.querySelector("#invoice"),{
+
+       allowTaint:true,
+       useCORS:true,
+       scale:1
+
+    }).then(canvas => {
+
+       //  document.body.appendChild(canvas);
+         var img = canvas.toDataURL("image/png");
+         
+         var doc = new jsPDF();
+         doc.setFont('Arial');
+         doc.getFontSize(80);
+         doc.addImage(img,'PNG',7,100,195,105);
+         doc.save( document.getElementById("invoiceName").innerHTML+" invoices");
+    });
+
+  
+  }
+
 </script>
 
-                
-
-
-
-
-                    </div>
+                  </div>
                     <!-- Modal Body end -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
