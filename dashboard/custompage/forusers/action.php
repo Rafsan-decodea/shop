@@ -49,7 +49,7 @@ class Seeproduct
             }
 
             $sql = "INSERT INTO `shop_orders` (`id`,  `userid`, `productid`,`orderdate`, `quantity`, `acceptrequest`)
-            VALUES (NULL, $user,$modelid[0],CURRENT_TIMESTAMP,$orderquantitySend,1 )";
+            VALUES (NULL, $user,$modelid[0],CURRENT_TIMESTAMP,$orderquantitySend,2 )";
             $db->insert($sql);
 
             //echo json_encode($_SESSION["id"]);

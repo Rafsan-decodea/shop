@@ -464,14 +464,41 @@ function getproductdata(product)
     <?php
 ini_set('display_errors', 1);
     $userid = $_SESSION["id"]; // Find User id For
+    $sql = "select * from shop_orders where acceptrequest = 2 && userid= $userid";
+    $result = $db->query($sql);
+    ?>
+
+  </thead>
+  <tbody>
+  <?php while ($row = $result->fetch_assoc()) {?>
+    <tr>
+      <th scope="row"><?php echo $numbers += 1; ?></th>
+      <td><?php $userid = $row["userid"];
+        $data = $db->query("select fristname from shop_users where id = $userid ");while ($row1 = $data->fetch_assoc()) {echo $row1["fristname"];}
+        $data->free();?></td>
+      <td><?php $productid = $row["productid"];
+        $data = $db->query("select productname from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {echo $row1["productname"];}
+        $data->free();?></td>
+      <td><?php $data = $db->query("select modelname from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {echo $row1["modelname"];}
+        $data->free();?></td>
+      <td><?php $data = $db->query("select price from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {$productPrice = $row1["price"];
+            echo $productPrice;}
+        $data->free();?>(MPR)</td>
+      <td><?php echo $row["quantity"]; ?> Pices</td>
+      <td><?php echo $row["orderdate"]; ?></td>
+
+      <td class="badge badge-warning" > Wating for Payment </td>
+      <td><button class="badge btn-info" >Make Payment</button></td>
+    </tr>
+    <?php }
+    $result->free();?>
+  </tbody>
+
+  <?php
+ini_set('display_errors', 1);
+    $userid = $_SESSION["id"]; // Find User id For
     $sql = "select * from shop_orders where acceptrequest = 1 && userid= $userid";
     $result = $db->query($sql);
-    // while ( $row  = $result->fetch_assoc())
-    // {
-    //   echo $row["productid"];
-
-    // }
-
     ?>
 
   </thead>
@@ -492,11 +519,13 @@ ini_set('display_errors', 1);
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
 
-      <td class="badge badge-warning" > Wating for Payment </td>
-      <td><button class="badge btn-info"  >Make Order Payment</button></td>
+      <td class="badge badge-warning" >Pending </td>
     </tr>
     <?php }
     $result->free();?>
+
+
+
   </tbody>
 
 </table>
