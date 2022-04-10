@@ -1,21 +1,18 @@
 
 <?php
-error_reporting(0); 
+error_reporting(0);
 session_start();
-include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
-$db  = new DB();
+include $_SERVER['DOCUMENT_ROOT'] . "/shop/database/db.php";
+$db = new DB();
 
-
-if (!isset($_SESSION["id"]))
-{
-   header("location:/shop/index.php");
+if (!isset($_SESSION["id"])) {
+    header("location:/shop/index.php?message=Login Sessions Expired");
 
 }
 
-if( $_SESSION["uid"]==0)
-{
+if ($_SESSION["uid"] == 0) {
 
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,9 +64,9 @@ if( $_SESSION["uid"]==0)
     </ul>
 
     <!-- Right navbar links -->
-   
+
       <!-- Notifications Dropdown Menu -->
-    
+
   </nav>
   <!-- /.navbar -->
 
@@ -89,7 +86,7 @@ if( $_SESSION["uid"]==0)
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> -->
         <div class="info">
-          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"]   ?> As  Admin</a>
+          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"] ?> As  Admin</a>
         </div>
       </div>
 
@@ -123,7 +120,7 @@ if( $_SESSION["uid"]==0)
             <a href="seemember.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                See Users 
+                See Users
               </p>
             </a>
           </li>
@@ -142,15 +139,15 @@ if( $_SESSION["uid"]==0)
             <a href="seeorders.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                See Orders 
+                See Orders
               </p>
             </a>
           </li>
 
-          
 
 
-         
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -162,7 +159,7 @@ if( $_SESSION["uid"]==0)
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-        
+
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -195,7 +192,7 @@ if( $_SESSION["uid"]==0)
       <div class="modal-body">
 
 
-  
+
       <div class="form-group">
       <label for="exampleInputEmail1">Product Name </label>
       <input type="text" class="form-control" name="" id="productname" aria-describedby="emailHelp" Name placeholder="Enter Product Name">
@@ -208,15 +205,15 @@ if( $_SESSION["uid"]==0)
    <div class="form-group">
       <label for="exampleInputEmail1">Qantity  </label>
       <input type="number" class="form-control" name="" id="quantity" aria-describedby="emailHelp" Name placeholder="Enter Qantity">
-      
+
    </div>
 
    <div class="form-group">
       <label for="exampleInputEmail1">price </label>
       <input type="number" class="form-control" name="" id="price" aria-describedby="emailHelp" Name placeholder="Entry Price ">
-     
+
    </div>
-  
+
    <button  onclick="addProduct();"   class="btn btn-primary">Submit</button>
 
 
@@ -251,7 +248,7 @@ if( $_SESSION["uid"]==0)
             },
             success:function(data,status)
             {
-          
+
               var chekdata = JSON.parse(data);
               if(chekdata.modelname == modelname)
               {
@@ -264,9 +261,9 @@ if( $_SESSION["uid"]==0)
               toastr.success("success");
 
               }
-              
+
             }
-            
+
           });
 
 
@@ -280,17 +277,16 @@ if( $_SESSION["uid"]==0)
   <section class="content">
 
 
-   <?php 
+   <?php
 
-     
-      $sql = "select * from shop_products ";
-      $result = $db->query($sql);
+    $sql = "select * from shop_products ";
+    $result = $db->query($sql);
 
     ?>
-      
+
 <table class="table">
   <thead>
-  
+
     <tr>
       <th scope="col">Serial</th>
       <th scope="col">Product Name</th>
@@ -299,12 +295,12 @@ if( $_SESSION["uid"]==0)
       <th scope="col">Price</th>
       <th scope="col">Action</th>
 
-     
+
     </tr>
- 
+
   </thead>
   <tbody>
-  <?php  while ( $row  = $result->fetch_assoc()) { ?>
+  <?php while ($row = $result->fetch_assoc()) {?>
     <tr>
       <td><?php echo $number += 1 ?></td>
       <td> <?php echo $row["productname"] ?> </td>
@@ -312,14 +308,15 @@ if( $_SESSION["uid"]==0)
       <td><?php echo $row["quantity"] ?></td>
       <td><?php echo $row["price"] ?></td>
       <td>
-     
-         <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal2" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button> 
+
+         <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal2" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button>
          <button class="btn btn-danger"   onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button>
-  
+
       </td>
     </tr>
-    
-    <?php }  $result->free();?>
+
+    <?php }
+    $result->free();?>
   </tbody>
 </table>
 
@@ -330,22 +327,22 @@ if( $_SESSION["uid"]==0)
 function conformdelete(deleteuserid)
 {
  var result = confirm("Want to  delete?");
-  
+
  if (result)
  {
-   deleteuser(deleteuserid);// Cheking User is Deleted or not 
+   deleteuser(deleteuserid);// Cheking User is Deleted or not
 
  }
  else
  {
    toastr.warning(" Product not deleted ");
  }
- 
+
 }
- 
+
  function deleteuser(deleteuserid){
      $.ajax({
-    
+
            url : "action.php",
            type : 'post',
            data : {
@@ -353,13 +350,13 @@ function conformdelete(deleteuserid)
            },
           success: function(data,status)
           {
-             
+
              toastr.success("Product Deleted "+deleteuserid);
           }
 
      });
    }
- 
+
  </script>
 
 <!--  Edit Modal Section  -->
@@ -375,7 +372,7 @@ function conformdelete(deleteuserid)
       <div class="modal-body">
 
 
-  
+
       <div class="form-group">
       <label for="exampleInputEmail1">Product Name </label>
       <input type="text" class="form-control" name="" id="updateproductname" aria-describedby="emailHelp" Name placeholder="Enter Product Name">
@@ -388,15 +385,15 @@ function conformdelete(deleteuserid)
    <div class="form-group">
       <label for="exampleInputEmail1">Qantity  </label>
       <input type="number" class="form-control" name="" id="updatequantity" aria-describedby="emailHelp" Name placeholder="Enter Qantity">
-      
+
    </div>
 
    <div class="form-group">
       <label for="exampleInputEmail1">price </label>
       <input type="number" class="form-control" name="" id="updateprice" aria-describedby="emailHelp" Name placeholder="Entry Price ">
-     
+
    </div>
-  
+
    <button  onclick="updateuser();"   class="btn btn-primary">Update</button>
    <input type="hidden" id="hiddendata">
 
@@ -414,11 +411,11 @@ function conformdelete(deleteuserid)
   <!-- Update  Products Script   -->
 
   <script>
-  
+
   function getUpdateDetails(userid)
   {
     $("#hiddendata").val(userid);
-    
+
     $.post(
       "action.php",
       {
@@ -428,7 +425,7 @@ function conformdelete(deleteuserid)
       {
 
 
-       
+
         var fetchuserid  = JSON.parse(data);
 
         $("#updateproductname").val(fetchuserid.productname);
@@ -436,7 +433,7 @@ function conformdelete(deleteuserid)
         $("#updatequantity").val(fetchuserid.quantity);
         $("#updateprice").val(fetchuserid.price);
       }
-      
+
     );
   }
 
@@ -463,21 +460,21 @@ function conformdelete(deleteuserid)
 
       success: function (data,status)
       {
-       
+
 
           toastr.info("Please reload The Page For See Effect");
           toastr.success("Data Update Successfully ");
 
-        
-         
+
+
       }
 
-    
+
    });
 
 
   }
-    
+
 
   </script>
 
@@ -544,12 +541,9 @@ function conformdelete(deleteuserid)
 
 
 
-<?php 
+<?php
 
-}
-
-else
-{
+} else {
     echo "No Premssion View This ";
 }
 

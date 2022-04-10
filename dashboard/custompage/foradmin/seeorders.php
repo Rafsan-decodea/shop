@@ -1,22 +1,20 @@
 
-<?php 
+<?php
 error_reporting(0);
 session_start();
-include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
-$db  = new DB();
+include $_SERVER['DOCUMENT_ROOT'] . "/shop/database/db.php";
+$db = new DB();
 
 // This is dashboard
 
-if (!isset($_SESSION["id"]))
-{
-   header("location:/shop/index.php");
+if (!isset($_SESSION["id"])) {
+    header("location:/shop/index.php?message=Login Sessions Expired");
 
 }
 
-if( $_SESSION["uid"]==0)
-{
+if ($_SESSION["uid"] == 0) {
 
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,9 +67,9 @@ if( $_SESSION["uid"]==0)
     </ul>
 
     <!-- Right navbar links -->
-   
+
       <!-- Notifications Dropdown Menu -->
-    
+
   </nav>
   <!-- /.navbar -->
 
@@ -91,7 +89,7 @@ if( $_SESSION["uid"]==0)
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> -->
         <div class="info">
-          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"]   ?> As  Admin</a>
+          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"] ?> As  Admin</a>
         </div>
       </div>
 
@@ -125,7 +123,7 @@ if( $_SESSION["uid"]==0)
             <a href="seemember.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                See Users 
+                See Users
               </p>
             </a>
           </li>
@@ -144,15 +142,15 @@ if( $_SESSION["uid"]==0)
             <a href="seeorders.php" class="nav-link active">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                See Orders 
+                See Orders
               </p>
             </a>
           </li>
 
-          
 
 
-         
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -164,7 +162,7 @@ if( $_SESSION["uid"]==0)
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-        
+
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -191,7 +189,7 @@ if( $_SESSION["uid"]==0)
 }
 #table-scroll {
   height:150px;
-  overflow:auto;  
+  overflow:auto;
   margin-top:20px;
 }
 #table-wrapper table {
@@ -203,7 +201,7 @@ if( $_SESSION["uid"]==0)
   color:black;
 }
 #table-wrapper table thead th .text {
-  position:absolute;   
+  position:absolute;
   top:-20px;
   z-index:2;
   height:20px;
@@ -228,29 +226,38 @@ if( $_SESSION["uid"]==0)
       <th scope="col">Order Date </th>
       <th scope="col">Action</th>
     </tr>
-    <?php 
-       // ini_set('display_errors', 1); 
-       $sql = "select * from shop_orders where acceptrequest = 1";
-       $result = $db->query($sql);
-   ?>
+    <?php
+// ini_set('display_errors', 1);
+    $sql = "select * from shop_orders where acceptrequest = 1";
+    $result = $db->query($sql);
+    ?>
 
   </thead>
   <tbody>
-  <?php  while ( $row  = $result->fetch_assoc()) { ?>
+  <?php while ($row = $result->fetch_assoc()) {?>
     <tr>
-    <th scope="row"><?php echo $number += 1 ;?></th>
-      <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["fristname"];} $data->free(); ?></td>
-      <td><?php $data = $db->query("select location from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["location"];} $data->free();?></td>
-      <td><?php $data = $db->query("select mobile from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["mobile"];} $data->free();?></td>
-      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["productname"];}  $data->free();?></td>
-      <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ echo $row1["modelname"];} $data->free(); ?></td>
-      <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ echo $row1["price"];} $data->free(); ?>(MPR)</td>
+    <th scope="row"><?php echo $number += 1; ?></th>
+      <td><?php $userid = $row["userid"];
+        $data = $db->query("select fristname from shop_users where id = $userid ");while ($row1 = $data->fetch_assoc()) {echo $row1["fristname"];}
+        $data->free();?></td>
+      <td><?php $data = $db->query("select location from shop_users where id = $userid ");while ($row1 = $data->fetch_assoc()) {echo $row1["location"];}
+        $data->free();?></td>
+      <td><?php $data = $db->query("select mobile from shop_users where id = $userid ");while ($row1 = $data->fetch_assoc()) {echo $row1["mobile"];}
+        $data->free();?></td>
+      <td><?php $productid = $row["productid"];
+        $data = $db->query("select productname from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {echo $row1["productname"];}
+        $data->free();?></td>
+      <td><?php $data = $db->query("select modelname from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {echo $row1["modelname"];}
+        $data->free();?></td>
+      <td><?php $data = $db->query("select price from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {echo $row1["price"];}
+        $data->free();?>(MPR)</td>
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
       <td> <button class="btn btn-info" data-toggle="modal" onclick="confromUpdate(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Approve</button> </td>
       <td> <button class="btn btn-danger" onclick="confromDelete(<?php echo $row["id"] ?>);" >Delete</button> </td>
-    </tr>  
-    <?php } $result->free(); ?>
+    </tr>
+    <?php }
+    $result->free();?>
   </tbody>
 </table>
   </div>
@@ -289,25 +296,25 @@ if( $_SESSION["uid"]==0)
 
       success: function (data,status)
       {
-       
-       
+
+
           toastr.info("Please reload The Page For See Effect");
           toastr.success("Approve Successfully ");
-   
+
       }
 
-    
+
    });
-       
+
   }
- 
+
 
 </script>
 
 <!-- Delete Order Script  -->
 
 <script>
-  
+
  function confromDelete(deleteorderid)
  {
 
@@ -328,7 +335,7 @@ if( $_SESSION["uid"]==0)
  {
 
        $.ajax({
-    
+
            url : "action.php",
            type : 'post',
            data : {
@@ -336,12 +343,12 @@ if( $_SESSION["uid"]==0)
            },
           success: function(data,status)
           {
-             
+
              toastr.success(" Deleted Order "+deleteorderid);
           }
 
      });
-   
+
 
  }
 
@@ -368,31 +375,46 @@ if( $_SESSION["uid"]==0)
       <th scope="col">Invoice </th>
       <th scope="col">Status</th>
     </tr>
-    <?php 
-       // ini_set('display_errors', 1); 
-       $sql = "select * from shop_orders where acceptrequest = 0";
-       $result = $db->query($sql);
-   ?>
+    <?php
+// ini_set('display_errors', 1);
+    $sql = "select * from shop_orders where acceptrequest = 0";
+    $result = $db->query($sql);
+    ?>
 
   </thead>
   <tbody>
-  <?php  while ( $row  = $result->fetch_assoc()) { ?>
+  <?php while ($row = $result->fetch_assoc()) {?>
     <tr>
-    <th scope="row"><?php echo $number2 += 1 ;?></th>
-      <td><?php $userid = $row["userid"];$data = $db->query("select fristname from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ $fristname = $row1["fristname"];echo $fristname; } $data->free(); ?></td>
-      <td><?php $data = $db->query("select location from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ $location= $row1["location"];echo $location; } $data->free();?></td>
-      <td><?php $data = $db->query("select mobile from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ echo $row1["mobile"];} $data->free();?></td>
-      <td><?php $productid = $row["productid"]; $data = $db->query("select productname from shop_products where id = $productid ");  while ( $row1  = $data->fetch_assoc()){ $productname= $row1["productname"]; echo $productname;}  $data->free();?></td>
-      <td><?php  $data = $db->query("select modelname from shop_products where id = $productid ");while ( $row1  = $data->fetch_assoc()){ $productmodel= $row1["modelname"]; echo $productmodel; } $data->free(); ?></td>
-      <td><?php  $data=  $db->query("select price from shop_products where id = $productid "); while ( $row1  = $data->fetch_assoc()){ $prices= $row1["price"]; echo $prices;} $data->free(); ?>(MPR)</td>
+    <th scope="row"><?php echo $number2 += 1; ?></th>
+      <td><?php $userid = $row["userid"];
+        $data = $db->query("select fristname from shop_users where id = $userid ");while ($row1 = $data->fetch_assoc()) {$fristname = $row1["fristname"];
+            echo $fristname;}
+        $data->free();?></td>
+      <td><?php $data = $db->query("select location from shop_users where id = $userid ");while ($row1 = $data->fetch_assoc()) {$location = $row1["location"];
+            echo $location;}
+        $data->free();?></td>
+      <td><?php $data = $db->query("select mobile from shop_users where id = $userid ");while ($row1 = $data->fetch_assoc()) {echo $row1["mobile"];}
+        $data->free();?></td>
+      <td><?php $productid = $row["productid"];
+        $data = $db->query("select productname from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {$productname = $row1["productname"];
+            echo $productname;}
+        $data->free();?></td>
+      <td><?php $data = $db->query("select modelname from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {$productmodel = $row1["modelname"];
+            echo $productmodel;}
+        $data->free();?></td>
+      <td><?php $data = $db->query("select price from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {$prices = $row1["price"];
+            echo $prices;}
+        $data->free();?>(MPR)</td>
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
       <td><?php echo $row["orderaprovedate"]; ?></td>
-      <?php $data = $db->query("select email from shop_users where id = $userid ");  while ( $row1  = $data->fetch_assoc()){ $email = $row1["email"];} $data->free(); // Fetch Email id?> 
+      <?php $data = $db->query("select email from shop_users where id = $userid ");while ($row1 = $data->fetch_assoc()) {$email = $row1["email"];}
+        $data->free(); // Fetch Email id?>
       <td><a data-toggle="modal" data-target="#modal" onclick="load('<?php echo $fristname ?>','<?php echo $location ?>','<?php echo $email ?>','<?php echo $row["orderaprovedate"]; ?>','<?php echo $productname; ?>','<?php echo $productmodel; ?>','<?php echo $row["quantity"]; ?>','<?php echo $prices; ?>');"  href="#"> Show Invoice </a></td>
       <td class="badge badge-primary">Approved</td>
-    </tr>  
-    <?php } $result->free(); ?>
+    </tr>
+    <?php }
+    $result->free();?>
   </tbody>
 </table>
   </div>
@@ -440,7 +462,7 @@ if( $_SESSION["uid"]==0)
                     </div>
                     <!-- Main BOdy -->
                     <div class="modal-body">
-                     
+
                     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -676,10 +698,10 @@ if( $_SESSION["uid"]==0)
                             <td class="qty"id="invoiceQuantity"></td>
                             <td class="total" id="invoiceTotal"></td>
                         </tr>
-                
+
                     </tbody>
                     <tfoot>
-                
+
                         <tr>
                             <td colspan="2"></td>
                             <td colspan="2">GRAND TOTAL</td>
@@ -711,7 +733,7 @@ if( $_SESSION["uid"]==0)
 
   function makePDF()
   {
-    
+
     html2canvas(document.querySelector("#invoice"),{
 
        allowTaint:true,
@@ -722,7 +744,7 @@ if( $_SESSION["uid"]==0)
 
        //  document.body.appendChild(canvas);
          var img = canvas.toDataURL("image/png");
-         
+
          var doc = new jsPDF();
          doc.setFont('Arial');
          doc.getFontSize(80);
@@ -730,7 +752,7 @@ if( $_SESSION["uid"]==0)
          doc.save( document.getElementById("invoiceName").innerHTML+" invoices");
     });
 
-  
+
   }
 
 </script>
@@ -739,7 +761,7 @@ if( $_SESSION["uid"]==0)
                     <!-- Modal Body end -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -806,12 +828,9 @@ if( $_SESSION["uid"]==0)
 
 
 
-<?php 
+<?php
 
-}
-
-else
-{
+} else {
     echo "No Premssion View This ";
 }
 

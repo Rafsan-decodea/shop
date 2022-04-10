@@ -10,6 +10,7 @@ class Payment
 
     public function checkout()
     {
+
         $post_data = array();
         $post_data['store_id'] = "softe625293c3eb2a1";
         $post_data['store_passwd'] = "softe625293c3eb2a1@ssl";
@@ -67,3 +68,7 @@ class Payment
     }
 
 }
+
+$payment = new Payment();
+
+$payment->checkout();

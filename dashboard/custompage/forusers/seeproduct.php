@@ -8,7 +8,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/shop/database/db.php";
 $db = new DB();
 
 if (!isset($_SESSION["id"])) {
-    header("location:/shop/index.php");
+    header("location:/shop/index.php?message=Login Sessions Expired");
 
 }
 
