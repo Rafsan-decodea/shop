@@ -1,21 +1,19 @@
-<?php 
+<?php
 error_reporting(0);
 session_start();
 
 // This is dashboard
-include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
-$db  = new DB();
+include $_SERVER['DOCUMENT_ROOT'] . "/shop/database/db.php";
+$db = new DB();
 
-if (!isset($_SESSION["id"]))
-{
-   header("location:/shop/index.php");
+if (!isset($_SESSION["id"])) {
+    header("location:/shop/index.php");
 
 }
 
-if( $_SESSION["uid"]==0)
-{
+if ($_SESSION["uid"] == 0) {
 
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +43,7 @@ if( $_SESSION["uid"]==0)
   <!-- summernote -->
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
- 
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -68,9 +66,9 @@ if( $_SESSION["uid"]==0)
     </ul>
 
     <!-- Right navbar links -->
-   
+
       <!-- Notifications Dropdown Menu -->
-    
+
   </nav>
   <!-- /.navbar -->
 
@@ -90,7 +88,7 @@ if( $_SESSION["uid"]==0)
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> -->
         <div class="info">
-          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"]   ?> As  Admin</a>
+          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"] ?> As  Admin</a>
         </div>
       </div>
 
@@ -124,7 +122,7 @@ if( $_SESSION["uid"]==0)
             <a href="seemember.php" class="nav-link  active">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                See Users 
+                See Users
               </p>
             </a>
           </li>
@@ -143,15 +141,15 @@ if( $_SESSION["uid"]==0)
             <a href="seeorders.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                See Orders 
+                See Orders
               </p>
             </a>
           </li>
 
-          
 
 
-         
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -163,7 +161,7 @@ if( $_SESSION["uid"]==0)
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-        
+
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -228,8 +226,8 @@ if( $_SESSION["uid"]==0)
       <input type="text" class="form-control" name="location" id="locationid" aria-describedby="emailHelp" Name placeholder="location">
       <small id="emailHelp" class="form-text text-muted">Enter Location </small>
    </div>
-  
-   <button  onclick="addSeller();" data-bind="<?php $email=  $var['email'];?>"  class="btn btn-primary">Submit</button>
+
+   <button  onclick="addSeller();" data-bind="<?php $email = $var['email'];?>"  class="btn btn-primary">Submit</button>
 
 
 
@@ -268,15 +266,15 @@ if( $_SESSION["uid"]==0)
             },
             success:function(data,status)
             {
-              
+
                   // toastr.error("Email Id Exist");
                var fetchdata = JSON.parse(data);
-              
+
 
                if(fetchdata.email == email)
                {
                 toastr.error("Email Id Exist");
-               
+
                }
 
                else{
@@ -285,9 +283,9 @@ if( $_SESSION["uid"]==0)
               toastr.info("Please reload The Page For See Effect");
               toastr.success("User Succesfully Created");
                }
-              
+
             }
-            
+
           });
 
 
@@ -302,16 +300,15 @@ if( $_SESSION["uid"]==0)
 
     <section class="content">
 
-    <?php 
+    <?php
 
-     
-     $sql = "select * from shop_users ";
-     $result = $db->query($sql);
+    $sql = "select * from shop_users ";
+    $result = $db->query($sql);
 
-      echo $email;
-    
+    echo $email;
+
     ?>
-      
+
     <table class="table" id="editable_table">
   <thead>
     <tr>
@@ -327,28 +324,29 @@ if( $_SESSION["uid"]==0)
   </thead>
   <tbody>
 
-  <?php  while ( $row  = $result->fetch_assoc()) { ?>
+  <?php while ($row = $result->fetch_assoc()) {?>
     <tr>
-    
+
       <td><?php echo $number += 1 ?></td>
-      <td> <?php if($row["uid"]==0){ echo " Admin Seller ";} else{echo " Seller ";} ?> </td>
-      <td><?php echo $row["email"]; if($row["uid"]==0){ echo " (Admin)";} ?></td>
+      <td> <?php if ($row["uid"] == 0) {echo " Admin Seller ";} else {echo " Seller ";}?> </td>
+      <td><?php echo $row["email"];if ($row["uid"] == 0) {echo " (Admin)";} ?></td>
       <td><?php echo $row["fristname"] ?></td>
       <td><?php echo $row["lastname"] ?></td>
       <td><?php echo $row["mobile"] ?></td>
       <td><?php echo $row["location"] ?></td>
       <td>
-        <?php if($row["uid"]==1){  ?>
-         <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button> 
+        <?php if ($row["uid"] == 1) {?>
+         <button class="btn btn-info" data-toggle="modal" onclick="getUpdateDetails(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Edit</button>
          <button class="btn btn-danger" onclick="conformdelete(<?php echo $row["id"] ?>);" >Delete</button>
-        <?php }else{ ?>
-        
-         <?php } ?>
+        <?php } else {?>
+
+         <?php }?>
       </td>
 
 
     </tr>
-<?php } $result->free(); ?>
+<?php }
+    $result->free();?>
 
   </tbody>
 </table>
@@ -360,22 +358,22 @@ if( $_SESSION["uid"]==0)
  function conformdelete(deleteuserid)
  {
   var result = confirm("Want to  delete?");
-   
+
   if (result)
   {
-    deleteuser(deleteuserid);// Cheking User is Deleted or not 
+    deleteuser(deleteuserid);// Cheking User is Deleted or not
 
   }
   else
   {
     toastr.warning(" User not deleted ");
   }
-  
+
  }
-  
+
   function deleteuser(deleteuserid){
       $.ajax({
-     
+
             url : "action.php",
             type : 'post',
             data : {
@@ -383,13 +381,13 @@ if( $_SESSION["uid"]==0)
             },
            success: function(data,status)
            {
-              
+
               toastr.success("User Deleted "+deleteuserid);
            }
 
       });
     }
-  
+
   </script>
 
 <!-- Uppdate User Modal  -->
@@ -436,7 +434,7 @@ if( $_SESSION["uid"]==0)
       <input type="text" class="form-control" name="location" id="updatelocationid" aria-describedby="emailHelp" Name placeholder="location">
       <small id="emailHelp" class="form-text text-muted">Enter Location </small>
    </div>
-  
+
    <button  onclick="updateuser();"  class="btn btn-primary">Update</button>
    <input type="hidden" id="hiddendata">
 
@@ -452,11 +450,11 @@ if( $_SESSION["uid"]==0)
   <!-- Update  User Script   -->
 
   <script>
-  
+
   function getUpdateDetails(userid)
   {
     $("#hiddendata").val(userid);
-    
+
     $.post(
       "action.php",
       {
@@ -464,10 +462,10 @@ if( $_SESSION["uid"]==0)
       },
       function (data,status)
       {
-       
-    
 
-       
+
+
+
         var fetchuserid  = JSON.parse(data);
 
         $("#updateemailid").val(fetchuserid.email);
@@ -476,9 +474,9 @@ if( $_SESSION["uid"]==0)
         $("#updatefristnameid").val(fetchuserid.fristname);
         $("#updatelastnameid").val(fetchuserid.lastname);
         $("#updatelocationid").val(fetchuserid.location);
-     
+
       }
-      
+
     );
   }
 
@@ -508,19 +506,19 @@ if( $_SESSION["uid"]==0)
 
       success: function (data,status)
       {
-     
+
 
         toastr.info("Please reload The Page For See Effect");
         toastr.success("Data Update Successfully ");
-         
+
       }
 
-    
+
    });
 
 
   }
-    
+
 
   </script>
 
@@ -587,12 +585,9 @@ if( $_SESSION["uid"]==0)
 
 
 
-<?php 
+<?php
 
-}
-
-else
-{
+} else {
     echo "No Premssion View This ";
 }
 
