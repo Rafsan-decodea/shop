@@ -492,8 +492,8 @@ ini_set('display_errors', 1);
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
 
-      <td class="badge badge-warning" > Pending </td>
-      <td><button class="badge btn-info"  >Checkout</button></td>
+      <td class="badge badge-warning" > Wating for Payment </td>
+      <td><button class="badge btn-info"  >Make Order Payment</button></td>
     </tr>
     <?php }
     $result->free();?>
