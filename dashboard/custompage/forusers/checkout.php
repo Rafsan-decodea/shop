@@ -10,6 +10,8 @@ class Payment
 
     public function checkout()
     {
+        extract($_POST);
+        echo $_POST["totoalprice"];
 
         $post_data = array();
         $post_data['store_id'] = "softe625293c3eb2a1";
