@@ -26,7 +26,7 @@ class Payment
         $post_data = array();
         $post_data['store_id'] = "softe625293c3eb2a1";
         $post_data['store_passwd'] = "softe625293c3eb2a1@ssl";
-        $post_data['total_amount'] = "120" ;
+        $post_data['total_amount'] = $_GET["price"];
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = "SSLCZ_TEST_" . uniqid();
         $post_data['success_url'] = "http://localhost/shop/dashboard/custompage/forusers/seeproduct.php";
@@ -115,8 +115,7 @@ class Payment
             echo "JSON Data parsing error!";
         }
 
-     
-   }
+    }
 
 }
 

@@ -488,7 +488,9 @@ ini_set('display_errors', 1);
       <td><?php echo $row["orderdate"]; ?></td>
 
       <td class="badge badge-warning" > Wating for Payment </td>
-      <td><button class="badge btn-info" onclick="sendData(<?php echo $productPrice; ?>,<?php echo $row["quantity"]; ?>)" >Make Payment</button></td>
+      <td><a href="checkout.php?price=<?php echo $productPrice * $row["quantity"]; ?>" class="badge btn-info">Make Payment</a></td>
+
+      <!-- <?php echo $productPrice; ?>,<?php echo $row["quantity"]; ?> -->
     </tr>
     <?php }
     $result->free();?>
@@ -498,7 +500,7 @@ ini_set('display_errors', 1);
 
   function sendData(productprice,quantity)
   {
-    
+
   //   $.ajax({
   //       url : "checkout.php",
   //       type : 'post',
@@ -521,7 +523,7 @@ ini_set('display_errors', 1);
    $.post('checkout.php', { productprice:productprice*quantity }, function(result) {
 
      console.log(result);
-    
+
 });
 
   }
