@@ -13,7 +13,7 @@ session_start();
 
   $row =  mysqli_fetch_array($result);
   
-  if($_POST["password"]==$row["password"])// Cheaking User Authentication
+  if($_POST["password"]==$row["password"])
    {
       $_SESSION["id"] = $row["id"];
       $_SESSION["uid"] = $row["uid"];
@@ -21,6 +21,7 @@ session_start();
       $_SESSION["fristname"] = $row["fristname"];
       $_SESSION["lastname"] = $row["lastname"];
       $_SESSION["location"] = $row["location"];
+      $_SESSION["mobile"] = $row["mobile"];
       $_SESSION["time"] = $row["time"];
    
    }

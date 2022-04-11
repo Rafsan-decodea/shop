@@ -488,7 +488,7 @@ ini_set('display_errors', 1);
       <td><?php echo $row["orderdate"]; ?></td>
 
       <td class="badge badge-warning" > Wating for Payment </td>
-      <td><button class="badge btn-info" onclick="sendData(<?php echo $productPrice; ?>)" >Make Payment</button></td>
+      <td><button class="badge btn-info" onclick="sendData(<?php echo $productPrice; ?>,<?php echo $row["quantity"]; ?>)" >Make Payment</button></td>
     </tr>
     <?php }
     $result->free();?>
@@ -496,10 +496,11 @@ ini_set('display_errors', 1);
 
 <script>
 
-  function sendData(productprice)
+  function sendData(productprice,quantity)
   {
+    
     var xhr = new XMLHttpRequest();
-    xhr.open("POST",<?php echo $_SERVER['DOCUMENT_ROOT'] . "/shop/http://localhost/shop/dashboard/custompage/forusers/checkout.php"; ?> , true);
+    xhr.open("POST", "http://localhost/shop/dashboard/custompage/forusers/checkout.php" , true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
      totoalprice: productprice
