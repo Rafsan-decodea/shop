@@ -300,6 +300,7 @@ if ($_SESSION["uid"] == 0) {
 
           toastr.info("Please reload The Page For See Effect");
           toastr.success("Approve Successfully ");
+          
 
       }
 

@@ -4,10 +4,10 @@ session_start();
 // ini_set('display_errors', 1);
 include $_SERVER['DOCUMENT_ROOT'] . "/shop/database/db.php";
 
-if (!isset($_SESSION["id"])) {
-    header("location:/shop/index.php?message=Login Sessions Expired");
+// if (!isset($_SESSION["id"])) {
+//     header("location:/shop/index.php?message=Login Sessions Expired");
 
-}
+// }
 
 class Payment
 {
@@ -19,12 +19,13 @@ class Payment
 
     public function checkout()
     {
+        $db = new DB();
         extract($_POST);
-        echo $_POST["totoalprice"];
+        $store = $_POST["totalorder"];
         $post_data = array();
         $post_data['store_id'] = "softe625293c3eb2a1";
         $post_data['store_passwd'] = "softe625293c3eb2a1@ssl";
-        $post_data['total_amount'] = "103";
+        $post_data['total_amount'] = "120" ;
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = "SSLCZ_TEST_" . uniqid();
         $post_data['success_url'] = "http://localhost/shop/dashboard/custompage/forusers/seeproduct.php";
@@ -113,7 +114,8 @@ class Payment
             echo "JSON Data parsing error!";
         }
 
-    }
+     
+   }
 
 }
 

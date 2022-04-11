@@ -499,12 +499,25 @@ ini_set('display_errors', 1);
   function sendData(productprice,quantity)
   {
     
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost/shop/dashboard/custompage/forusers/checkout.php" , true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-     totoalprice: productprice
-}));
+    $.ajax({
+        url : "checkout.php",
+        type : 'post',
+        data : {
+              totalorder:productprice,
+          },
+
+      success: function (data,status)
+      {
+
+
+        $_SESSION["totalprice"] =
+        window.location.assign('checkout.php');
+
+      }
+
+
+   });
+
   }
 
 </script>
