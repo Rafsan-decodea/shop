@@ -499,24 +499,30 @@ ini_set('display_errors', 1);
   function sendData(productprice,quantity)
   {
     
-    $.ajax({
-        url : "checkout.php",
-        type : 'post',
-        data : {
-              totalorder:productprice,
-          },
+  //   $.ajax({
+  //       url : "checkout.php",
+  //       type : 'post',
+  //       data : {
+  //             totalorder:productprice,
+  //         },
 
-      success: function (data,status)
-      {
-
-
-        $_SESSION["totalprice"] =
-        window.location.assign('checkout.php');
-
-      }
+  //     success: function (data,status)
+  //     {
 
 
-   });
+  //       $_SESSION["totalprice"] =
+  //       window.location.assign('checkout.php');
+
+  //     }
+
+
+  //  });
+
+   $.post('checkout.php', { productprice:productprice*quantity }, function(result) {
+
+     console.log(result);
+    
+});
 
   }
 

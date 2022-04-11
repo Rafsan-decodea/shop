@@ -21,7 +21,8 @@ class Payment
     {
         $db = new DB();
         extract($_POST);
-        $store = $_POST["totalorder"];
+        $store = $_POST["productprice"];
+        echo $store;
         $post_data = array();
         $post_data['store_id'] = "softe625293c3eb2a1";
         $post_data['store_passwd'] = "softe625293c3eb2a1@ssl";
