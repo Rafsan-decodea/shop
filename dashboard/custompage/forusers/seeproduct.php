@@ -530,7 +530,7 @@ ini_set('display_errors', 1);
 
 
           toastr.info("Please reload The Page For See Effect");
-          toastr.success("Remove Order  Successfully ");
+          toastr.success("Remove Order Successfully ");
           
 
       }
@@ -639,7 +639,8 @@ ini_set('display_errors', 1);
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
       <td><?php echo $row["orderaprovedate"]; ?></td>
-      <td><a data-toggle="modal" data-target="#modal" onclick="load('<?php echo $fristname ?>','<?php echo $location ?>','<?php echo $email ?>','<?php echo $row["orderaprovedate"]; ?>','<?php echo $productname; ?>','<?php echo $productmodel; ?>','<?php echo $row["quantity"]; ?>','<?php echo $prices; ?>');"  href="#"> Show Invoice </a></td>
+      <td><a data-toggle="modal" data-target="#modal" onclick="load('<?php echo $fristname ?>','<?php echo $location ?>','<?php echo $email ?>','<?php echo $row["orderaprovedate"] ?>,'<?php echo $row["orderaprovedate"]' ?>','<?php echo $productname; ?>','<?php echo $productmodel; ?>','<?php echo $row["quantity"]; </php>','<?php echo $prices; ?>');" href="#
+      > Show Invoice </a></td>
       <td><a class="badge badge-primary">Aproved</a></td>
     </tr>
     <?php }
