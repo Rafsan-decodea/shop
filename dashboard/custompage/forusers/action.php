@@ -58,8 +58,21 @@ class Seeproduct
 
     }
 
+    public function cancelorder()
+    {
+        $db = new DB();
+        extract($_POST);
+        if (isset($_POST["ordercancelidSend"])) {
+            $ordercancelidSend = $_POST["ordercancelidSend"];
+            $sql = "delete from shop_orders WHERE id = " . $ordercancelidSend . "";
+            $db->query($sql);
+        }
+
+    }
+
 }
 
 $seeproduct = new Seeproduct();
 $seeproduct->fetch_prouct();
 $seeproduct->order_product();
+$seeproduct->cancelorder();

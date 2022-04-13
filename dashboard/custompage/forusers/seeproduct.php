@@ -16,9 +16,6 @@ if ($_SESSION["uid"] == 1) {
 
     ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -459,6 +456,7 @@ function getproductdata(product)
       <th scope="col">Product quantity </th>
       <th scope="col">Order Date </th>
       <th scope="col">Status</th>
+      <th scope="col">Actions</th>
     </tr>
 
     <?php
@@ -487,10 +485,13 @@ ini_set('display_errors', 1);
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
 
-      <td class="badge badge-warning" > Wating for Payment </td>
-      <td><a href="checkout.php?price=<?php echo $productPrice * $row["quantity"]; ?>" class="badge btn-info">Make Payment</a></td>
+      <td> <a class="badge badge-warning"> Wating for Payment</a> </td>
+      <td> <button class="badge btn-danger" onclick="cancelorder(<?php echo $row["id"] ?>);" >Delete</button> </td>
+      <td><a href="payment/checkout.php?price=<?php echo $productPrice * $row["quantity"]; ?>" class="badge btn-info">Make Payment</a></td>
+     
 
-      <!-- <?php echo $productPrice; ?>,<?php echo $row["quantity"]; ?> -->
+
+   
     </tr>
     <?php }
     $result->free();?>
@@ -498,33 +499,44 @@ ini_set('display_errors', 1);
 
 <script>
 
-  function sendData(productprice,quantity)
+  
+ function cancelorder(ordercancelid)
+ {
+
+  var result = confirm("Are You Want to  Delete this "+ordercancelid+" ?");
+  if(result)
+  {
+    getUpdateDetails(ordercancelid)
+  }
+  else
+  {
+    toastr.warning("Order Not Delete ");
+  }
+
+ }
+
+ function getUpdateDetails(ordercancelid)
   {
 
-  //   $.ajax({
-  //       url : "checkout.php",
-  //       type : 'post',
-  //       data : {
-  //             totalorder:productprice,
-  //         },
+    $.ajax({
+        url : "action.php",
+        type : 'post',
+        data : {
+              ordercancelidSend:ordercancelid,
+          },
 
-  //     success: function (data,status)
-  //     {
-
-
-  //       $_SESSION["totalprice"] =
-  //       window.location.assign('checkout.php');
-
-  //     }
+      success: function (data,status)
+      {
 
 
-  //  });
+          toastr.info("Please reload The Page For See Effect");
+          toastr.success("Remove Order  Successfully ");
+          
 
-   $.post('checkout.php', { productprice:productprice*quantity }, function(result) {
+      }
 
-     console.log(result);
 
-});
+   });
 
   }
 
@@ -556,7 +568,7 @@ ini_set('display_errors', 1);
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
 
-      <td class="badge badge-warning" >Pending </td>
+      <td><a class="badge badge-warning">Pending </a></td>
     </tr>
     <?php }
     $result->free();?>
@@ -628,7 +640,7 @@ ini_set('display_errors', 1);
       <td><?php echo $row["orderdate"]; ?></td>
       <td><?php echo $row["orderaprovedate"]; ?></td>
       <td><a data-toggle="modal" data-target="#modal" onclick="load('<?php echo $fristname ?>','<?php echo $location ?>','<?php echo $email ?>','<?php echo $row["orderaprovedate"]; ?>','<?php echo $productname; ?>','<?php echo $productmodel; ?>','<?php echo $row["quantity"]; ?>','<?php echo $prices; ?>');"  href="#"> Show Invoice </a></td>
-      <td class="badge badge-primary">Aproved</td>
+      <td><a class="badge badge-primary">Aproved</a></td>
     </tr>
     <?php }
     $result->free();?>
