@@ -483,9 +483,9 @@ ini_set('display_errors', 1);
         $data = $db->query("select fristname from shop_users where id = $userid ");while ($row1 = $data->fetch_assoc()) {echo $row1["fristname"];}
         $data->free();?></td>
       <td><?php $productid = $row["productid"];
-        $data = $db->query("select productname from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {echo $row1["productname"];}
+        $data = $db->query("select productname from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {$productname=  $row1["productname"]; echo $productname;}
         $data->free();?></td>
-      <td><?php $data = $db->query("select modelname from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {echo $row1["modelname"];}
+      <td><?php $data = $db->query("select modelname from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {$modelname= $row1["modelname"]; echo $modelname;}
         $data->free();?></td>
       <td><?php $data = $db->query("select price from shop_products where id = $productid ");while ($row1 = $data->fetch_assoc()) {$productPrice = $row1["price"];
             echo $productPrice;}
@@ -495,7 +495,7 @@ ini_set('display_errors', 1);
 
       <td> <a class="badge badge-warning"> Wating for Payment</a> </td>
       <td> <button class="badge btn-danger" onclick="cancelorder(<?php echo $row["id"] ?>);" >Delete</button> </td>
-      <td><a href="payment/checkout.php?price=<?php echo $productPrice * $row["quantity"]; ?>" class="badge btn-info">Make Payment</a></td>
+      <td><a href="payment/checkout.php?price=<?php echo $productPrice * $row["quantity"]; ?>&quantity=<?php echo $row["quantity"]; ?>&productname=<?php echo $productname;?>&modelname=<?php echo $modelname;?>" class="badge btn-info">Make Payment</a></td>
     </tr>
     <?php }
     $result->free();?>
