@@ -488,17 +488,13 @@ ini_set('display_errors', 1);
       <td> <a class="badge badge-warning"> Wating for Payment</a> </td>
       <td> <button class="badge btn-danger" onclick="cancelorder(<?php echo $row["id"] ?>);" >Delete</button> </td>
       <td><a href="payment/checkout.php?price=<?php echo $productPrice * $row["quantity"]; ?>" class="badge btn-info">Make Payment</a></td>
-     
-
-
-   
     </tr>
     <?php }
     $result->free();?>
   </tbody>
-
+  
 <script>
-
+ 
   
  function cancelorder(ordercancelid)
  {
@@ -549,7 +545,7 @@ ini_set('display_errors', 1);
     $sql = "select * from shop_orders where acceptrequest = 1 && userid= $userid";
     $result = $db->query($sql);
     ?>
-
+<!-- 5vDMa-O3hy62J@ -->
   </thead>
   <tbody>
   <?php while ($row = $result->fetch_assoc()) {?>
@@ -569,23 +565,18 @@ ini_set('display_errors', 1);
       <td><?php echo $row["orderdate"]; ?></td>
 
       <td><a class="badge badge-warning">Pending </a></td>
+      <td><a class="badge badge-primary">Payment Complete</a></td>
     </tr>
     <?php }
     $result->free();?>
 
-
-
-  </tbody>
+ </tbody>
 
 </table>
   </div>
 </div>
 
 <!--  This is for Payment Transection  -->
-<script>
-
-
-</script>
 
 
 <h1 class="elegantshd"> ᴀᴘʀᴏᴠᴇ ᴏʀᴅᴇʀ </h1>

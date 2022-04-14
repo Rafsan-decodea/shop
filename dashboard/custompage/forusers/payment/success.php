@@ -15,7 +15,7 @@ $uid = $_SESSION["id"];
 
 $sql = "UPDATE shop_orders set acceptrequest = 1 WHERE userid = $uid ";
 $db->query($sql);
-header("location:/shop/dashboard/custompage/forusers/seeproduct.php");
+header("location:/shop/dashboard/custompage/forusers/seeproduct.php?message= Payment Sucessfully Complete");
 
 }
 header("location:/shop/dashboard/custompage/forusers/seeproduct.php");

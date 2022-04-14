@@ -254,7 +254,7 @@ if ($_SESSION["uid"] == 0) {
       <td><?php echo $row["quantity"]; ?> Pices</td>
       <td><?php echo $row["orderdate"]; ?></td>
       <td> <button class="btn btn-info" data-toggle="modal" onclick="confromUpdate(<?php echo $row["id"] ?>)" data-target="#exampleModal2" >Approve</button> </td>
-      <td> <button class="btn btn-danger" onclick="confromDelete(<?php echo $row["id"] ?>);" >Delete</button> </td>
+      <!-- <td> <button class="btn btn-danger" onclick="confromDelete(<?php echo $row["id"] ?>);" >Delete</button> </td> -->
     </tr>
     <?php }
     $result->free();?>
@@ -412,7 +412,7 @@ if ($_SESSION["uid"] == 0) {
       <?php $data = $db->query("select email from shop_users where id = $userid ");while ($row1 = $data->fetch_assoc()) {$email = $row1["email"];}
         $data->free(); // Fetch Email id?>
       <td><a data-toggle="modal" data-target="#modal" onclick="load('<?php echo $fristname ?>','<?php echo $location ?>','<?php echo $email ?>','<?php echo $row["orderaprovedate"]; ?>','<?php echo $productname; ?>','<?php echo $productmodel; ?>','<?php echo $row["quantity"]; ?>','<?php echo $prices; ?>');"  href="#"> Show Invoice </a></td>
-      <td class="badge badge-primary">Approved</td>
+      <td><a class="badge badge-primary">Approved</a></td>
     </tr>
     <?php }
     $result->free();?>
