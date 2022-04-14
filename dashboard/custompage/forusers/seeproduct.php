@@ -369,7 +369,7 @@ if ($_SESSION["uid"] == 1) {
               
               if(data == 0)
               {
-                toastr.error("Product Out of Stock");
+                toastr.error("Product quantity Out of Stock");
               }
 
             }
