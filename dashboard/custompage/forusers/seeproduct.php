@@ -530,7 +530,7 @@ ini_set('display_errors', 1);
 
 
           toastr.info("Please reload The Page For See Effect");
-          toastr.success("Approve Successfully ");
+          toastr.success(" Order Cancel Successfully ");
           
 
       }
