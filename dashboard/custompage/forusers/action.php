@@ -41,6 +41,17 @@ class Seeproduct
         if (isset($_POST["orderproductSend"]) && isset($_POST["orderproductbrandSend"]) && isset($_POST["orderquantitySend"])) {
             // SELECT id from shop_products where productname = "mobile"
             $user = $_SESSION["id"];
+            
+            $sql3 = "SELECT quantity from shop_products where modelname= '$orderproductbrandSend' & productname= '$orderproductSend' ";
+            $fetchquantity = $db->query($sql3);
+            $fetchresult = mysqli_fetch_array($fetchquantity);
+            if($orderquantitySend > $fetchresult["quantity"])
+            {
+                echo json_encode(0);
+            }
+            else{
+
+            echo json_encode(1);
             $query1 = "select id from shop_products where modelname = '$orderproductbrandSend' ";
             $result1 = $db->query($query1);
             $modelid = "";
@@ -52,8 +63,10 @@ class Seeproduct
             VALUES (NULL, $user,$modelid[0],CURRENT_TIMESTAMP,$orderquantitySend,2 )";
             $db->insert($sql);
 
-            //echo json_encode($_SESSION["id"]);
+            }
 
+            //echo json_encode($_SESSION["id"]);
+            
         }
 
     }

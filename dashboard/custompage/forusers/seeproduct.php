@@ -361,8 +361,16 @@ if ($_SESSION["uid"] == 1) {
             },
             success:function(data,status)
             {
-
-              toastr.success("Product Order Success ");
+         
+              if(data == 1)
+              {
+                toastr.success("Product Order Success ");
+              }
+              
+              if(data == 0)
+              {
+                toastr.error("Product Out of Stock");
+              }
 
             }
 
