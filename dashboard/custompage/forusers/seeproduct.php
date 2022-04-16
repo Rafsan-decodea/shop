@@ -362,6 +362,7 @@ if ($_SESSION["uid"] == 1) {
             success:function(data,status)
             {
          
+         
               if(data == 1)
               {
                 toastr.success("Product Order Success ");

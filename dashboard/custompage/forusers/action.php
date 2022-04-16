@@ -42,9 +42,12 @@ class Seeproduct
             // SELECT id from shop_products where productname = "mobile"
             $user = $_SESSION["id"];
             
-            $sql3 = "SELECT quantity from shop_products where modelname= '$orderproductbrandSend' & productname= '$orderproductSend' ";
+            $sql3 = "SELECT quantity from shop_products where modelname= '$orderproductbrandSend'";
             $fetchquantity = $db->query($sql3);
             $fetchresult = mysqli_fetch_array($fetchquantity);
+           //  echo "reserve Quantity ".$fetchresult["quantity"]."\n";
+             //echo "order Quantity $orderquantitySend ";
+           // die();
             if($orderquantitySend > $fetchresult["quantity"])
             {
                 echo json_encode(0);
