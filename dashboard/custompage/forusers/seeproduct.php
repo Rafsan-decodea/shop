@@ -361,7 +361,7 @@ if ($_SESSION["uid"] == 1) {
             },
             success:function(data,status)
             {
-         
+            //  alert(data);
          
               if(data == 1)
               {
@@ -496,7 +496,7 @@ ini_set('display_errors', 1);
 
       <td> <a class="badge badge-warning"> Wating for Payment</a> </td>
       <td> <button class="badge btn-danger" onclick="cancelorder(<?php echo $row["id"] ?>);" >Delete</button> </td>
-      <td><a href="payment/checkout.php?price=<?php echo $productPrice * $row["quantity"]; ?>&quantity=<?php echo $row["quantity"]; ?>&productname=<?php echo $productname;?>&modelname=<?php echo $modelname;?>" class="badge btn-info">Make Payment</a></td>
+      <td><a href="payment/checkout.php?price=<?php echo $productPrice * $row["quantity"]; ?>&quantity=<?php echo $row["quantity"]; ?>&productname=<?php echo $productname;?>&modelname=<?php echo $modelname;?>&date=<?php echo $row["orderdate"];?>" class="badge btn-info">Make Payment</a></td>
     </tr>
     <?php }
     $result->free();?>

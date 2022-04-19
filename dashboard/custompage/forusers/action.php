@@ -61,7 +61,7 @@ class Seeproduct
             while ($row = mysqli_fetch_row($result1)) {
                 $modelid = $row;
             }
-
+        
             $sql = "INSERT INTO `shop_orders` (`id`,  `userid`, `productid`,`orderdate`, `quantity`, `acceptrequest`)
             VALUES (NULL, $user,$modelid[0],CURRENT_TIMESTAMP,$orderquantitySend,2 )";
             $db->insert($sql);
