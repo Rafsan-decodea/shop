@@ -1,19 +1,17 @@
-<?php 
+<?php
 session_start();
-include ($_SERVER['DOCUMENT_ROOT']."/shop/database/db.php");
+include $_SERVER['DOCUMENT_ROOT'] . "/shop/database/db.php";
 $db = new DB();
 // This is dashboard
 
-if (!isset($_SESSION["id"]))
-{
-   header("location:/shop/index.php");
+if (!isset($_SESSION["id"])) {
+    header("location:/shop/index.php");
 
 }
 
-if( $_SESSION["uid"]==0)
-{
+if ($_SESSION["uid"] == 0) {
 
-?>
+    ?>
 
 
 
@@ -61,7 +59,7 @@ if( $_SESSION["uid"]==0)
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-    
+
       <li class="nav-item d-none d-sm-inline-block">
       <a href="logout.php" class="nav-link" style="color:red;" >logout</a>
       </li>
@@ -119,7 +117,7 @@ if( $_SESSION["uid"]==0)
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-               
+
                   <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                 </h3>
                 <p class="text-sm">I got your message bro</p>
@@ -205,7 +203,7 @@ if( $_SESSION["uid"]==0)
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> -->
         <div class="info">
-          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"]   ?>  As  Admin</a>
+          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"] ?>  As  Admin</a>
         </div>
       </div>
 
@@ -239,7 +237,7 @@ if( $_SESSION["uid"]==0)
             <a href="custompage/foradmin/seemember.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                See Users 
+                See Users
               </p>
             </a>
           </li>
@@ -258,7 +256,7 @@ if( $_SESSION["uid"]==0)
             <a href="./custompage/foradmin/seeorders.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                See Orders 
+                See Orders
               </p>
             </a>
           </li>
@@ -266,7 +264,7 @@ if( $_SESSION["uid"]==0)
 
 
 
-         
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -303,13 +301,13 @@ if( $_SESSION["uid"]==0)
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-              <?php 
-                
-                $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 1";
-                $result = $db->query($sql);
-                $rows = mysqli_num_rows($result);
-   
-               ?>
+              <?php
+
+    $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 1";
+    $result = $db->query($sql);
+    $rows = mysqli_num_rows($result);
+
+    ?>
                 <h3><?php echo $rows ?></h3>
 
                 <p>New Orders</p>
@@ -325,13 +323,13 @@ if( $_SESSION["uid"]==0)
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-              <?php 
-                
-                $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 0";
-                $result = $db->query($sql);
-                $rows = mysqli_num_rows($result);
-   
-               ?>
+              <?php
+
+    $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 0";
+    $result = $db->query($sql);
+    $rows = mysqli_num_rows($result);
+
+    ?>
                 <h3><?php echo $rows ?><sup style="font-size: 20px"></sup></h3>
 
                 <p>Total Aprove Orders</p>
@@ -347,13 +345,13 @@ if( $_SESSION["uid"]==0)
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-              <?php 
-                
-               $sql = "SELECT * FROM `shop_users` WHERE uid = 1";
-               $result = $db->query($sql);
-               $rows = mysqli_num_rows($result);
-  
-              ?>
+              <?php
+
+    $sql = "SELECT * FROM `shop_users` WHERE uid = 1";
+    $result = $db->query($sql);
+    $rows = mysqli_num_rows($result);
+
+    ?>
                 <h3><?php echo $rows ?></h3>
 
                 <p>Total Seller</p>
@@ -369,13 +367,13 @@ if( $_SESSION["uid"]==0)
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-              <?php 
-                
-                $sql = "SELECT DISTINCT productname  FROM `shop_products`";
-                $result = $db->query($sql);
-                $rows = mysqli_num_rows($result);
-   
-               ?>
+              <?php
+
+    $sql = "SELECT DISTINCT productname  FROM `shop_products`";
+    $result = $db->query($sql);
+    $rows = mysqli_num_rows($result);
+
+    ?>
                 <h3><?php echo $rows ?></h3>
 
                 <p>Total Products</p>
@@ -962,14 +960,13 @@ if( $_SESSION["uid"]==0)
 
 
 
-<?php 
+<?php
 
 }
 
-if($_SESSION["uid"]==1)
-{
+if ($_SESSION["uid"] == 1) {
 
-?>
+    ?>
 
 
 
@@ -1074,7 +1071,7 @@ if($_SESSION["uid"]==1)
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-               
+
                   <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                 </h3>
                 <p class="text-sm">I got your message bro</p>
@@ -1160,7 +1157,7 @@ if($_SESSION["uid"]==1)
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> -->
         <div class="info">
-          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"]   ?>  As Seller </a>
+          <a href="#" class="d-block"> <?php echo $_SESSION["fristname"] ?>  As Seller </a>
         </div>
       </div>
 
@@ -1195,11 +1192,11 @@ if($_SESSION["uid"]==1)
               <i class="nav-icon fas fa-th"></i>
               <p>
                 See Products
-               
+
               </p>
             </a>
           </li>
-         
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -1234,17 +1231,17 @@ if($_SESSION["uid"]==1)
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-    
+
 
             <div class="small-box bg-info">
               <div class="inner">
-              <?php 
-                
-                $sql = "SELECT DISTINCT productname  FROM `shop_products`";
-                $result = $db->query($sql);
-                $rows = mysqli_num_rows($result);
-   
-               ?>
+              <?php
+
+    $sql = "SELECT DISTINCT productname  FROM `shop_products`";
+    $result = $db->query($sql);
+    $rows = mysqli_num_rows($result);
+
+    ?>
                 <h3><?php echo $rows ?></h3>
 
                 <p>Total Available Product</p>
@@ -1260,14 +1257,14 @@ if($_SESSION["uid"]==1)
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-              <?php 
-                $userid = $_SESSION["id"];
-                $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 0 && userid = $userid ";
-                $result = $db->query($sql);
-                $rows = mysqli_num_rows($result);
-   
-               ?>
-                <h3><?php echo $rows ;?><sup style="font-size: 20px"></sup></h3>
+              <?php
+$userid = $_SESSION["id"];
+    $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 0 && userid = $userid ";
+    $result = $db->query($sql);
+    $rows = mysqli_num_rows($result);
+
+    ?>
+                <h3><?php echo $rows; ?><sup style="font-size: 20px"></sup></h3>
 
                 <p>Total Approve Order</p>
               </div>
@@ -1282,14 +1279,14 @@ if($_SESSION["uid"]==1)
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-              <?php 
-                $userid = $_SESSION["id"];
-                $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 1 && userid = $userid ";
-                $result = $db->query($sql);
-                $rows = mysqli_num_rows($result);
-   
-               ?>
-                <h3><?php echo $rows ;?><sup style="font-size: 20px"></sup></h3>
+              <?php
+$userid = $_SESSION["id"];
+    $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 1 && userid = $userid ";
+    $result = $db->query($sql);
+    $rows = mysqli_num_rows($result);
+
+    ?>
+                <h3><?php echo $rows; ?><sup style="font-size: 20px"></sup></h3>
 
                 <p>Total Pending Order</p>
               </div>
@@ -1304,16 +1301,16 @@ if($_SESSION["uid"]==1)
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-              <?php 
-                $userid = $_SESSION["id"];
-                $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 2 && userid = $userid ";
-                $result = $db->query($sql);
-                $rows = mysqli_num_rows($result);
-   
-               ?>
-                <h3><?php echo $rows ;?><sup style="font-size: 20px"></sup></h3>
+              <?php
+$userid = $_SESSION["id"];
+    $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 2 && userid = $userid ";
+    $result = $db->query($sql);
+    $rows = mysqli_num_rows($result);
 
-                <p>Total Unpaid</p>
+    ?>
+                <h3><?php echo $rows; ?><sup style="font-size: 20px"></sup></h3>
+
+                <p>Total Unpaid  orders</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -1897,9 +1894,8 @@ if($_SESSION["uid"]==1)
 </html>
 
 
-<?php 
+<?php
 
 }
-
 
 ?>
