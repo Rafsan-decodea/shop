@@ -1304,9 +1304,16 @@ if($_SESSION["uid"]==1)
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>..</h3>
+              <?php 
+                $userid = $_SESSION["id"];
+                $sql = "SELECT * FROM `shop_orders` WHERE acceptrequest	= 2 && userid = $userid ";
+                $result = $db->query($sql);
+                $rows = mysqli_num_rows($result);
+   
+               ?>
+                <h3><?php echo $rows ;?><sup style="font-size: 20px"></sup></h3>
 
-                <p>Total Sell</p>
+                <p>Total Unpaid</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
