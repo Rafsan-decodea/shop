@@ -253,7 +253,6 @@ class Seeorder
 
         if (isset($_POST["approveidSend"])) {
             $sql = "update shop_orders set acceptrequest= 0 , orderaprovedate = CURRENT_TIMESTAMP where id = $approveidSend ";
-            echo json_encode($sql);
             $db->update($sql);
         }
     }

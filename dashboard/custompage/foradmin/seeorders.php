@@ -296,7 +296,7 @@ if ($_SESSION["uid"] == 0) {
 
       success: function (data,status)
       {
-        alert(data);
+  
 
           toastr.info("Please reload The Page For See Effect");
           toastr.success("Approve Successfully ");
